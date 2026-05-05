@@ -20,12 +20,17 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DHTXGR676K"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-DHTXGR676K"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DHTXGR676K');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-DHTXGR676K");
     </script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -1091,12 +1096,12 @@
         padding-top: 16px;
       }
       .modal-youtube-label {
-        font-size: .8rem;
+        font-size: 0.8rem;
         font-weight: 600;
         color: #555;
         margin-bottom: 10px;
         text-transform: uppercase;
-        letter-spacing: .5px;
+        letter-spacing: 0.5px;
       }
       .modal-youtube {
         position: relative;
@@ -1205,7 +1210,11 @@
             >Publications</a
           >
         </li>
-        <li><a href="courses.html" data-en="Teaching" data-id="Kuliah">Teaching</a></li>
+        <li>
+          <a href="courses.html" data-en="Teaching" data-id="Kuliah"
+            >Teaching</a
+          >
+        </li>
         <li><a href="news.html" data-en="News" data-id="Berita">News</a></li>
         <li>
           <a href="#joinus" data-en="Join Us" data-id="Bergabung">Join Us</a>
@@ -1306,31 +1315,56 @@
           </div>
           <div class="hero-social">
             <a href="mailto:khairul@unej.ac.id" title="Email"
-              ><i class="fas fa-envelope"></i></a>
-            <a href="https://scholar.google.com/citations?user=OryG4o4AAAAJ&hl=en"
-              target="_blank" title="Google Scholar"
-              ><i class="fas fa-graduation-cap"></i></a>
-            <a href="https://www.scopus.com/authid/detail.uri?authorId=55566596100"
-              target="_blank" title="Scopus"
-              ><i class="fas fa-book-open"></i></a>
-            <a href="https://webofscience.com/wos/author/record/1289307"
-              target="_blank" title="Web of Science"
-              ><i class="fas fa-atom"></i></a>
-            <a href="https://orcid.org/0000-0003-4169-2237"
-              target="_blank" title="ORCID"
-              ><i class="fab fa-orcid"></i></a>
-            <a href="https://www.linkedin.com/in/khairul-anam-707689a/"
-              target="_blank" title="LinkedIn"
-              ><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://sinta.kemdiktisaintek.go.id/authors/profile/55778"
-              target="_blank" title="SINTA"
-              ><i class="fas fa-star"></i></a>
-            <a href="https://khairul.staff.unej.ac.id"
-              target="_blank" title="Web Kampus UNEJ"
-              ><i class="fas fa-university"></i></a>
-            <a href="https://www.youtube.com/@khairulanam_unej"
-              target="_blank" title="YouTube ISR Lab"
-              ><i class="fab fa-youtube"></i></a>
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a
+              href="https://scholar.google.com/citations?user=OryG4o4AAAAJ&hl=en"
+              target="_blank"
+              title="Google Scholar"
+              ><i class="fas fa-graduation-cap"></i
+            ></a>
+            <a
+              href="https://www.scopus.com/authid/detail.uri?authorId=55566596100"
+              target="_blank"
+              title="Scopus"
+              ><i class="fas fa-book-open"></i
+            ></a>
+            <a
+              href="https://webofscience.com/wos/author/record/1289307"
+              target="_blank"
+              title="Web of Science"
+              ><i class="fas fa-atom"></i
+            ></a>
+            <a
+              href="https://orcid.org/0000-0003-4169-2237"
+              target="_blank"
+              title="ORCID"
+              ><i class="fab fa-orcid"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/khairul-anam-707689a/"
+              target="_blank"
+              title="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://sinta.kemdiktisaintek.go.id/authors/profile/55778"
+              target="_blank"
+              title="SINTA"
+              ><i class="fas fa-star"></i
+            ></a>
+            <a
+              href="https://khairul.staff.unej.ac.id"
+              target="_blank"
+              title="Web Kampus UNEJ"
+              ><i class="fas fa-university"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@khairulanam_unej"
+              target="_blank"
+              title="YouTube ISR Lab"
+              ><i class="fab fa-youtube"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -1792,14 +1826,33 @@
         <div class="news-grid" id="newsGrid">
           <!-- Loaded dynamically from data/content.json -->
         </div>
-        <div id="newsViewAll" style="display:none;text-align:center;margin-top:36px">
-          <a href="news.html" style="display:inline-flex;align-items:center;gap:8px;
-            background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
-            padding:12px 28px;font-size:.88rem;font-weight:600;
-            box-shadow:0 4px 15px rgba(192,57,43,.3);transition:all .2s;"
-            onmouseover="this.style.background='#e74c3c'"
-            onmouseout="this.style.background='var(--red)'">
-            <span data-en="View All News & Activities" data-id="Lihat Semua Berita & Aktivitas">
+        <div
+          id="newsViewAll"
+          style="display: none; text-align: center; margin-top: 36px"
+        >
+          <a
+            href="news.html"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              background: var(--red);
+              color: #fff;
+              text-decoration: none;
+              border-radius: 8px;
+              padding: 12px 28px;
+              font-size: 0.88rem;
+              font-weight: 600;
+              box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
+              transition: all 0.2s;
+            "
+            onmouseover="this.style.background = '#e74c3c'"
+            onmouseout="this.style.background = 'var(--red)'"
+          >
+            <span
+              data-en="View All News & Activities"
+              data-id="Lihat Semua Berita & Aktivitas"
+            >
               View All News & Activities
             </span>
             <i class="fas fa-arrow-right"></i>
@@ -1846,7 +1899,7 @@
             our lab.
           </p>
           <a
-            href="mailto:kh.anam.sk@gmail.com"
+            href="mailto:khairul@unej.ac.id"
             class="btn-primary"
             data-en="Apply Now →"
             data-id="Daftar Sekarang →"
@@ -2161,9 +2214,13 @@
           } else {
             imagesHtml =
               `<div class="modal-image-gallery" style="margin-top:16px;">` +
-              arr.map((src) => `<img src="${src}" alt=""
+              arr
+                .map(
+                  (src) => `<img src="${src}" alt=""
                 onerror="this.style.display='none'"
-                onclick="openLightbox('${src}')">`).join("") +
+                onclick="openLightbox('${src}')">`,
+                )
+                .join("") +
               `</div>`;
           }
         }
@@ -2279,8 +2336,8 @@
         const grid = document.getElementById("newsGrid");
         grid.innerHTML = "";
         // Urutkan berdasarkan tanggal terbaru, tampil 3 teratas
-        const sorted = [...data].sort((a, b) =>
-          new Date(b.date) - new Date(a.date)
+        const sorted = [...data].sort(
+          (a, b) => new Date(b.date) - new Date(a.date),
         );
         const latest = sorted.slice(0, 3);
         latest.forEach((n, i) => {
@@ -2311,7 +2368,7 @@
           card.innerHTML = `
         ${cardImg}
         <div class="news-body">
-          <div class="news-date">${n['date_'+currentLang]||n.date_en||n.date||''}</div>
+          <div class="news-date">${n["date_" + currentLang] || n.date_en || n.date || ""}</div>
           <div class="news-cat">${cat}</div>
           <h4>${title}</h4>
           <p>${summary}</p>
@@ -2348,7 +2405,7 @@
           const title = t["title_" + currentLang] || t.title_en;
           const label = t["label_" + currentLang] || t.label_en;
           const items = (t.items || [])
-            .map(item => `<li>${item[currentLang] || item.en}</li>`)
+            .map((item) => `<li>${item[currentLang] || item.en}</li>`)
             .join("");
           const card = document.createElement("div");
           card.className = "pos-card";
@@ -2369,7 +2426,9 @@
         if (!list || !data) return;
         list.innerHTML = "";
         // Urutkan tahun terbaru di atas
-        const sorted = [...data].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        const sorted = [...data].sort(
+          (a, b) => parseInt(b.year) - parseInt(a.year),
+        );
         sorted.forEach((p, i) => {
           const hasLink = p.doi && p.doi.trim() !== "";
           const linkHtml = hasLink

@@ -8,24 +8,24 @@
       "title_id": "Riset Skripsi S1",
       "items": [
         {
-          "en": "EMG/EEG signal processing",
-          "id": "Pengolahan sinyal EMG/EEG"
+          "en": "EMG/EEG signal processing for wheelchair and rehabilitation robot control",
+          "id": "Pengolahan sinyal EMG/EEG untuk kendali kursi roda dan robot rehabilitasi"
         },
         {
-          "en": "Embedded systems (Arduino, Jetson)",
-          "id": "Sistem tertanam (Arduino, Jetson)"
+          "en": "Embedded systems (Arduino, Jetson) for electric vehicles at the hospital",
+          "id": "Sistem tertanam (Arduino, Jetson) untuk kendaraan listri di RS"
         },
         {
-          "en": "ROS2 robot programming",
-          "id": "Pemrograman robot ROS2"
+          "en": "ROS2 robot programming for aunotomous vehice in medical and agroindustrial environment",
+          "id": "Pemrograman robot ROS2 untuk kendaraan otonom di lingkungan medis dan agroindustri"
         },
         {
-          "en": "Computer vision projects",
-          "id": "Proyek computer vision"
+          "en": "Computer Vision for Smart Coffee Dryers",
+          "id": "Computer vision untuk Pengering Kopi Cerdas"
         },
         {
-          "en": "IoT sensor systems",
-          "id": "Sistem sensor IoT"
+          "en": "IoT sensor systems for agriculture and healthcare",
+          "id": "IoT sensor systems untuk pertanian dan kesehatan"
         }
       ]
     },
