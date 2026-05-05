@@ -1221,8 +1221,12 @@
         border-left: 4px solid var(--red);
         transition: transform 0.2s;
       }
-      .edu-item:last-child { margin-bottom: 0; }
-      .edu-item:hover { transform: translateX(4px); }
+      .edu-item:last-child {
+        margin-bottom: 0;
+      }
+      .edu-item:hover {
+        transform: translateX(4px);
+      }
       .edu-item::before {
         content: "";
         position: absolute;
@@ -1303,7 +1307,7 @@
       }
       .book-card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
       }
       .book-cover {
         height: 180px;
@@ -1325,7 +1329,7 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        color: rgba(255,255,255,0.6);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 2.5rem;
       }
       .book-cover-placeholder span {
@@ -1333,7 +1337,7 @@
         font-weight: 600;
         letter-spacing: 1px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.5);
+        color: rgba(255, 255, 255, 0.5);
       }
       .book-year-badge {
         position: absolute;
@@ -1391,7 +1395,9 @@
         align-items: flex-start;
         transition: transform 0.2s;
       }
-      .hki-card:hover { transform: translateX(4px); }
+      .hki-card:hover {
+        transform: translateX(4px);
+      }
       .hki-icon-wrap {
         flex-shrink: 0;
         width: 52px;
@@ -1402,9 +1408,17 @@
         justify-content: center;
         font-size: 1.4rem;
       }
-      .hki-icon-patent { background: rgba(192,57,43,0.1); color: var(--red); }
-      .hki-icon-copyright { background: rgba(240,165,0,0.12); color: #b07800; }
-      .hki-body { flex: 1; }
+      .hki-icon-patent {
+        background: rgba(192, 57, 43, 0.1);
+        color: var(--red);
+      }
+      .hki-icon-copyright {
+        background: rgba(240, 165, 0, 0.12);
+        color: #b07800;
+      }
+      .hki-body {
+        flex: 1;
+      }
       .hki-type-badge {
         display: inline-block;
         border-radius: 8px;
@@ -1413,8 +1427,14 @@
         font-weight: 700;
         margin-bottom: 6px;
       }
-      .hki-badge-patent { background: var(--red); color: #fff; }
-      .hki-badge-copyright { background: rgba(240,165,0,0.18); color: #b07800; }
+      .hki-badge-patent {
+        background: var(--red);
+        color: #fff;
+      }
+      .hki-badge-copyright {
+        background: rgba(240, 165, 0, 0.18);
+        color: #b07800;
+      }
       .hki-title {
         font-size: 0.92rem;
         font-weight: 700;
@@ -1429,7 +1449,11 @@
         flex-wrap: wrap;
         gap: 12px;
       }
-      .hki-meta span { display: flex; align-items: center; gap: 5px; }
+      .hki-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
       .hki-year {
         flex-shrink: 0;
         background: var(--dark);
@@ -1451,7 +1475,9 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
         <li>
-          <a href="#education" data-en="Education" data-id="Pendidikan">Education</a>
+          <a href="#education" data-en="Education" data-id="Pendidikan"
+            >Education</a
+          >
         </li>
         <li>
           <a href="#research" data-en="Research" data-id="Riset">Research</a>
@@ -1652,7 +1678,7 @@
           </p>
         </div>
         <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-          <h3>10+</h3>
+          <h3>15+</h3>
           <p data-en="Years of Research" data-id="Tahun Penelitian">
             Years of Research
           </p>
@@ -1814,8 +1840,20 @@
     <!-- ══ EDUCATION ══ -->
     <section id="education">
       <div class="section-inner">
-        <p class="section-label" data-en="Academic Background" data-id="Latar Belakang Akademik">Academic Background</p>
-        <h2 class="section-title" data-en="Education" data-id="Riwayat Pendidikan">Education</h2>
+        <p
+          class="section-label"
+          data-en="Academic Background"
+          data-id="Latar Belakang Akademik"
+        >
+          Academic Background
+        </p>
+        <h2
+          class="section-title"
+          data-en="Education"
+          data-id="Riwayat Pendidikan"
+        >
+          Education
+        </h2>
         <div class="divider"></div>
         <div class="edu-timeline" id="eduTimeline">
           <!-- Diisi otomatis dari content.json -->
@@ -2080,13 +2118,18 @@
     <!-- ══ BOOKS ══ -->
     <section id="books">
       <div class="section-inner">
-        <p class="section-label" data-en="Authored Works" data-id="Karya Tulis">Authored Works</p>
+        <p class="section-label" data-en="Authored Works" data-id="Karya Tulis">
+          Authored Works
+        </p>
         <h2 class="section-title" data-en="Books" data-id="Buku">Books</h2>
         <div class="divider"></div>
-        <p class="section-sub"
+        <p
+          class="section-sub"
           data-en="Textbooks and reference books authored for undergraduate and graduate students."
-          data-id="Buku teks dan buku referensi yang ditulis untuk mahasiswa S1 dan S2.">
-          Textbooks and reference books authored for undergraduate and graduate students.
+          data-id="Buku teks dan buku referensi yang ditulis untuk mahasiswa S1 dan S2."
+        >
+          Textbooks and reference books authored for undergraduate and graduate
+          students.
         </p>
         <div class="books-grid" id="booksGrid">
           <!-- Diisi otomatis dari content.json -->
@@ -2097,13 +2140,28 @@
     <!-- ══ HKI ══ -->
     <section id="hki">
       <div class="section-inner">
-        <p class="section-label" data-en="Intellectual Property" data-id="Kekayaan Intelektual">Intellectual Property</p>
-        <h2 class="section-title" data-en="HKI – Patents & Copyrights" data-id="HKI – Paten & Hak Cipta">HKI – Patents & Copyrights</h2>
+        <p
+          class="section-label"
+          data-en="Intellectual Property"
+          data-id="Kekayaan Intelektual"
+        >
+          Intellectual Property
+        </p>
+        <h2
+          class="section-title"
+          data-en="HKI – Patents & Copyrights"
+          data-id="HKI – Paten & Hak Cipta"
+        >
+          HKI – Patents & Copyrights
+        </h2>
         <div class="divider"></div>
-        <p class="section-sub"
+        <p
+          class="section-sub"
           data-en="Registered intellectual property including patents and copyrights recognized by DJKI Indonesia."
-          data-id="Hak kekayaan intelektual terdaftar termasuk paten dan hak cipta yang diakui oleh DJKI Indonesia.">
-          Registered intellectual property including patents and copyrights recognized by DJKI Indonesia.
+          data-id="Hak kekayaan intelektual terdaftar termasuk paten dan hak cipta yang diakui oleh DJKI Indonesia."
+        >
+          Registered intellectual property including patents and copyrights
+          recognized by DJKI Indonesia.
         </p>
         <div class="hki-list" id="hkiList">
           <!-- Diisi otomatis dari content.json -->
@@ -2756,19 +2814,23 @@
           const items = (t.items || [])
             .map((item) => `<li>${item[currentLang] || item.en}</li>`)
             .join("");
-          const isInternship = (t.level || "").toLowerCase().includes("intern") ||
-                                (t.level || "").toLowerCase().includes("magang");
+          const isInternship =
+            (t.level || "").toLowerCase().includes("intern") ||
+            (t.level || "").toLowerCase().includes("magang");
           const card = document.createElement("div");
           card.className = "pos-card";
           if (isInternship) {
-            card.style.cssText = "border:1px solid rgba(240,165,0,0.35);background:rgba(240,165,0,0.07);";
+            card.style.cssText =
+              "border:1px solid rgba(240,165,0,0.35);background:rgba(240,165,0,0.07);";
           }
           card.setAttribute("data-aos", "fade-up");
           card.setAttribute("data-aos-delay", String(i * 100));
           const badgeStyle = isInternship
-            ? `style="background:var(--gold);"` : "";
+            ? `style="background:var(--gold);"`
+            : "";
           const iconHtml = isInternship
-            ? `<span style="font-size:1.1rem;margin-right:6px;">✈️</span>` : "";
+            ? `<span style="font-size:1.1rem;margin-right:6px;">✈️</span>`
+            : "";
           card.innerHTML = `
             <div class="pos-level" ${badgeStyle}>${iconHtml}${label}</div>
             <h3>${title}</h3>
@@ -2819,14 +2881,16 @@
         if (!timeline || !data) return;
         timeline.innerHTML = "";
         data.forEach((e, i) => {
-          const label   = e["label_" + currentLang] || e.label_en;
-          const field   = e["field_" + currentLang] || e.field_en;
+          const label = e["label_" + currentLang] || e.label_en;
+          const field = e["field_" + currentLang] || e.field_en;
           const country = e["country_" + currentLang] || e.country_en;
-          const thesis  = e["thesis_" + currentLang] || e.thesis_en || "";
+          const thesis = e["thesis_" + currentLang] || e.thesis_en || "";
           const honorHtml = e.honor
-            ? `<span class="edu-honor"><i class="fas fa-star" style="font-size:.65rem;"></i> ${e.honor}</span>` : "";
+            ? `<span class="edu-honor"><i class="fas fa-star" style="font-size:.65rem;"></i> ${e.honor}</span>`
+            : "";
           const thesisHtml = thesis
-            ? `<div class="edu-thesis"><i class="fas fa-scroll" style="color:var(--red);margin-right:6px;"></i>${thesis}</div>` : "";
+            ? `<div class="edu-thesis"><i class="fas fa-scroll" style="color:var(--red);margin-right:6px;"></i>${thesis}</div>`
+            : "";
           const item = document.createElement("div");
           item.className = "edu-item";
           item.setAttribute("data-aos", "fade-up");
@@ -2853,7 +2917,7 @@
           "linear-gradient(135deg,#1a1a2e,#c0392b)",
           "linear-gradient(135deg,#16213e,#f0a500)",
           "linear-gradient(135deg,#0d3b6e,#27ae60)",
-          "linear-gradient(135deg,#2c3e50,#8e44ad)"
+          "linear-gradient(135deg,#2c3e50,#8e44ad)",
         ];
         data.forEach((b, i) => {
           const grad = gradients[i % gradients.length];
@@ -2884,16 +2948,22 @@
         const list = document.getElementById("hkiList");
         if (!list || !data) return;
         list.innerHTML = "";
-        const sorted = [...data].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        const sorted = [...data].sort(
+          (a, b) => parseInt(b.year) - parseInt(a.year),
+        );
         sorted.forEach((h, i) => {
           const title = h["title_" + currentLang] || h.title_en;
-          const type  = h["type_" + currentLang]  || h.type_en;
+          const type = h["type_" + currentLang] || h.type_en;
           const isPatent = h.type_en.toLowerCase().includes("patent");
-          const iconClass  = isPatent ? "hki-icon-patent"    : "hki-icon-copyright";
-          const badgeClass = isPatent ? "hki-badge-patent"   : "hki-badge-copyright";
-          const icon       = isPatent ? "fa-certificate"     : "fa-copyright";
-          const idHtml = h.id_number && h.id_number !== "—"
-            ? `<span><i class="fas fa-hashtag"></i> ${h.id_number}</span>` : "";
+          const iconClass = isPatent ? "hki-icon-patent" : "hki-icon-copyright";
+          const badgeClass = isPatent
+            ? "hki-badge-patent"
+            : "hki-badge-copyright";
+          const icon = isPatent ? "fa-certificate" : "fa-copyright";
+          const idHtml =
+            h.id_number && h.id_number !== "—"
+              ? `<span><i class="fas fa-hashtag"></i> ${h.id_number}</span>`
+              : "";
           const card = document.createElement("div");
           card.className = "hki-card";
           card.setAttribute("data-aos", "fade-up");
