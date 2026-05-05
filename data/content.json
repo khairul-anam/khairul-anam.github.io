@@ -369,5 +369,133 @@
       "badge": "Sinta S2",
       "doi": "https://doi.org/10.17529/jre.v17i1.16376"
     }
+  ],
+  "education": [
+    {
+      "id": "edu1",
+      "degree": "S1",
+      "label_en": "Bachelor's Degree (S1)",
+      "label_id": "Sarjana (S1)",
+      "field_en": "Control Engineering",
+      "field_id": "Teknik Kontrol",
+      "institution": "Universitas Brawijaya",
+      "country_en": "Indonesia",
+      "country_id": "Indonesia",
+      "year": "1996–2002",
+      "thesis_en": "Application of Artificial Neural Networks for DC Motor System Identification",
+      "thesis_id": "Aplikasi Jaringan Syaraf Tiruan pada Identifikasi Sistem Motor DC Penguatan Terpisah",
+      "honor": ""
+    },
+    {
+      "id": "edu2",
+      "degree": "S2",
+      "label_en": "Master's Degree (S2)",
+      "label_id": "Magister (S2)",
+      "field_en": "Control Engineering",
+      "field_id": "Teknik Pengaturan",
+      "institution": "Institut Teknologi Sepuluh Nopember (ITS)",
+      "country_en": "Indonesia",
+      "country_id": "Indonesia",
+      "year": "2006–2008",
+      "thesis_en": "Behavior-Based Control Scheme with Fuzzy Q-Learning for Autonomous Mobile Robot Navigation",
+      "thesis_id": "Skema Behavior-Based Control dengan Pembelajaran Fuzzy Q-learning untuk Sistem Navigasi Autonomous Mobile Robot",
+      "honor": "Cumlaude"
+    },
+    {
+      "id": "edu3",
+      "degree": "S3",
+      "label_en": "Doctoral Degree (Ph.D)",
+      "label_id": "Doktor (S3)",
+      "field_en": "Electrical Engineering",
+      "field_id": "Teknik Elektro",
+      "institution": "University of Technology Sydney (UTS)",
+      "country_en": "Australia",
+      "country_id": "Australia",
+      "year": "2012–2016",
+      "thesis_en": "Bio-driven control system for the rehabilitation hand device: a new approach",
+      "thesis_id": "Sistem kontrol bio-driven untuk perangkat rehabilitasi tangan: pendekatan baru",
+      "honor": ""
+    },
+    {
+      "id": "edu4",
+      "degree": "Profesi",
+      "label_en": "Professional Engineer (IPU)",
+      "label_id": "Profesi Insinyur (IPU)",
+      "field_en": "Professional Engineer",
+      "field_id": "Insinyur Profesional",
+      "institution": "Universitas Jember",
+      "country_en": "Indonesia",
+      "country_id": "Indonesia",
+      "year": "2018",
+      "thesis_en": "",
+      "thesis_id": "",
+      "honor": ""
+    }
+  ],
+  "books": [
+    {
+      "id": "bk1",
+      "title": "Sistem Kontrol Robot untuk Rehabilitasi",
+      "isbn": "978-602-5617-91-1",
+      "publisher": "UPT Penerbitan Universitas Jember",
+      "year": "2019",
+      "cover": null
+    },
+    {
+      "id": "bk2",
+      "title": "Buku Ajar Sistem Kendali Cerdas",
+      "isbn": "978-623-025-757-5",
+      "publisher": "Penerbit Deepublish",
+      "year": "2022",
+      "cover": null
+    },
+    {
+      "id": "bk3",
+      "title": "Deep Learning untuk Agroindustri",
+      "isbn": "978-623-477-145-9",
+      "publisher": "UPT Penerbitan Universitas Jember",
+      "year": "2023",
+      "cover": null
+    },
+    {
+      "id": "bk4",
+      "title": "Sistem Kontrol",
+      "isbn": "978-623-477-101-5",
+      "publisher": "UPT Penerbitan Universitas Jember",
+      "year": "2023",
+      "cover": null
+    }
+  ],
+  "hki": [
+    {
+      "id": "hki1",
+      "year": "2023",
+      "title_en": "Pattern Recognition Method of Hand Finger Movement to Drive Hand Exoskeleton Robot Based on Muscle Electrical Signal",
+      "title_id": "Metode Pengenalan Pola Gerakan Jari-Jari Tangan untuk Menggerakkan Robot Eksoskeleton Tangan Berbasis Sinyal Listrik Otot",
+      "type_en": "Patent (Granted)",
+      "type_id": "Paten (Granted)",
+      "registrar": "DJKI Indonesia",
+      "id_number": "—"
+    },
+    {
+      "id": "hki2",
+      "year": "2022",
+      "title_en": "SEKILAS TENTANG KONFLIK LAHAN DI CURAHNONGKO JEMBER",
+      "title_id": "SEKILAS TENTANG KONFLIK LAHAN DI CURAHNONGKO JEMBER",
+      "type_en": "Copyright",
+      "type_id": "Hak Cipta",
+      "registrar": "DJKI Indonesia",
+      "id_number": "000424154"
+    },
+    {
+      "id": "hki3",
+      "year": "2022",
+      "title_en": "SHINY OFFICE-R (Software)",
+      "title_id": "SHINY OFFICE-R (Software)",
+      "type_en": "Copyright",
+      "type_id": "Hak Cipta",
+      "registrar": "DJKI Indonesia",
+      "id_number": "EC00202271832"
+    }
   ]
 }
