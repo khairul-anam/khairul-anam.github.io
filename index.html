@@ -1988,27 +1988,34 @@
               <h3 data-en="Send a Message" data-id="Kirim Pesan">
                 Send a Message
               </h3>
-              <form onsubmit="return false;">
+              <!-- Success message (hidden by default) -->
+              <div id="formSuccess" style="display:none; background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:20px; text-align:center; margin-bottom:16px;">
+                <i class="fas fa-check-circle" style="color:#16a34a; font-size:2rem; margin-bottom:8px; display:block;"></i>
+                <p style="color:#15803d; font-weight:600; margin:0;" data-en="Message sent! Your email client will open with your message ready to send." data-id="Pesan siap! Aplikasi email Anda akan terbuka dengan pesan yang sudah terisi.">Message sent! Your email client will open with your message ready to send.</p>
+              </div>
+              <form id="contactForm" onsubmit="submitContactForm(event)">
                 <div class="form-row">
                   <div class="form-group">
                     <label data-en="Full Name" data-id="Nama Lengkap"
                       >Full Name</label
                     >
                     <input
+                      id="cfName"
                       type="text"
                       placeholder="Your name"
                       data-ph-en="Your name"
                       data-ph-id="Nama Anda"
+                      required
                     />
                   </div>
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="your@email.com" />
+                    <input id="cfEmail" type="email" placeholder="your@email.com" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label data-en="Purpose" data-id="Keperluan">Purpose</label>
-                  <select>
+                  <select id="cfPurpose">
                     <option
                       data-en="Student – S1 Research"
                       data-id="Mahasiswa – Skripsi S1"
@@ -2039,15 +2046,16 @@
                 <div class="form-group">
                   <label data-en="Message" data-id="Pesan">Message</label>
                   <textarea
+                    id="cfMessage"
                     placeholder="Tell me about your interest..."
                     data-ph-en="Tell me about your interest..."
                     data-ph-id="Ceritakan minat Anda..."
+                    required
                   ></textarea>
                 </div>
                 <button
                   class="btn-submit"
                   type="submit"
-                  onclick="window.location.href = 'mailto:kh.anam.sk@gmail.com'"
                   data-en="Send Message"
                   data-id="Kirim Pesan"
                 >
@@ -2453,6 +2461,39 @@
           list.appendChild(card);
         });
         AOS.refresh();
+      }
+
+      // ── CONTACT FORM ──
+      function submitContactForm(e) {
+        e.preventDefault();
+        const name    = document.getElementById("cfName").value.trim();
+        const email   = document.getElementById("cfEmail").value.trim();
+        const purpose = document.getElementById("cfPurpose").value;
+        const message = document.getElementById("cfMessage").value.trim();
+
+        if (!name || !email || !message) return;
+
+        const subject = `[ISR Lab Website] ${purpose} – ${name}`;
+        const body =
+          `Dear Prof. Khairul Anam,\n\n` +
+          `My name is ${name} (${email}).\n` +
+          `Purpose: ${purpose}\n\n` +
+          `${message}\n\n` +
+          `Best regards,\n${name}`;
+
+        window.open(
+          `mailto:kh.anam.sk@gmail.com` +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(body)}`,
+          "_blank"
+        );
+
+        // Show success notice & reset form
+        document.getElementById("formSuccess").style.display = "block";
+        document.getElementById("contactForm").reset();
+        setTimeout(() => {
+          document.getElementById("formSuccess").style.display = "none";
+        }, 8000);
       }
 
       // ── LOAD DATA FROM JSON ──
