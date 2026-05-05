@@ -7,11 +7,26 @@
       "title_en": "Bachelor's Research (Skripsi)",
       "title_id": "Riset Skripsi S1",
       "items": [
-        {"en": "EMG/EEG signal processing", "id": "Pengolahan sinyal EMG/EEG"},
-        {"en": "Embedded systems (Arduino, Jetson)", "id": "Sistem tertanam (Arduino, Jetson)"},
-        {"en": "ROS2 robot programming", "id": "Pemrograman robot ROS2"},
-        {"en": "Computer vision projects", "id": "Proyek computer vision"},
-        {"en": "IoT sensor systems", "id": "Sistem sensor IoT"}
+        {
+          "en": "EMG/EEG signal processing",
+          "id": "Pengolahan sinyal EMG/EEG"
+        },
+        {
+          "en": "Embedded systems (Arduino, Jetson)",
+          "id": "Sistem tertanam (Arduino, Jetson)"
+        },
+        {
+          "en": "ROS2 robot programming",
+          "id": "Pemrograman robot ROS2"
+        },
+        {
+          "en": "Computer vision projects",
+          "id": "Proyek computer vision"
+        },
+        {
+          "en": "IoT sensor systems",
+          "id": "Sistem sensor IoT"
+        }
       ]
     },
     {
@@ -21,11 +36,26 @@
       "title_en": "Master's Thesis Research",
       "title_id": "Riset Tesis S2",
       "items": [
-        {"en": "Deep learning for biomedical signals", "id": "Deep learning untuk sinyal biomedis"},
-        {"en": "Autonomous robot navigation", "id": "Navigasi robot otonom"},
-        {"en": "Smart wheelchair systems", "id": "Sistem kursi roda cerdas"},
-        {"en": "IoT for agriculture", "id": "IoT untuk pertanian"},
-        {"en": "Medical image segmentation", "id": "Segmentasi citra medis"}
+        {
+          "en": "Deep learning for biomedical signals",
+          "id": "Deep learning untuk sinyal biomedis"
+        },
+        {
+          "en": "Autonomous robot navigation",
+          "id": "Navigasi robot otonom"
+        },
+        {
+          "en": "Smart wheelchair systems",
+          "id": "Sistem kursi roda cerdas"
+        },
+        {
+          "en": "IoT for agriculture",
+          "id": "IoT untuk pertanian"
+        },
+        {
+          "en": "Medical image segmentation",
+          "id": "Segmentasi citra medis"
+        }
       ]
     },
     {
@@ -35,10 +65,22 @@
       "title_en": "PhD Research",
       "title_id": "Riset Doktoral S3",
       "items": [
-        {"en": "Agentic AI for rehabilitation robots", "id": "Agentic AI untuk robot rehabilitasi"},
-        {"en": "Medical imaging deep learning", "id": "Deep learning citra medis"},
-        {"en": "Brain-computer interface (BCI)", "id": "Brain-computer interface (BCI)"},
-        {"en": "Multimodal intention recognition", "id": "Pengenalan intensi multimodal"}
+        {
+          "en": "Agentic AI for rehabilitation robots",
+          "id": "Agentic AI untuk robot rehabilitasi"
+        },
+        {
+          "en": "Medical imaging deep learning",
+          "id": "Deep learning citra medis"
+        },
+        {
+          "en": "Brain-computer interface (BCI)",
+          "id": "Brain-computer interface (BCI)"
+        },
+        {
+          "en": "Multimodal intention recognition",
+          "id": "Pengenalan intensi multimodal"
+        }
       ]
     }
   ],
@@ -274,26 +316,26 @@
       "title": "Evaluation of LSTM for predicting grip strength using electromyography: a comparison of setups and methods",
       "authors": "Anam, K., et al.",
       "journal": "Neural Computing and Applications",
-      "badge": "Neural Computing & Applications",
-      "doi": "https://doi.org/10.1007/s00521-024-10906-0"
+      "badge": "Q1",
+      "doi": "https://doi.org/10.1007/s00521-025-11337-9"
     },
     {
       "id": "p2",
       "year": "2024",
-      "title": "EMG Signal-Based Grasping System for Fingertip Force Prediction in Amputee Robotic Hand with Transfer Learning CNN VGG16",
+      "title": "Evaluation of long-short-term memory on simultaneous and proportional myoelectric control system for individual finger movements",
       "authors": "Anam, K., et al.",
-      "journal": "International Journal (2024)",
-      "badge": "Q1 Journal",
-      "doi": ""
+      "journal": "Research on Biomedical Engineering ",
+      "badge": "Q3",
+      "doi": "https://doi.org/10.1007/s42600-024-00382-3"
     },
     {
       "id": "p3",
       "year": "2023",
-      "title": "Myoelectric Control System for Finger Force of a Hand Exoskeleton",
+      "title": "Evaluation of long-short-term memory on simultaneous and proportional myoelectric control system for individual finger movements",
       "authors": "Anam, K., et al.",
-      "journal": "International Journal (2023)",
-      "badge": "Q2 Journal",
-      "doi": ""
+      "journal": "IAES International Journal of Artificial Intelligence (IJ-AI)",
+      "badge": "Q3 Journal",
+      "doi": "https://ijai.iaescore.com/index.php/IJAI/article/view/25140"
     },
     {
       "id": "p4",
@@ -302,7 +344,7 @@
       "authors": "Sutikno, S., Anam, K., & Shaleh, A.",
       "journal": "Jurnal Rekayasa Elektrika, 17(1), 2021",
       "badge": "Sinta S2",
-      "doi": "https://doi.org/10.17529/jre.v17i1.18227"
+      "doi": "https://doi.org/10.17529/jre.v17i1.16376"
     }
   ]
 }
