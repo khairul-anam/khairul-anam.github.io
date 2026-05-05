@@ -87,7 +87,9 @@
   "news": [
     {
       "id": "n1",
-      "date": "May 2026",
+      "date": "2026-03-11",
+      "date_en": "March 11, 2026",
+      "date_id": "11 Maret 2026",
       "category_en": "Research",
       "category_id": "Riset",
       "icon": "fa-robot",
@@ -104,7 +106,9 @@
     },
     {
       "id": "n2",
-      "date": "April 2026",
+      "date": "2026-04-10",
+      "date_en": "April 10, 2026",
+      "date_id": "10 April 2026",
       "category_en": "Teaching",
       "category_id": "Pengajaran",
       "icon": "fa-graduation-cap",
@@ -118,7 +122,9 @@
     },
     {
       "id": "n3",
-      "date": "March 2026",
+      "date": "2026-01-10",
+      "date_en": "January 10, 2026",
+      "date_id": "10 Januari 2026",
       "category_en": "Community Service",
       "category_id": "Pengabdian",
       "icon": "fa-hands-helping",
@@ -132,7 +138,9 @@
     },
     {
       "id": "n4",
-      "date": "May 2026",
+      "date": "2026-05-11",
+      "date_en": "May 11, 2026",
+      "date_id": "11 Mei 2026",
       "category_en": "Community Service",
       "category_id": "Pengabdian",
       "icon": "fa-newspaper",

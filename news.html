@@ -356,7 +356,7 @@
         ${imgHtml}
         <div class="news-body">
           <div class="news-meta">
-            <span class="news-date">${n.date || ''}</span>
+            <span class="news-date">${n['date_'+currentLang]||n.date_en||n.date||''}</span>
             <span class="news-cat ${getCatClass(cat)}">${cat}</span>
           </div>
           <div class="news-title">${title}</div>
