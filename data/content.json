@@ -1,4 +1,47 @@
 {
+  "topics": [
+    {
+      "level": "S1",
+      "label_en": "S1 – Undergraduate",
+      "label_id": "S1 – Sarjana",
+      "title_en": "Bachelor's Research (Skripsi)",
+      "title_id": "Riset Skripsi S1",
+      "items": [
+        {"en": "EMG/EEG signal processing", "id": "Pengolahan sinyal EMG/EEG"},
+        {"en": "Embedded systems (Arduino, Jetson)", "id": "Sistem tertanam (Arduino, Jetson)"},
+        {"en": "ROS2 robot programming", "id": "Pemrograman robot ROS2"},
+        {"en": "Computer vision projects", "id": "Proyek computer vision"},
+        {"en": "IoT sensor systems", "id": "Sistem sensor IoT"}
+      ]
+    },
+    {
+      "level": "S2",
+      "label_en": "S2 – Master's",
+      "label_id": "S2 – Magister",
+      "title_en": "Master's Thesis Research",
+      "title_id": "Riset Tesis S2",
+      "items": [
+        {"en": "Deep learning for biomedical signals", "id": "Deep learning untuk sinyal biomedis"},
+        {"en": "Autonomous robot navigation", "id": "Navigasi robot otonom"},
+        {"en": "Smart wheelchair systems", "id": "Sistem kursi roda cerdas"},
+        {"en": "IoT for agriculture", "id": "IoT untuk pertanian"},
+        {"en": "Medical image segmentation", "id": "Segmentasi citra medis"}
+      ]
+    },
+    {
+      "level": "S3",
+      "label_en": "S3 – Doctoral",
+      "label_id": "S3 – Doktoral",
+      "title_en": "PhD Research",
+      "title_id": "Riset Doktoral S3",
+      "items": [
+        {"en": "Agentic AI for rehabilitation robots", "id": "Agentic AI untuk robot rehabilitasi"},
+        {"en": "Medical imaging deep learning", "id": "Deep learning citra medis"},
+        {"en": "Brain-computer interface (BCI)", "id": "Brain-computer interface (BCI)"},
+        {"en": "Multimodal intention recognition", "id": "Pengenalan intensi multimodal"}
+      ]
+    }
+  ],
   "news": [
     {
       "id": "n1",

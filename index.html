@@ -19,6 +19,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DHTXGR676K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DHTXGR676K');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
       :root {
@@ -1198,7 +1206,7 @@
           >
         </li>
         <li><a href="courses.html" data-en="Teaching" data-id="Kuliah">Teaching</a></li>
-        <li><a href="#news" data-en="News" data-id="Berita">News</a></li>
+        <li><a href="news.html" data-en="News" data-id="Berita">News</a></li>
         <li>
           <a href="#joinus" data-en="Join Us" data-id="Bergabung">Join Us</a>
         </li>
@@ -1782,6 +1790,19 @@
         <div class="news-grid" id="newsGrid">
           <!-- Loaded dynamically from data/content.json -->
         </div>
+        <div id="newsViewAll" style="display:none;text-align:center;margin-top:36px">
+          <a href="news.html" style="display:inline-flex;align-items:center;gap:8px;
+            background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
+            padding:12px 28px;font-size:.88rem;font-weight:600;
+            box-shadow:0 4px 15px rgba(192,57,43,.3);transition:all .2s;"
+            onmouseover="this.style.background='#e74c3c'"
+            onmouseout="this.style.background='var(--red)'">
+            <span data-en="View All News & Activities" data-id="Lihat Semua Berita & Aktivitas">
+              View All News & Activities
+            </span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1811,103 +1832,8 @@
           We are looking for passionate students who want to contribute to
           cutting-edge research in robotics, AI, and biomedical engineering.
         </p>
-        <div class="positions-grid">
-          <div class="pos-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="pos-level">S1 – Undergraduate</div>
-            <h3
-              data-en="Bachelor's Research (Skripsi)"
-              data-id="Riset Skripsi S1"
-            >
-              Bachelor's Research (Skripsi)
-            </h3>
-            <ul>
-              <li
-                data-en="EMG/EEG signal processing"
-                data-id="Pengolahan sinyal EMG/EEG"
-              >
-                EMG/EEG signal processing
-              </li>
-              <li
-                data-en="Embedded systems (Arduino, Jetson)"
-                data-id="Sistem tertanam (Arduino, Jetson)"
-              >
-                Embedded systems (Arduino, Jetson)
-              </li>
-              <li
-                data-en="ROS2 robot programming"
-                data-id="Pemrograman robot ROS2"
-              >
-                ROS2 robot programming
-              </li>
-              <li
-                data-en="Computer vision projects"
-                data-id="Proyek computer vision"
-              >
-                Computer vision projects
-              </li>
-            </ul>
-          </div>
-          <div class="pos-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="pos-level">S2 – Master's</div>
-            <h3 data-en="Master's Thesis Research" data-id="Riset Tesis S2">
-              Master's Thesis Research
-            </h3>
-            <ul>
-              <li
-                data-en="Deep learning for biomedical signals"
-                data-id="Deep learning untuk sinyal biomedis"
-              >
-                Deep learning for biomedical signals
-              </li>
-              <li
-                data-en="Autonomous robot navigation"
-                data-id="Navigasi robot otonom"
-              >
-                Autonomous robot navigation
-              </li>
-              <li
-                data-en="Smart wheelchair systems"
-                data-id="Sistem kursi roda cerdas"
-              >
-                Smart wheelchair systems
-              </li>
-              <li data-en="IoT for agriculture" data-id="IoT untuk pertanian">
-                IoT for agriculture
-              </li>
-            </ul>
-          </div>
-          <div class="pos-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="pos-level">S3 – Doctoral</div>
-            <h3 data-en="PhD Research" data-id="Riset Doktoral S3">
-              PhD Research
-            </h3>
-            <ul>
-              <li
-                data-en="Agentic AI for rehabilitation robots"
-                data-id="Agentic AI untuk robot rehabilitasi"
-              >
-                Agentic AI for rehabilitation robots
-              </li>
-              <li
-                data-en="Medical imaging deep learning"
-                data-id="Deep learning citra medis"
-              >
-                Medical imaging deep learning
-              </li>
-              <li
-                data-en="Brain-computer interface (BCI)"
-                data-id="Brain-computer interface (BCI)"
-              >
-                Brain-computer interface (BCI)
-              </li>
-              <li
-                data-en="Multimodal intention recognition"
-                data-id="Pengenalan intensi multimodal"
-              >
-                Multimodal intention recognition
-              </li>
-            </ul>
-          </div>
+        <div class="positions-grid" id="topicsGrid">
+          <!-- Diisi otomatis dari content.json -->
         </div>
         <div class="join-cta">
           <p
@@ -2160,6 +2086,7 @@
         });
         // Re-render dynamic cards in new language
         if (window._contentData) {
+          renderTopics(window._contentData.topics);
           renderNews(window._contentData.news);
           renderResearch(window._contentData.research);
           renderPublications(window._contentData.publications);
@@ -2349,7 +2276,9 @@
       function renderNews(data) {
         const grid = document.getElementById("newsGrid");
         grid.innerHTML = "";
-        data.forEach((n, i) => {
+        // Tampil hanya 3 terbaru di halaman utama
+        const latest = data.slice(0, 3);
+        latest.forEach((n, i) => {
           const title = n["title_" + currentLang];
           const summary = n["summary_" + currentLang];
           const content = n["content_" + currentLang];
@@ -2391,6 +2320,11 @@
           grid.appendChild(card);
         });
         AOS.refresh();
+        // Tombol "Lihat Semua"
+        const wrap = document.getElementById("newsViewAll");
+        if (wrap) {
+          wrap.style.display = data.length > 3 ? "block" : "none";
+        }
       }
 
       // ── HELPER: resolve image paths ──
@@ -2398,6 +2332,30 @@
         if (!images) return null;
         const arr = Array.isArray(images) ? images : [images];
         return arr.map((f) => `assets/images/${folder}/${f}`);
+      }
+
+      // ── RENDER TOPICS (Skripsi/Tesis) ──
+      function renderTopics(data) {
+        const grid = document.getElementById("topicsGrid");
+        if (!grid || !data) return;
+        grid.innerHTML = "";
+        data.forEach((t, i) => {
+          const title = t["title_" + currentLang] || t.title_en;
+          const label = t["label_" + currentLang] || t.label_en;
+          const items = (t.items || [])
+            .map(item => `<li>${item[currentLang] || item.en}</li>`)
+            .join("");
+          const card = document.createElement("div");
+          card.className = "pos-card";
+          card.setAttribute("data-aos", "fade-up");
+          card.setAttribute("data-aos-delay", String(i * 100));
+          card.innerHTML = `
+            <div class="pos-level">${label}</div>
+            <h3>${title}</h3>
+            <ul>${items}</ul>`;
+          grid.appendChild(card);
+        });
+        AOS.refresh();
       }
 
       // ── RENDER PUBLICATIONS ──
@@ -2438,6 +2396,7 @@
         .then((r) => r.json())
         .then((data) => {
           window._contentData = data;
+          renderTopics(data.topics);
           renderResearch(data.research);
           renderNews(data.news);
           renderPublications(data.publications);
