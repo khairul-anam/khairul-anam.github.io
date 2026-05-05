@@ -129,6 +129,21 @@
       "content_en": "ISR Lab successfully conducted a **real-world trial** of the voice-controlled intelligent wheelchair at a local hospital in Jember.\n\n#### Wheelchair Features\n\n- AI-based voice command recognition (5 commands: forward, backward, left, right, stop)\n- LiDAR-based obstacle avoidance\n- Emergency panic button\n- Runs on NVIDIA Jetson Orin NX 16GB\n- Base: Careindo 503 electric wheelchair (24V DC Motor, 250W)\n\nThe trial involved **3 cerebral palsy patients** and achieved an overall accuracy of **76%** in real-world conditions. The team is now working on improving accuracy for the next phase.\n\nThis activity is part of the **PKM (Community Service Program)** and collaboration with the local health department.",
       "content_id": "ISR Lab berhasil melakukan **uji coba nyata** kursi roda cerdas kendali suara di RS lokal di Jember.\n\n#### Fitur Kursi Roda\n\n- Pengenalan perintah suara berbasis AI (5 perintah: maju, mundur, kiri, kanan, berhenti)\n- Penghindaran halangan berbasis LiDAR\n- Tombol panik darurat\n- Berjalan pada NVIDIA Jetson Orin NX 16GB\n- Basis: Kursi roda elektrik Careindo 503 (Motor DC 24V, 250W)\n\nUji coba melibatkan **3 pasien cerebral palsy** dan mencapai akurasi keseluruhan **76%** dalam kondisi nyata. Tim sedang bekerja meningkatkan akurasi untuk fase berikutnya.\n\nKegiatan ini merupakan bagian dari **PKM (Program Kepakaran Masyarakat)** dan kolaborasi dengan dinas kesehatan setempat.",
       "youtube": null
+    },
+    {
+      "id": "n4",
+      "date": "May 2026",
+      "category_en": "Community Service",
+      "category_id": "Pengabdian",
+      "icon": "fa-newspaper",
+      "title_en": "Presenter to Conference Proceedings for the IEEE Conference",
+      "title_id": "Narasumber Penulisan Artikel untuk Konferensi IEEE",
+      "summary_en": "Strategies for Writing IEEE Papers: Conferences & Journals in Collaboration with IEEE IS and ISAS",
+      "summary_id": "Strategi Penulisan Paper IEEE: Conference & Jurnal bersama IEEE IS dan ISAS ",
+      "content_en": "Strategies for Writing IEEE Papers: Conferences & Journals \n\n#### Event Details\n\n- Saturday, May 2, 2026, 3:00 PM WIB\n- Via ZOOM\n- Opening Remarks by Prof. Dr. Adrianus Amheka, ST., M.Eng. & Assoc. Prof. Dr. Kurnianingsih, ST, MT\n\n#### Speakers\n- Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN Eng.\nStrategies for Writing Papers for IEEE Conferences\n- Assoc. Prof. Dr.Eng. Ir. Sunu Wibirama, S.T., M.Eng., IPM.\nStrategies for Writing Papers for Reputable IEEE Journals\n\n#### Moderator:\n- Prof. Dr. Mike Yuliana, ST, MT\n\nThe event went well.",
+      "content_id": "Strategi Penulisan Paper IEEE: Conference & Jurnal \n\n#### Pelaksaan\n\n- Sabtu, 2 Mei 2026, 15.00 WIB\n- Via ZOOM\n- Dibuka Prof. Dr. Adrianus Amheka, ST., M.Eng. & Assoc. Prof. Dr. Kurnianingsih, ST, MT\n\n#### Narasumber\n- Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN Eng.\nStrategi Penulisan Paper untuk IEEE Conference\n- Assoc. Prof. Dr.Eng. Ir. Sunu Wibirama, S.T., M.Eng., IPM.\nStrategi Penulisan Paper untuk IEEE Journal Bereputasi\n\n#### Moderator:\n- Prof. Dr. Mike Yuliana, ST, MT\n\nAcaranya berlangsung dengan baik.\n",
+      "images": "isas.jpeg",
+      "youtube": null
     }
   ],
   "research": [
