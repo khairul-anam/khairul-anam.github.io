@@ -2187,11 +2187,12 @@
         <div class="divider"></div>
         <p
           class="section-sub"
-          data-en="We are looking for passionate students who want to contribute to cutting-edge research in robotics, AI, and biomedical engineering. Bachelor's, Master's, and Doctoral students are welcome."
-          data-id="Kami mencari mahasiswa yang bersemangat untuk berkontribusi dalam riset terdepan di bidang robotika, AI, dan teknik biomedis. Mahasiswa S1, S2, dan S3 dipersilakan bergabung."
+          data-en="We welcome S1, D4, S2, and S3 students, as well as research interns from any university. Join us to work on real-world problems in robotics, AI, and biomedical engineering."
+          data-id="Kami menerima mahasiswa S1, D4, S2, dan S3, serta mahasiswa magang dari universitas mana pun. Bergabunglah untuk mengerjakan masalah nyata di bidang robotika, AI, dan teknik biomedis."
         >
-          We are looking for passionate students who want to contribute to
-          cutting-edge research in robotics, AI, and biomedical engineering.
+          We welcome S1, D4, S2, and S3 students, as well as research interns
+          from any university. Join us to work on real-world problems in
+          robotics, AI, and biomedical engineering.
         </p>
         <div class="positions-grid" id="topicsGrid">
           <!-- Diisi otomatis dari content.json -->
@@ -2744,7 +2745,7 @@
         return arr.map((f) => `assets/images/${folder}/${f}`);
       }
 
-      // ── RENDER TOPICS (Skripsi/Tesis) ──
+      // ── RENDER TOPICS (Skripsi/Tesis/Magang) ──
       function renderTopics(data) {
         const grid = document.getElementById("topicsGrid");
         if (!grid || !data) return;
@@ -2755,12 +2756,21 @@
           const items = (t.items || [])
             .map((item) => `<li>${item[currentLang] || item.en}</li>`)
             .join("");
+          const isInternship = (t.level || "").toLowerCase().includes("intern") ||
+                                (t.level || "").toLowerCase().includes("magang");
           const card = document.createElement("div");
           card.className = "pos-card";
+          if (isInternship) {
+            card.style.cssText = "border:1px solid rgba(240,165,0,0.35);background:rgba(240,165,0,0.07);";
+          }
           card.setAttribute("data-aos", "fade-up");
           card.setAttribute("data-aos-delay", String(i * 100));
+          const badgeStyle = isInternship
+            ? `style="background:var(--gold);"` : "";
+          const iconHtml = isInternship
+            ? `<span style="font-size:1.1rem;margin-right:6px;">✈️</span>` : "";
           card.innerHTML = `
-            <div class="pos-level">${label}</div>
+            <div class="pos-level" ${badgeStyle}>${iconHtml}${label}</div>
             <h3>${title}</h3>
             <ul>${items}</ul>`;
           grid.appendChild(card);

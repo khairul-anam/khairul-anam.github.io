@@ -1,11 +1,11 @@
 {
   "topics": [
     {
-      "level": "S1",
-      "label_en": "S1 – Undergraduate",
-      "label_id": "S1 – Sarjana",
-      "title_en": "Bachelor's Research (Skripsi)",
-      "title_id": "Riset Skripsi S1",
+      "level": "S1/D4",
+      "label_en": "S1 / D4",
+      "label_id": "S1 / D4",
+      "title_en": "Bachelor's / Applied Bachelor's Research",
+      "title_id": "Riset Skripsi S1 / Tugas Akhir D4",
       "items": [
         {
           "en": "EMG/EEG signal processing for wheelchair and rehabilitation robot control",
@@ -13,10 +13,10 @@
         },
         {
           "en": "Embedded systems (Arduino, Jetson) for electric vehicles at the hospital",
-          "id": "Sistem tertanam (Arduino, Jetson) untuk kendaraan listri di RS"
+          "id": "Sistem tertanam (Arduino, Jetson) untuk kendaraan listrik di RS"
         },
         {
-          "en": "ROS2 robot programming for aunotomous vehice in medical and agroindustrial environment",
+          "en": "ROS2 robot programming for autonomous vehicles in medical and agroindustrial environments",
           "id": "Pemrograman robot ROS2 untuk kendaraan otonom di lingkungan medis dan agroindustri"
         },
         {
@@ -25,7 +25,7 @@
         },
         {
           "en": "IoT sensor systems for agriculture and healthcare",
-          "id": "IoT sensor systems untuk pertanian dan kesehatan"
+          "id": "Sistem sensor IoT untuk pertanian dan kesehatan"
         }
       ]
     },
@@ -80,6 +80,35 @@
         {
           "en": "Multimodal intention recognition",
           "id": "Pengenalan intensi multimodal"
+        }
+      ]
+    },
+    {
+      "level": "Internship",
+      "label_en": "Internship",
+      "label_id": "Magang",
+      "title_en": "Research Internship",
+      "title_id": "Magang Penelitian",
+      "items": [
+        {
+          "en": "Open to students from any university (domestic & international)",
+          "id": "Terbuka untuk mahasiswa dari universitas mana pun (dalam & luar negeri)"
+        },
+        {
+          "en": "Duration: 1–6 months, flexible schedule",
+          "id": "Durasi: 1–6 bulan, jadwal fleksibel"
+        },
+        {
+          "en": "Robot prototyping & hardware assembly",
+          "id": "Prototyping robot & perakitan hardware"
+        },
+        {
+          "en": "Software development (ROS2, Python, deep learning)",
+          "id": "Pengembangan perangkat lunak (ROS2, Python, deep learning)"
+        },
+        {
+          "en": "Data collection, labeling & experiment support",
+          "id": "Pengumpulan data, pelabelan & dukungan eksperimen"
         }
       ]
     }
