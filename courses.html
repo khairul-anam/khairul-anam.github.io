@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Teaching – Prof. Khairul Anam | ISR Lab UNEJ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root{
+      --red:#c0392b;--red2:#e74c3c;--gold:#f0a500;
+      --dark:#1a1a2e;--navy:#16213e;--grey:#6b7280;
+      --light:#f8f9fa;--white:#ffffff;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;color:#333;background:#fff}
+
+    /* ── NAVBAR ── */
+    nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,26,46,.96);
+      backdrop-filter:blur(10px);padding:0 5%;display:flex;align-items:center;
+      justify-content:space-between;height:68px;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo span{color:#fff;font-weight:700;font-size:1.1rem}
+    .nav-logo span em{color:var(--gold);font-style:normal}
+    .nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+    .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;
+      font-weight:500;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .lang-btn{background:var(--red);color:#fff;border:none;border-radius:20px;
+      padding:5px 16px;font-size:.8rem;font-family:'Poppins',sans-serif;
+      font-weight:600;cursor:pointer;transition:background .2s}
+    .lang-btn:hover{background:var(--red2)}
+
+    /* ── HERO ── */
+    .page-hero{padding:110px 5% 50px;background:linear-gradient(135deg,var(--dark),var(--navy),#0d3b6e);
+      text-align:center;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;top:-150px;right:-150px;width:400px;height:400px;
+      border-radius:50%;background:radial-gradient(circle,rgba(192,57,43,.2),transparent 70%)}
+    .page-hero h1{font-size:2.4rem;font-weight:800;color:#fff;margin-bottom:10px}
+    .page-hero h1 em{color:var(--gold);font-style:normal}
+    .page-hero p{color:rgba(255,255,255,.75);font-size:1rem;max-width:600px;margin:0 auto}
+    .breadcrumb{margin-bottom:16px;font-size:.82rem}
+    .breadcrumb a{color:var(--gold);text-decoration:none}
+    .breadcrumb span{color:rgba(255,255,255,.5);margin:0 6px}
+
+    /* ── FILTER BAR ── */
+    .filter-bar{background:#fff;border-bottom:1px solid #eee;padding:14px 5%;
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:sticky;
+      top:68px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+    .filter-btn{padding:6px 18px;border-radius:20px;border:1.5px solid #ddd;
+      background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s;
+      font-family:'Poppins',sans-serif;color:#555}
+    .filter-btn:hover{border-color:var(--red);color:var(--red)}
+    .filter-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+    .filter-label{font-size:.8rem;font-weight:600;color:#888;margin-right:4px}
+
+    /* ── MAIN ── */
+    .main{max-width:1200px;margin:0 auto;padding:48px 5%}
+    .section-title{font-size:1.4rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+    .section-sub{font-size:.88rem;color:var(--grey);margin-bottom:32px}
+
+    /* ── COURSE GRID ── */
+    .course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+    .course-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);
+      overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;border:1.5px solid #f0f0f0}
+    .course-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(0,0,0,.13)}
+    .course-card-top{padding:20px 20px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+    .course-badges{display:flex;flex-wrap:wrap;gap:6px}
+    .badge-level{padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.5px}
+    .badge-s1{background:#fef3e2;color:#e67e22}
+    .badge-s2{background:#eaf4fb;color:#2980b9}
+    .badge-s3{background:#f4ecf7;color:#8e44ad}
+    .badge-credits{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;
+      background:#f0f0f0;color:#555}
+    .course-code{font-size:.72rem;font-weight:600;color:#aaa;letter-spacing:.5px}
+    .course-card-body{padding:0 20px 16px}
+    .course-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.4}
+    .course-desc{font-size:.82rem;color:var(--grey);line-height:1.6;margin-bottom:12px}
+    .course-meta{display:flex;flex-wrap:wrap;gap:8px}
+    .course-meta-item{display:flex;align-items:center;gap:5px;font-size:.75rem;color:#888}
+    .course-meta-item i{color:var(--red);font-size:.75rem}
+    .course-readmore{padding:12px 20px;border-top:1px solid #f5f5f5;
+      display:flex;justify-content:flex-end;align-items:center;
+      font-size:.78rem;font-weight:600;color:var(--red);gap:6px}
+
+    /* ── MODAL ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+      opacity:0;visibility:hidden;transition:.25s}
+    .modal-overlay.open{opacity:1;visibility:visible}
+    .modal-box{background:#fff;border-radius:18px;width:100%;max-width:720px;
+      max-height:88vh;overflow-y:auto;animation:modalIn .25s ease;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    @keyframes modalIn{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .modal-header{padding:22px 26px 16px;border-bottom:1px solid #f0f0f0;
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      position:sticky;top:0;background:#fff;z-index:1}
+    .modal-header-left{flex:1}
+    .modal-course-code{font-size:.75rem;font-weight:700;color:#aaa;letter-spacing:.5px;margin-bottom:4px}
+    .modal-header h2{font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.3}
+    .modal-meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .modal-meta-tag{display:flex;align-items:center;gap:5px;font-size:.75rem;
+      color:#555;background:#f5f5f5;padding:3px 10px;border-radius:20px}
+    .modal-meta-tag i{color:var(--red);font-size:.72rem}
+    .modal-close{background:none;border:none;font-size:1.3rem;cursor:pointer;
+      color:#999;padding:4px;transition:color .2s;flex-shrink:0}
+    .modal-close:hover{color:var(--red)}
+    .modal-body{padding:22px 26px}
+    .modal-body h4{font-size:.92rem;font-weight:700;color:var(--red);margin:16px 0 8px}
+    .modal-body h4:first-child{margin-top:0}
+    .modal-body p{font-size:.88rem;color:#444;line-height:1.75;margin-bottom:10px}
+    .modal-body ul{padding-left:20px;margin-bottom:10px}
+    .modal-body ul li{font-size:.88rem;color:#444;line-height:1.75;margin-bottom:4px}
+    .modal-body strong{color:var(--dark)}
+    .modal-syllabus-btn{display:inline-flex;align-items:center;gap:8px;
+      background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
+      padding:10px 20px;font-size:.85rem;font-weight:600;margin-top:16px;transition:.2s}
+    .modal-syllabus-btn:hover{background:var(--red2)}
+    .modal-youtube-wrap{margin-top:20px;border-top:1px solid #eee;padding-top:16px}
+    .modal-youtube-label{font-size:.78rem;font-weight:700;color:#555;
+      margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+    .modal-youtube{position:relative;padding-bottom:56.25%;height:0;
+      overflow:hidden;border-radius:10px;max-width:560px}
+    .modal-youtube iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+    /* ── EMPTY STATE ── */
+    .empty{text-align:center;padding:60px 20px;color:#aaa}
+    .empty i{font-size:3rem;margin-bottom:14px;display:block}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .page-hero h1{font-size:1.7rem}
+      .course-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <span>Khairul <em>Anam</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-en="About" data-id="Tentang">About</a></li>
+    <li><a href="index.html#research" data-en="Research" data-id="Riset">Research</a></li>
+    <li><a href="index.html#publications" data-en="Publications" data-id="Publikasi">Publications</a></li>
+    <li><a href="courses.html" class="active" data-en="Teaching" data-id="Kuliah">Teaching</a></li>
+    <li><a href="index.html#news" data-en="News" data-id="Berita">News</a></li>
+    <li><a href="index.html#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
+    <li>
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">🌐 ID</button>
+    </li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span style="color:#fff" data-en="Teaching" data-id="Kuliah">Teaching</span>
+  </div>
+  <h1 data-en="<em>Teaching</em> & Courses" data-id="<em>Kuliah</em> & Mata Kuliah">
+    <em>Teaching</em> & Courses
+  </h1>
+  <p data-en="Courses taught at Universitas Jember — click a card to see full syllabus and materials."
+     data-id="Mata kuliah yang diampu di Universitas Jember — klik card untuk melihat silabus dan materi lengkap.">
+    Courses taught at Universitas Jember — click a card to see full syllabus and materials.
+  </p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label" data-en="Filter:" data-id="Filter:">Filter:</span>
+  <button class="filter-btn active" onclick="setFilter('all')" data-en="All" data-id="Semua">All</button>
+  <button class="filter-btn" onclick="setFilter('S1')">S1</button>
+  <button class="filter-btn" onclick="setFilter('S2')">S2</button>
+  <button class="filter-btn" onclick="setFilter('S3')">S3</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+  <div class="section-title" data-en="My Courses" data-id="Mata Kuliah Saya">My Courses</div>
+  <div class="section-sub"
+    data-en="Click a card to view full course description, syllabus, and lecture materials."
+    data-id="Klik card untuk melihat deskripsi mata kuliah, silabus, dan materi kuliah lengkap.">
+    Click a card to view full course description, syllabus, and lecture materials.
+  </div>
+  <div class="course-grid" id="courseGrid">
+    <div class="empty"><i class="fas fa-spinner fa-spin"></i>Loading...</div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-course-code" id="modalCode"></div>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-meta-row" id="modalMeta"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true, duration: 600 });
+
+  let currentLang = 'en';
+  let allCourses = [];
+  let currentFilter = 'all';
+
+  // ── LANG TOGGLE ──
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'id' : 'en';
+    document.getElementById('langBtn').textContent = currentLang === 'en' ? '🌐 ID' : '🌐 EN';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + currentLang);
+      if (val) el.innerHTML = val;
+    });
+    renderCourses();
+  }
+
+  // ── FILTER ──
+  function setFilter(level) {
+    currentFilter = level;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      const t = btn.getAttribute('data-en') || btn.textContent.trim();
+      btn.classList.toggle('active',
+        (level === 'all' && (t === 'All' || t === 'Semua')) || btn.textContent.trim() === level
+      );
+    });
+    renderCourses();
+  }
+
+  // ── RENDER COURSES ──
+  function renderCourses() {
+    const grid = document.getElementById('courseGrid');
+    const filtered = currentFilter === 'all'
+      ? allCourses
+      : allCourses.filter(c => c.level === currentFilter);
+
+    if (!filtered.length) {
+      grid.innerHTML = '<div class="empty"><i class="fas fa-book-open"></i><p>Belum ada mata kuliah.</p></div>';
+      return;
+    }
+
+    grid.innerHTML = '';
+    filtered.forEach((c, i) => {
+      const name = c['name_' + currentLang] || c.name_en;
+      const desc = c['desc_' + currentLang] || c.desc_en;
+      const sem  = c['semester_' + currentLang] || c.semester_en;
+      const sch  = c['schedule_' + currentLang] || c.schedule_en || '';
+
+      const levelClass = { S1: 'badge-s1', S2: 'badge-s2', S3: 'badge-s3' }[c.level] || 'badge-s1';
+
+      const card = document.createElement('div');
+      card.className = 'course-card';
+      card.setAttribute('data-aos', 'fade-up');
+      card.setAttribute('data-aos-delay', String((i % 3) * 80));
+      card.innerHTML = `
+        <div class="course-card-top">
+          <div class="course-badges">
+            <span class="badge-level ${levelClass}">${c.level}</span>
+            <span class="badge-credits">${c.credits} SKS</span>
+          </div>
+          <span class="course-code">${c.code || ''}</span>
+        </div>
+        <div class="course-card-body">
+          <div class="course-name">${name}</div>
+          <div class="course-desc">${desc}</div>
+          <div class="course-meta">
+            <div class="course-meta-item"><i class="fas fa-calendar-alt"></i>${sem}</div>
+            ${sch ? `<div class="course-meta-item"><i class="fas fa-clock"></i>${sch}</div>` : ''}
+          </div>
+        </div>
+        <div class="course-readmore">
+          <span data-en="View Syllabus" data-id="Lihat Silabus">View Syllabus</span>
+          <i class="fas fa-arrow-right"></i>
+        </div>`;
+      card.addEventListener('click', () => openModal(c));
+      grid.appendChild(card);
+    });
+    AOS.refresh();
+  }
+
+  // ── OPEN MODAL ──
+  function openModal(c) {
+    const name    = c['name_'    + currentLang] || c.name_en;
+    const content = c['content_' + currentLang] || c.content_en;
+    const sem     = c['semester_' + currentLang] || c.semester_en;
+    const sch     = c['schedule_' + currentLang] || c.schedule_en || '';
+    const levelClass = { S1: 'badge-s1', S2: 'badge-s2', S3: 'badge-s3' }[c.level] || 'badge-s1';
+
+    document.getElementById('modalCode').textContent = c.code || '';
+    document.getElementById('modalTitle').textContent = name;
+
+    document.getElementById('modalMeta').innerHTML = `
+      <span class="modal-meta-tag"><i class="fas fa-layer-group"></i>${c.level} · ${c.credits} SKS</span>
+      <span class="modal-meta-tag"><i class="fas fa-calendar-alt"></i>${sem}</span>
+      ${sch ? `<span class="modal-meta-tag"><i class="fas fa-clock"></i>${sch}</span>` : ''}`;
+
+    const renderedContent = (typeof marked !== 'undefined')
+      ? marked.parse(content || '')
+      : (content || '');
+
+    let syllabusBtn = '';
+    if (c.syllabus_url && c.syllabus_url.trim()) {
+      syllabusBtn = `<a href="${c.syllabus_url}" target="_blank" class="modal-syllabus-btn">
+        <i class="fas fa-file-pdf"></i>
+        ${currentLang === 'en' ? 'Download Syllabus' : 'Unduh Silabus'}
+      </a>`;
+    }
+
+    let youtubeHtml = '';
+    if (c.youtube) {
+      const urls = Array.isArray(c.youtube) ? c.youtube : [c.youtube];
+      urls.forEach(url => {
+        const vid = getYouTubeId(url);
+        if (vid) {
+          youtubeHtml += `<div class="modal-youtube-wrap">
+            <div class="modal-youtube-label"><i class="fab fa-youtube" style="color:#e74c3c"></i> Video Kuliah</div>
+            <div class="modal-youtube">
+              <iframe src="https://www.youtube.com/embed/${vid}" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>`;
+        }
+      });
+    }
+
+    document.getElementById('modalBody').innerHTML = renderedContent + syllabusBtn + youtubeHtml;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e && e.target !== document.getElementById('modalOverlay')) return;
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalBox').addEventListener('click', e => e.stopPropagation());
+
+  function getYouTubeId(url) {
+    if (!url) return null;
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  // ── LOAD DATA ──
+  fetch('data/content.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      allCourses = data.courses || [];
+      renderCourses();
+    })
+    .catch(() => {
+      document.getElementById('courseGrid').innerHTML =
+        '<div class="empty"><i class="fas fa-exclamation-triangle"></i><p>Gagal load data. Pastikan server Python berjalan.</p></div>';
+    });
+</script>
+</body>
+</html>

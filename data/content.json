@@ -1,0 +1,265 @@
+{
+  "news": [
+    {
+      "id": "n1",
+      "date": "May 2026",
+      "category_en": "Research",
+      "category_id": "Riset",
+      "icon": "fa-robot",
+      "title_en": "Hospital Transporter Robot Development Begins",
+      "title_id": "Pengembangan Robot Transporter Rumah Sakit Dimulai",
+      "summary_en": "ISR Lab begins development of autonomous electric vehicle for hospital logistics using ROS2 and Jetson Orin.",
+      "summary_id": "ISR Lab memulai pengembangan kendaraan listrik otonom untuk logistik rumah sakit menggunakan ROS2 dan Jetson Orin.",
+      "content_en": "ISR Lab has officially started the development of an **Autonomous Hospital Transporter Robot** — an electric vehicle capable of navigating hospital corridors, ramps, and elevators without human intervention.\n\nThe system will use **ROS2 (Jazzy)** as the middleware, **NVIDIA Jetson Orin** as the main computing unit, LiDAR for obstacle detection, and a depth camera for visual perception.\n\n#### Key Technologies\n\n- ROS2 + Nav2 Stack for autonomous navigation\n- SLAM Toolbox for real-time hospital mapping\n- micro-ROS on Arduino for low-level actuator control\n- LiDAR + Camera sensor fusion\n\nThis project is open for **S1 and S2 student collaboration**. Contact us if you are interested in joining!",
+      "content_id": "ISR Lab secara resmi memulai pengembangan **Robot Transporter Otonom Rumah Sakit** — kendaraan listrik yang mampu bernavigasi di koridor rumah sakit, ramp, dan lift tanpa intervensi manusia.\n\nSistem ini menggunakan **ROS2 (Jazzy)** sebagai middleware, **NVIDIA Jetson Orin** sebagai unit komputasi utama, LiDAR untuk deteksi halangan, dan kamera depth untuk persepsi visual.\n\n#### Teknologi Utama\n\n- ROS2 + Nav2 Stack untuk navigasi otonom\n- SLAM Toolbox untuk pemetaan rumah sakit secara real-time\n- micro-ROS pada Arduino untuk kendali aktuator level rendah\n- Fusi sensor LiDAR + Kamera\n\nProyek ini terbuka untuk **kolaborasi mahasiswa S1 dan S2**. Hubungi kami jika Anda tertarik bergabung!",
+      "images": [
+        "transporter1.jpeg"
+      ],
+      "youtube": "https://youtu.be/JHaTujRCupg"
+    },
+    {
+      "id": "n2",
+      "date": "April 2026",
+      "category_en": "Teaching",
+      "category_id": "Pengajaran",
+      "icon": "fa-graduation-cap",
+      "title_en": "New Course: Intelligent Systems & Robotics",
+      "title_id": "Mata Kuliah Baru: Sistem Cerdas & Robotika",
+      "summary_en": "A new elective course on ROS2-based autonomous robots launched for S1 and S2 students.",
+      "summary_id": "Mata kuliah pilihan baru tentang robot otonom berbasis ROS2 diluncurkan untuk mahasiswa S1 dan S2.",
+      "content_en": "A new elective course titled **Intelligent Systems & Robotics** has been launched at the Electrical Engineering Department, Universitas Jember.\n\n#### Course Topics\n\n- Fundamentals of ROS2 (Nodes, Topics, Services, Actions)\n- Autonomous navigation with Nav2 Stack\n- SLAM and real-time mapping\n- Sensor integration (LiDAR, Camera, IMU)\n- Practical project: Mini autonomous robot\n\nThe course is designed for **S1 (6th semester and above)** and **S2 students**. Students will work with real hardware including RaspberryPi, Arduino, and LiDAR sensors.",
+      "content_id": "Mata kuliah pilihan baru bertajuk **Sistem Cerdas & Robotika** telah diluncurkan di Jurusan Teknik Elektro, Universitas Jember.\n\n#### Materi Kuliah\n\n- Dasar-dasar ROS2 (Nodes, Topics, Services, Actions)\n- Navigasi otonom dengan Nav2 Stack\n- SLAM dan pemetaan real-time\n- Integrasi sensor (LiDAR, Kamera, IMU)\n- Proyek praktis: Robot otonom mini\n\nMata kuliah ini dirancang untuk **mahasiswa S1 (semester 6 ke atas)** dan **mahasiswa S2**. Mahasiswa akan bekerja dengan hardware nyata termasuk RaspberryPi, Arduino, dan sensor LiDAR.",
+      "youtube": null
+    },
+    {
+      "id": "n3",
+      "date": "March 2026",
+      "category_en": "Community Service",
+      "category_id": "Pengabdian",
+      "icon": "fa-hands-helping",
+      "title_en": "Smart Wheelchair Trial at Local Hospital",
+      "title_id": "Uji Coba Kursi Roda Cerdas di RS Lokal",
+      "summary_en": "Successful trial of voice-controlled intelligent wheelchair with cerebral palsy patients at a local hospital in Jember.",
+      "summary_id": "Uji coba sukses kursi roda cerdas kendali suara dengan pasien cerebral palsy di RS lokal di Jember.",
+      "content_en": "ISR Lab successfully conducted a **real-world trial** of the voice-controlled intelligent wheelchair at a local hospital in Jember.\n\n#### Wheelchair Features\n\n- AI-based voice command recognition (5 commands: forward, backward, left, right, stop)\n- LiDAR-based obstacle avoidance\n- Emergency panic button\n- Runs on NVIDIA Jetson Orin NX 16GB\n- Base: Careindo 503 electric wheelchair (24V DC Motor, 250W)\n\nThe trial involved **3 cerebral palsy patients** and achieved an overall accuracy of **76%** in real-world conditions. The team is now working on improving accuracy for the next phase.\n\nThis activity is part of the **PKM (Community Service Program)** and collaboration with the local health department.",
+      "content_id": "ISR Lab berhasil melakukan **uji coba nyata** kursi roda cerdas kendali suara di RS lokal di Jember.\n\n#### Fitur Kursi Roda\n\n- Pengenalan perintah suara berbasis AI (5 perintah: maju, mundur, kiri, kanan, berhenti)\n- Penghindaran halangan berbasis LiDAR\n- Tombol panik darurat\n- Berjalan pada NVIDIA Jetson Orin NX 16GB\n- Basis: Kursi roda elektrik Careindo 503 (Motor DC 24V, 250W)\n\nUji coba melibatkan **3 pasien cerebral palsy** dan mencapai akurasi keseluruhan **76%** dalam kondisi nyata. Tim sedang bekerja meningkatkan akurasi untuk fase berikutnya.\n\nKegiatan ini merupakan bagian dari **PKM (Program Kepakaran Masyarakat)** dan kolaborasi dengan dinas kesehatan setempat.",
+      "youtube": null
+    }
+  ],
+  "research": [
+    {
+      "id": "r1",
+      "icon": "fa-hand-paper",
+      "tkt": "TKT 7–9",
+      "color": "red",
+      "title_en": "Prosthetic Robot for Amputees",
+      "title_id": "Robot Prostetik untuk Amputasi",
+      "summary_en": "Smart prosthetic hand controlled via EMG/EEG signals and deep learning.",
+      "summary_id": "Tangan prostetik cerdas yang dikendalikan melalui sinyal EMG/EEG dan deep learning.",
+      "tags": [
+        "EMG",
+        "EEG",
+        "LSTM",
+        "CNN VGG16"
+      ],
+      "content_en": "This research develops a **smart prosthetic hand** for amputees, controlled by muscle signals (EMG) and brain signals (EEG) combined with deep learning algorithms.\n\n#### Research Highlights\n\n- EMG-based hand gesture recognition using CNN and LSTM\n- Muscle force prediction using LSTM-SAE (Stacked Autoencoder)\n- Transfer learning with VGG16 for fingertip force estimation\n- EEG-based motor imagery for brain-controlled prosthetics\n- Incremental learning for personalized adaptation\n- 3D-printed prosthetic hand prototype\n\n#### Roadmap\n\n- **TKT 1–3** (before 2027): Basic research — signal processing, feature extraction, pattern recognition\n- **TKT 4–6** (2020–2030): Applied research — mechanical design, embedded systems, feedback control\n- **TKT 7–9** (2028–2032): Commercialization — beta testing, patient acceptance, market deployment\n\n**Open for:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
+      "content_id": "Penelitian ini mengembangkan sistem kontrol **tangan prostetik cerdas** untuk penderita amputasi, dikendalikan oleh sinyal otot (EMG) dan sinyal otak (EEG) yang dikombinasikan dengan algoritma deep learning.\n\n#### Highlight Riset\n\n- Pengenalan gestur tangan berbasis EMG menggunakan CNN dan LSTM\n- Prediksi kekuatan otot menggunakan LSTM-SAE (Stacked Autoencoder)\n- Transfer learning VGG16 untuk estimasi kekuatan ujung jari\n- Motor imagery EEG untuk prostetik kendali otak\n- Incremental learning untuk adaptasi personal\n- Prototipe tangan prostetik cetak 3D\n\n#### Roadmap\n\n- **TKT 1–3** (sebelum 2027): Riset dasar — pengolahan sinyal, ekstraksi fitur, pengenalan pola\n- **TKT 4–6** (2020–2030): Riset terapan — desain mekanik, sistem tertanam, feedback control\n- **TKT 7–9** (2028–2032): Komersialisasi — uji beta, penerimaan pasien, pemasaran\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
+      "youtube": "https://youtu.be/Jtk1hRX0Z40",
+      "images": "r1_amp.jpg"
+    },
+    {
+      "id": "r2",
+      "icon": "fa-heartbeat",
+      "tkt": "TKT 4–6",
+      "color": "red",
+      "title_en": "Hand Therapy Robot for Stroke",
+      "title_id": "Robot Terapi Tangan Pasca Stroke",
+      "summary_en": "Wearable robotic exoskeleton for post-stroke hand rehabilitation.",
+      "summary_id": "Exoskeleton robotik portabel untuk rehabilitasi tangan pasca stroke.",
+      "tags": [
+        "Exoskeleton",
+        "EMG",
+        "Arduino",
+        "Game Therapy"
+      ],
+      "content_en": "This research develops a **portable hand exoskeleton robot** for rehabilitation of post-stroke patients, combining robotic therapy with game-based interaction.\n\n#### Research Highlights\n\n- 5-finger exoskeleton with linear motor actuation\n- EMG-based feedback control for natural movement assistance\n- Game-based therapy interface to motivate patients\n- Customized myoware band for signal acquisition\n- Adaptive control for personalized therapy\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
+      "content_id": "Penelitian ini mengembangkan **robot exoskeleton tangan portable** untuk rehabilitasi pasien pasca stroke, menggabungkan terapi robotik dengan interaksi berbasis game.\n\n#### Highlight Riset\n\n- Exoskeleton 5 jari dengan aktuasi motor linier\n- Feedback control berbasis EMG untuk bantuan gerakan alami\n- Antarmuka terapi berbasis game untuk memotivasi pasien\n- Customized myoware band untuk akuisisi sinyal\n- Kontrol adaptif untuk terapi personal\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
+      "youtube": "https://youtu.be/QmcubqNPBr8",
+      "images": "r2_stroke.jpg"
+    },
+    {
+      "id": "r3",
+      "icon": "fa-wheelchair",
+      "tkt": "TKT 4–6",
+      "color": "red",
+      "title_en": "Intelligent Wheelchair Navigation",
+      "title_id": "Navigasi Kursi Roda Cerdas",
+      "summary_en": "AI-powered smart wheelchair with voice, EMG, and EEG control.",
+      "summary_id": "Kursi roda cerdas berbasis AI dengan kendali suara, EMG, dan EEG.",
+      "tags": [
+        "Jetson Orin",
+        "LiDAR",
+        "Voice AI",
+        "ROS2"
+      ],
+      "content_en": "This project develops an **AI-powered intelligent wheelchair** navigation system that enables people with physical disabilities (cerebral palsy, quadriplegia) to control their wheelchair using voice, EMG, and EEG.\n\n#### System Features\n\n- Voice command recognition (customized AI model per patient)\n- EMG pattern recognition (kNN, SVM classifiers)\n- EEG motor imagery for brain-controlled navigation\n- LiDAR-based obstacle avoidance (SLAM)\n- Emergency panic button\n- Runs on NVIDIA Jetson Orin NX 16GB\n\n**Open for:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
+      "content_id": "Proyek ini mengembangkan sistem navigasi **kursi roda cerdas berbasis AI** yang memungkinkan penyandang disabilitas fisik (cerebral palsy, quadriplegia) mengendalikan kursi roda menggunakan suara, EMG, dan EEG.\n\n#### Fitur Sistem\n\n- Pengenalan perintah suara (model AI dikustomisasi per pasien)\n- Pengenalan pola EMG (klasifikasi kNN, SVM)\n- Motor imagery EEG untuk navigasi kendali otak\n- Penghindaran halangan berbasis LiDAR (SLAM)\n- Tombol panik darurat\n- Berjalan pada NVIDIA Jetson Orin NX 16GB\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
+      "youtube": "https://youtu.be/lG_jw3itYGo",
+      "images": "r3_kursi.jpg"
+    },
+    {
+      "id": "r4",
+      "icon": "fa-eye-slash",
+      "tkt": "TKT 1–3",
+      "color": "red",
+      "title_en": "Guide Robot for the Blind",
+      "title_id": "Robot Pemandu Orang Buta",
+      "summary_en": "Autonomous mobile robot that guides visually impaired users in indoor and outdoor environments.",
+      "summary_id": "Robot mobile otonom yang memandu pengguna tunanetra di lingkungan indoor maupun outdoor.",
+      "tags": [
+        "Navigation",
+        "LiDAR",
+        "SLAM",
+        "Obstacle Avoidance"
+      ],
+      "content_en": "This project develops an **autonomous guide robot** for visually impaired individuals, capable of navigating both indoor and outdoor environments while safely avoiding obstacles.\n\n#### Research Highlights\n\n- Wheeled and legged robot variants\n- LiDAR-based indoor/outdoor navigation\n- SLAM (Simultaneous Localization and Mapping)\n- Real-time obstacle avoidance\n- Participation in Kontes Robot Cerdas Indonesia (KRCI)\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
+      "content_id": "Proyek ini mengembangkan **robot pemandu otonom** untuk penyandang tunanetra, yang mampu bernavigasi di lingkungan indoor maupun outdoor sambil menghindari halangan dengan aman.\n\n#### Highlight Riset\n\n- Varian robot beroda dan berkaki\n- Navigasi indoor/outdoor berbasis LiDAR\n- SLAM (Simultaneous Localization and Mapping)\n- Penghindaran halangan real-time\n- Partisipasi dalam Kontes Robot Cerdas Indonesia (KRCI)\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
+      "youtube": null
+    },
+    {
+      "id": "r5",
+      "icon": "fa-coffee",
+      "tkt": "TKT 1–3",
+      "color": "green",
+      "title_en": "Smart Coffee Dryer (Agriculture)",
+      "title_id": "Pengering Kopi Cerdas (Pertanian)",
+      "summary_en": "IoT-enabled intelligent drying system with Fuzzy-PID control and image recognition for coffee bean quality.",
+      "summary_id": "Sistem pengeringan cerdas berbasis IoT dengan kontrol Fuzzy-PID dan pengenalan citra biji kopi.",
+      "tags": [
+        "IoT",
+        "Fuzzy-PID",
+        "Computer Vision",
+        "Photobox"
+      ],
+      "content_en": "This research develops an **intelligent portable coffee drying system** for local coffee farmers in East Java, combining IoT sensors, AI-based quality detection, and automated temperature/humidity control.\n\n#### System Features\n\n- Fuzzy-PID temperature and humidity control\n- Image-based coffee bean quality classification\n- Photobox for standardized bean photography\n- IoT dashboard for real-time monitoring\n- Mobile app for remote control and notifications\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
+      "content_id": "Penelitian ini mengembangkan **sistem pengering kopi portable cerdas** untuk petani kopi lokal di Jawa Timur, menggabungkan sensor IoT, deteksi kualitas berbasis AI, dan kontrol suhu/kelembaban otomatis.\n\n#### Fitur Sistem\n\n- Kontrol suhu dan kelembaban Fuzzy-PID\n- Klasifikasi kualitas biji kopi berbasis citra\n- Photobox untuk foto biji kopi terstandarisasi\n- Dashboard IoT untuk pemantauan real-time\n- Aplikasi mobile untuk kontrol jarak jauh dan notifikasi\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
+      "youtube": null
+    },
+    {
+      "id": "r6",
+      "icon": "fa-lungs",
+      "tkt": "TKT 1–3",
+      "color": "purple",
+      "title_en": "Lung Cancer Detection via X-Ray",
+      "title_id": "Deteksi Dini Kanker Paru – X-Ray",
+      "summary_en": "Early lung cancer detection from chest X-rays using deep learning (U-Net, SegNet, VGG).",
+      "summary_id": "Deteksi dini kanker paru dari X-ray dada menggunakan deep learning (U-Net, SegNet, VGG).",
+      "tags": [
+        "U-Net",
+        "SegNet",
+        "Medical Imaging",
+        "Deep Learning"
+      ],
+      "content_en": "This research develops an **AI-based early lung cancer detection system** using chest X-ray images. The system aims to achieve CT-scan level accuracy using only X-ray, making screening more accessible and affordable.\n\n#### Research Highlights\n\n- Lung and nodule segmentation using RESIDUAL ATTENTION U-NET\n- Cancer classification using SegNet, Mask Dino, Yolo12-Seg, VitUNet\n- Dataset: JSRT public dataset + RS Paru Jember local dataset\n- Target accuracy: comparable to CT-scan\n- Clinical testing at RS Paru Jember and East Java hospitals\n\n**Open for:** S2 (Tesis), S3 (Disertasi)",
+      "content_id": "Penelitian ini mengembangkan **sistem deteksi dini kanker paru berbasis AI** menggunakan citra X-ray dada. Sistem ini bertujuan mencapai akurasi setara CT-scan menggunakan X-ray saja, membuat skrining lebih mudah diakses dan terjangkau.\n\n#### Highlight Riset\n\n- Segmentasi paru dan nodul menggunakan RESIDUAL ATTENTION U-NET\n- Klasifikasi kanker menggunakan SegNet, Mask Dino, Yolo12-Seg, VitUNet\n- Dataset: Dataset publik JSRT + dataset lokal RS Paru Jember\n- Target akurasi: setara CT-scan\n- Pengujian klinis di RS Paru Jember dan RS Jawa Timur\n\n**Terbuka untuk:** S2 (Tesis), S3 (Disertasi)",
+      "youtube": null
+    }
+  ],
+  "courses": [
+    {
+      "id": "c1",
+      "code": "TKE3201",
+      "level": "S1",
+      "credits": 3,
+      "semester_en": "Odd 2025/2026",
+      "semester_id": "Ganjil 2025/2026",
+      "name_en": "Intelligent Systems & Robotics",
+      "name_id": "Sistem Cerdas & Robotika",
+      "desc_en": "Introduction to autonomous robot systems using ROS2, sensor integration, and AI-based navigation.",
+      "desc_id": "Pengantar sistem robot otonom menggunakan ROS2, integrasi sensor, dan navigasi berbasis AI.",
+      "content_en": "This course introduces students to the fundamentals of intelligent robotic systems.\n\n#### Topics Covered\n\n- Introduction to ROS2 (Nodes, Topics, Services, Actions)\n- Sensor integration: LiDAR, Camera, IMU\n- Autonomous navigation with Nav2 Stack\n- SLAM (Simultaneous Localization and Mapping)\n- Deep learning for robot perception\n- Final project: Build a mini autonomous robot\n\n#### Assessment\n\n- Assignments: 30%\n- Midterm Exam: 30%\n- Final Project: 40%\n\n**Prerequisites:** Signals & Systems, Basic Programming (Python/C)",
+      "content_id": "Mata kuliah ini memperkenalkan mahasiswa pada dasar-dasar sistem robot cerdas.\n\n#### Topik yang Dibahas\n\n- Pengantar ROS2 (Nodes, Topics, Services, Actions)\n- Integrasi sensor: LiDAR, Kamera, IMU\n- Navigasi otonom dengan Nav2 Stack\n- SLAM (Simultaneous Localization and Mapping)\n- Deep learning untuk persepsi robot\n- Proyek akhir: Bangun robot otonom mini\n\n#### Penilaian\n\n- Tugas: 30%\n- UTS: 30%\n- Proyek Akhir: 40%\n\n**Prasyarat:** Sinyal & Sistem, Pemrograman Dasar (Python/C)",
+      "schedule_en": "Monday 08:00–10:30, Lab Robotika CDAST",
+      "schedule_id": "Senin 08:00–10:30, Lab Robotika CDAST",
+      "syllabus_url": "",
+      "youtube": null,
+      "images": null
+    },
+    {
+      "id": "c2",
+      "code": "TKE2101",
+      "level": "S1",
+      "credits": 2,
+      "semester_en": "Even 2024/2025",
+      "semester_id": "Genap 2024/2025",
+      "name_en": "Digital Signal Processing",
+      "name_id": "Pengolahan Sinyal Digital",
+      "desc_en": "Fundamentals of digital signal processing: sampling, filtering, FFT, and biomedical signal applications.",
+      "desc_id": "Dasar pengolahan sinyal digital: sampling, filtering, FFT, dan aplikasi sinyal biomedik.",
+      "content_en": "This course covers the theory and practice of digital signal processing.\n\n#### Topics Covered\n\n- Discrete-time signals and systems\n- Z-Transform and Fourier Transform\n- FIR and IIR filter design\n- Fast Fourier Transform (FFT)\n- Application: EMG and EEG signal processing\n\n#### Assessment\n\n- Assignments: 30%\n- Midterm Exam: 35%\n- Final Exam: 35%",
+      "content_id": "Mata kuliah ini mencakup teori dan praktik pengolahan sinyal digital.\n\n#### Topik yang Dibahas\n\n- Sinyal dan sistem waktu diskrit\n- Z-Transform dan Fourier Transform\n- Desain filter FIR dan IIR\n- Fast Fourier Transform (FFT)\n- Aplikasi: Pengolahan sinyal EMG dan EEG\n\n#### Penilaian\n\n- Tugas: 30%\n- UTS: 35%\n- UAS: 35%",
+      "schedule_en": "Wednesday 10:00–11:40, Gedung Teknik Elektro",
+      "schedule_id": "Rabu 10:00–11:40, Gedung Teknik Elektro",
+      "syllabus_url": "",
+      "youtube": null,
+      "images": null
+    },
+    {
+      "id": "c3",
+      "code": "TKE6101",
+      "level": "S2",
+      "credits": 3,
+      "semester_en": "Odd 2025/2026",
+      "semester_id": "Ganjil 2025/2026",
+      "name_en": "Advanced Machine Learning for Engineering",
+      "name_id": "Machine Learning Lanjut untuk Rekayasa",
+      "desc_en": "Advanced deep learning techniques: CNN, LSTM, Transformer, and their engineering applications.",
+      "desc_id": "Teknik deep learning lanjut: CNN, LSTM, Transformer, dan aplikasinya di bidang rekayasa.",
+      "content_en": "This graduate course covers advanced machine learning methods with focus on engineering applications.\n\n#### Topics Covered\n\n- Review of ML fundamentals\n- Convolutional Neural Networks (CNN)\n- Recurrent Neural Networks & LSTM\n- Transformer and Attention Mechanism\n- Transfer Learning and Fine-tuning\n- Application: Biomedical signal classification, robot perception\n- Research paper review and presentation\n\n#### Assessment\n\n- Paper review presentation: 25%\n- Research project: 50%\n- Final report: 25%",
+      "content_id": "Mata kuliah pascasarjana ini mencakup metode machine learning lanjut dengan fokus pada aplikasi rekayasa.\n\n#### Topik yang Dibahas\n\n- Review dasar ML\n- Convolutional Neural Networks (CNN)\n- Recurrent Neural Networks & LSTM\n- Transformer dan Attention Mechanism\n- Transfer Learning dan Fine-tuning\n- Aplikasi: Klasifikasi sinyal biomedik, persepsi robot\n- Review dan presentasi paper ilmiah\n\n#### Penilaian\n\n- Presentasi review paper: 25%\n- Proyek riset: 50%\n- Laporan akhir: 25%",
+      "schedule_en": "Tuesday 13:00–15:30, Ruang Pascasarjana TE",
+      "schedule_id": "Selasa 13:00–15:30, Ruang Pascasarjana TE",
+      "syllabus_url": "",
+      "youtube": null,
+      "images": null
+    }
+  ],
+  "publications": [
+    {
+      "id": "p1",
+      "year": "2025",
+      "title": "Evaluation of LSTM for predicting grip strength using electromyography: a comparison of setups and methods",
+      "authors": "Anam, K., et al.",
+      "journal": "Neural Computing and Applications",
+      "badge": "Neural Computing & Applications",
+      "doi": "https://doi.org/10.1007/s00521-024-10906-0"
+    },
+    {
+      "id": "p2",
+      "year": "2024",
+      "title": "EMG Signal-Based Grasping System for Fingertip Force Prediction in Amputee Robotic Hand with Transfer Learning CNN VGG16",
+      "authors": "Anam, K., et al.",
+      "journal": "International Journal (2024)",
+      "badge": "Q1 Journal",
+      "doi": ""
+    },
+    {
+      "id": "p3",
+      "year": "2023",
+      "title": "Myoelectric Control System for Finger Force of a Hand Exoskeleton",
+      "authors": "Anam, K., et al.",
+      "journal": "International Journal (2023)",
+      "badge": "Q2 Journal",
+      "doi": ""
+    },
+    {
+      "id": "p4",
+      "year": "2021",
+      "title": "Sistem Navigasi Kursi Roda Elektrik Untuk Pasien Penyandang Cacat Fisik Menggunakan Metode Convolutional Neural Network",
+      "authors": "Sutikno, S., Anam, K., & Shaleh, A.",
+      "journal": "Jurnal Rekayasa Elektrika, 17(1), 2021",
+      "badge": "Sinta S2",
+      "doi": "https://doi.org/10.17529/jre.v17i1.18227"
+    }
+  ]
+}

@@ -1,0 +1,2460 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Prof. Ir. Khairul Anam, S.T., M.T., Ph.D, IPU., ASEAN. Eng. – ISR Lab UNEJ
+    </title>
+    <meta
+      name="description"
+      content="Personal academic website of Prof. Ir. Khairul Anam, P.hD, IPU, Professor of Electrical Engineering, Universitas Jember. Research in Robotics, AI, Biomedical Engineering."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+      :root {
+        --red: #c0392b;
+        --red2: #e74c3c;
+        --gold: #f0a500;
+        --dark: #1a1a2e;
+        --navy: #16213e;
+        --grey: #6b7280;
+        --light: #f8f9fa;
+        --white: #ffffff;
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        background: #fff;
+      }
+
+      /* ── NAVBAR ── */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(26, 26, 46, 0.96);
+        backdrop-filter: blur(10px);
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+      }
+      .nav-logo span em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .lang-btn {
+        background: var(--red);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 5px 16px;
+        font-size: 0.8rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .lang-btn:hover {
+        background: var(--red2);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .hamburger span {
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      /* ── HERO ── */
+      #hero {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--dark) 0%,
+          var(--navy) 50%,
+          #0d3b6e 100%
+        );
+        display: flex;
+        align-items: center;
+        padding: 100px 5% 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(192, 57, 43, 0.2),
+          transparent 70%
+        );
+      }
+      #hero::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(240, 165, 0, 0.15),
+          transparent 70%
+        );
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        width: 100%;
+        z-index: 1;
+      }
+      .hero-photo {
+        flex-shrink: 0;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        border: 5px solid var(--gold);
+        overflow: hidden;
+        box-shadow: 0 0 60px rgba(240, 165, 0, 0.3);
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+      .hero-text {
+        flex: 1;
+      }
+      .hero-badge {
+        display: inline-block;
+        background: rgba(192, 57, 43, 0.2);
+        color: var(--gold);
+        border: 1px solid rgba(240, 165, 0, 0.4);
+        border-radius: 20px;
+        padding: 4px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .hero-name {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 10px;
+      }
+      .hero-name em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .hero-title {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 6px;
+        font-weight: 400;
+      }
+      .hero-title strong {
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+      }
+      .hero-aff {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .aff-tag {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.85);
+        border-radius: 8px;
+        padding: 5px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+      }
+      .hero-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .btn-primary {
+        background: var(--red);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        padding: 11px 26px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+      }
+      .btn-primary:hover {
+        background: var(--red2);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        padding: 11px 26px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px);
+      }
+      .hero-social {
+        display: flex;
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .hero-social a {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .hero-social a:hover {
+        background: var(--red);
+        border-color: var(--red);
+        transform: translateY(-2px);
+      }
+
+      /* ── STATS ── */
+      #stats {
+        background: var(--red);
+        padding: 40px 5%;
+      }
+      .stats-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        text-align: center;
+      }
+      .stat-item h3 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #fff;
+      }
+      .stat-item p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+        margin-top: 4px;
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        padding: 80px 5%;
+      }
+      .section-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-label {
+        color: var(--red);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 12px;
+      }
+      .section-sub {
+        color: var(--grey);
+        font-size: 0.95rem;
+        max-width: 600px;
+        line-height: 1.7;
+        margin-bottom: 48px;
+      }
+      .divider {
+        width: 60px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 2px;
+        margin: 12px 0 20px;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: var(--light);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .about-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: var(--card-shadow);
+        border-top: 4px solid var(--red);
+      }
+      .about-card h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 16px;
+      }
+      .about-card ul {
+        list-style: none;
+      }
+      .about-card ul li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.88rem;
+        color: #444;
+        line-height: 1.5;
+      }
+      .about-card ul li:last-child {
+        border-bottom: none;
+      }
+      .about-card ul li i {
+        color: var(--red);
+        margin-top: 3px;
+        width: 16px;
+        flex-shrink: 0;
+      }
+      .about-text p {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 16px;
+        font-size: 0.93rem;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+      .skill-tag {
+        background: var(--light);
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: #555;
+      }
+
+      /* ── RESEARCH ── */
+      #research {
+        background: #fff;
+      }
+      .research-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .research-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: var(--card-shadow);
+        border: 1px solid #f0f0f0;
+        transition: all 0.3s;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .research-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .research-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      }
+      .research-card:hover::before {
+        transform: scaleX(1);
+      }
+      .research-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        background: rgba(192, 57, 43, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: var(--red);
+        margin-bottom: 16px;
+      }
+      .research-card h3 {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+      .research-card p {
+        font-size: 0.82rem;
+        color: var(--grey);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .research-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .rtag {
+        background: rgba(192, 57, 43, 0.07);
+        color: var(--red);
+        border-radius: 12px;
+        padding: 2px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+      .tkt-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: var(--gold);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      /* ── PUBLICATIONS ── */
+      #publications {
+        background: var(--light);
+      }
+      .pub-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .pub-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px 28px;
+        box-shadow: var(--card-shadow);
+        border-left: 4px solid var(--red);
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        transition: transform 0.2s;
+      }
+      .pub-card:hover {
+        transform: translateX(4px);
+      }
+      .pub-year {
+        flex-shrink: 0;
+        background: var(--red);
+        color: #fff;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-align: center;
+      }
+      .pub-content h4 {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 6px;
+        line-height: 1.5;
+      }
+      .pub-content p {
+        font-size: 0.82rem;
+        color: var(--grey);
+        margin-bottom: 8px;
+      }
+      .pub-content a {
+        font-size: 0.8rem;
+        color: var(--red);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .pub-content a:hover {
+        text-decoration: underline;
+      }
+      .pub-badge {
+        display: inline-block;
+        background: rgba(240, 165, 0, 0.15);
+        color: #b07800;
+        border-radius: 12px;
+        padding: 2px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      /* ── NEWS ── */
+      #news {
+        background: #fff;
+      }
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .news-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        border: 1px solid #f0f0f0;
+        transition: all 0.3s;
+      }
+      .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      }
+      .news-img {
+        width: 100%;
+        height: 160px;
+        background: linear-gradient(135deg, var(--navy), var(--red));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .news-body {
+        padding: 20px;
+      }
+      .news-date {
+        font-size: 0.75rem;
+        color: var(--grey);
+        margin-bottom: 6px;
+      }
+      .news-cat {
+        display: inline-block;
+        background: rgba(192, 57, 43, 0.1);
+        color: var(--red);
+        border-radius: 12px;
+        padding: 2px 10px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .news-body h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.5;
+        margin-bottom: 6px;
+      }
+      .news-body p {
+        font-size: 0.8rem;
+        color: var(--grey);
+        line-height: 1.6;
+      }
+
+      /* ── JOIN US ── */
+      #joinus {
+        background: linear-gradient(135deg, var(--dark), var(--navy));
+        padding: 80px 5%;
+      }
+      .join-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .join-inner .section-label {
+        color: var(--gold);
+      }
+      .join-inner .section-title {
+        color: #fff;
+      }
+      .join-inner .section-sub {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .positions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .pos-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 28px;
+        transition: all 0.3s;
+      }
+      .pos-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-4px);
+      }
+      .pos-level {
+        display: inline-block;
+        background: var(--gold);
+        color: #fff;
+        border-radius: 8px;
+        padding: 4px 14px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .pos-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .pos-card ul {
+        list-style: none;
+      }
+      .pos-card ul li {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 4px 0;
+      }
+      .pos-card ul li::before {
+        content: "→ ";
+        color: var(--gold);
+      }
+      .join-cta {
+        text-align: center;
+        margin-top: 48px;
+      }
+      .join-cta p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--light);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+      .contact-info h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 20px;
+      }
+      .contact-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+      .contact-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .contact-item h4 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--dark);
+      }
+      .contact-item p {
+        font-size: 0.83rem;
+        color: var(--grey);
+      }
+      .contact-item a {
+        color: var(--red);
+        text-decoration: none;
+        font-size: 0.83rem;
+      }
+      .contact-form {
+        background: #fff;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: var(--card-shadow);
+      }
+      .contact-form h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 16px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 6px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.85rem;
+        color: #333;
+        transition: border 0.2s;
+        background: #fff;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.08);
+      }
+      .form-group textarea {
+        height: 100px;
+        resize: vertical;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .btn-submit {
+        background: var(--red);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 28px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.2s;
+      }
+      .btn-submit:hover {
+        background: var(--red2);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 40px 5%;
+        text-align: center;
+        font-size: 0.83rem;
+      }
+      footer a {
+        color: var(--gold);
+        text-decoration: none;
+      }
+      footer .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        .hero-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-aff {
+          justify-content: center;
+        }
+        .hero-btns {
+          justify-content: center;
+        }
+        .hero-social {
+          justify-content: center;
+        }
+        .hero-name {
+          font-size: 2rem;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .research-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+        .positions-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-photo {
+          width: 180px;
+          height: 180px;
+        }
+        .hero-name {
+          font-size: 1.7rem;
+        }
+        .research-grid {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 60px 5%;
+        }
+      }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--dark);
+        padding: 20px;
+        gap: 14px;
+      }
+
+      /* Typed cursor */
+      .typed-cursor {
+        color: var(--gold);
+        font-weight: 300;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Active nav */
+      .nav-links a.active {
+        color: var(--gold);
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-box {
+        background: #fff;
+        border-radius: 20px;
+        max-width: 700px;
+        width: 100%;
+        max-height: 88vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .modal-header {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        padding: 24px 28px 16px;
+        border-bottom: 1px solid #f0f0f0;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .modal-header-left {
+        flex: 1;
+      }
+      .modal-badge {
+        display: inline-block;
+        border-radius: 8px;
+        padding: 3px 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        background: var(--red);
+        color: #fff;
+      }
+      .modal-header h2 {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+        line-height: 1.4;
+      }
+      .modal-close {
+        background: var(--light);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .modal-close:hover {
+        background: #e0e0e0;
+      }
+      .modal-body {
+        padding: 24px 28px 28px;
+      }
+      .modal-body p {
+        color: #555;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      .modal-body h4 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin: 18px 0 8px;
+      }
+      .modal-body ul {
+        padding-left: 20px;
+      }
+      .modal-body ul li {
+        font-size: 0.88rem;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 4px;
+      }
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #f0f0f0;
+      }
+      .modal-tag {
+        background: rgba(192, 57, 43, 0.08);
+        color: var(--red);
+        border-radius: 12px;
+        padding: 3px 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+
+      /* youtube embed */
+      .modal-youtube-wrap {
+        margin-top: 24px;
+        border-top: 1px solid #eee;
+        padding-top: 16px;
+      }
+      .modal-youtube-label {
+        font-size: .8rem;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+      }
+      .modal-youtube {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 10px;
+        max-width: 560px;
+      }
+      .modal-youtube iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* modal image */
+      .modal-image {
+        width: 100%;
+        max-height: 280px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 18px;
+        display: block;
+      }
+      .modal-image-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .modal-image-gallery img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .modal-image-gallery img:hover {
+        transform: scale(1.03);
+      }
+
+      /* lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: rgba(0, 0, 0, 0.92);
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 8px;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      /* clickable card */
+      .research-card {
+        cursor: pointer;
+      }
+      .news-card {
+        cursor: pointer;
+      }
+      .read-more-hint {
+        font-size: 0.78rem;
+        color: var(--red);
+        font-weight: 600;
+        margin-top: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ NAVBAR ══ -->
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">
+        <span>Khairul <em>Anam</em></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
+        <li>
+          <a href="#research" data-en="Research" data-id="Riset">Research</a>
+        </li>
+        <li>
+          <a href="#publications" data-en="Publications" data-id="Publikasi"
+            >Publications</a
+          >
+        </li>
+        <li><a href="courses.html" data-en="Teaching" data-id="Kuliah">Teaching</a></li>
+        <li><a href="#news" data-en="News" data-id="Berita">News</a></li>
+        <li>
+          <a href="#joinus" data-en="Join Us" data-id="Bergabung">Join Us</a>
+        </li>
+        <li>
+          <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
+        </li>
+        <li>
+          <button class="lang-btn" id="langToggle" onclick="toggleLang()">
+            ID
+          </button>
+        </li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-photo" data-aos="fade-right" data-aos-duration="800">
+          <img src="assets/images/profile.jpg" alt="Prof. Khairul Anam" />
+        </div>
+        <div
+          class="hero-text"
+          data-aos="fade-left"
+          data-aos-duration="800"
+          data-aos-delay="100"
+        >
+          <div
+            class="hero-badge"
+            data-en="Professor · Researcher · Innovator"
+            data-id="Profesor · Peneliti · Inovator"
+          >
+            Professor · Researcher · Innovator
+          </div>
+          <h1 class="hero-name">
+            Prof. Ir. Khairul <em>Anam</em>, S.T., M.T., Ph.D, IPU., ASEAN. Eng.
+          </h1>
+          <p class="hero-title">
+            <strong
+              data-en="Professor of Electrical Engineering"
+              data-id="Profesor Teknik Elektro"
+              >Professor of Electrical Engineering</strong
+            >
+          </p>
+          <p
+            class="hero-title"
+            data-en="Universitas Jember (UNEJ) · Indonesia"
+            data-id="Universitas Jember (UNEJ) · Indonesia"
+          >
+            Universitas Jember (UNEJ) · Indonesia
+          </p>
+          <div class="hero-aff">
+            <span
+              class="aff-tag"
+              data-en="🏛 ISR Lab – CDAST UNEJ"
+              data-id="🏛 Lab. Sistem Cerdas & Robotika – CDAST UNEJ"
+              >🏛 ISR Lab – CDAST UNEJ</span
+            >
+            <span
+              class="aff-tag"
+              data-en="🎓 Head, Master's Program in Electrical Engineering"
+              data-id="🎓 Koprodi Magister Teknik Elektro"
+              >🎓 Head, Master's Prog. in EE</span
+            >
+            <span
+              class="aff-tag"
+              data-en="🌾 KeRis-Dimas ATAH"
+              data-id="🌾 KeRis-Dimas ATAH"
+              >🌾 KeRis-Dimas ATAH</span
+            >
+          </div>
+          <div class="hero-btns">
+            <a
+              href="#research"
+              class="btn-primary"
+              data-en="Explore Research"
+              data-id="Lihat Riset"
+              >Explore Research</a
+            >
+            <a
+              href="#joinus"
+              class="btn-outline"
+              data-en="Join Our Lab"
+              data-id="Bergabung ke Lab"
+              >Join Our Lab</a
+            >
+            <a
+              href="https://khairul.staff.unej.ac.id"
+              target="_blank"
+              class="btn-outline"
+              data-en="Official Page"
+              data-id="Halaman Resmi"
+              >Official Page</a
+            >
+          </div>
+          <div class="hero-social">
+            <a
+              href="https://github.com/khairul-anam"
+              target="_blank"
+              title="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="mailto:khairul@unej.ac.id" title="Email"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a
+              href="https://scholar.google.com"
+              target="_blank"
+              title="Google Scholar"
+              ><i class="fas fa-graduation-cap"></i
+            ></a>
+            <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@isrlabcdast"
+              target="_blank"
+              title="YouTube"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ STATS ══ -->
+    <div id="stats">
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
+          <h3>50+</h3>
+          <p data-en="Journal Publications" data-id="Publikasi Jurnal">
+            Journal Publications
+          </p>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+          <h3>6</h3>
+          <p data-en="Active Research Areas" data-id="Topik Riset Aktif">
+            Active Research Areas
+          </p>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+          <h3>30+</h3>
+          <p data-en="Graduate Students" data-id="Mahasiswa Bimbingan">
+            Graduate Students
+          </p>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+          <h3>10+</h3>
+          <p data-en="Years of Research" data-id="Tahun Penelitian">
+            Years of Research
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ABOUT ══ -->
+    <section id="about">
+      <div class="section-inner">
+        <p class="section-label" data-en="Who I Am" data-id="Tentang Saya">
+          Who I Am
+        </p>
+        <h2 class="section-title" data-en="About Me" data-id="Tentang Saya">
+          About Me
+        </h2>
+        <div class="divider"></div>
+        <div class="about-grid">
+          <div data-aos="fade-right">
+            <div class="about-card">
+              <h4>
+                <i
+                  class="fas fa-university"
+                  style="color: var(--red); margin-right: 8px"
+                ></i>
+                <span data-en="Affiliations" data-id="Afiliasi"
+                  >Affiliations</span
+                >
+              </h4>
+              <ul>
+                <li>
+                  <i class="fas fa-dot-circle"></i>
+                  <span
+                    data-en="Professor, Dept. of Electrical Engineering, Universitas Jember"
+                    data-id="Profesor, Teknik Elektro, Universitas Jember"
+                  >
+                    Professor, Dept. of Electrical Engineering, Universitas
+                    Jember
+                  </span>
+                </li>
+                <li>
+                  <i class="fas fa-dot-circle"></i>
+                  <span
+                    data-en="Head, Master's Program in Electrical Engineering, UNEJ"
+                    data-id="Koprodi Magister Teknik Elektro, UNEJ"
+                  >
+                    Head, Master's Program in Electrical Engineering, UNEJ
+                  </span>
+                </li>
+                <li>
+                  <i class="fas fa-dot-circle"></i>
+                  <span
+                    data-en="Head, Intelligent System & Robotics Laboratory (ISR Lab), CDAST-UNEJ"
+                    data-id="Kepala Lab. Sistem Cerdas & Robotika (ISR Lab), CDAST-UNEJ"
+                  >
+                    Head, ISR Lab – CDAST UNEJ
+                  </span>
+                </li>
+                <li>
+                  <i class="fas fa-dot-circle"></i>
+                  <span
+                    data-en="KeRis-Dimas ATAH – Advanced Technology for Agriculture and Health"
+                    data-id="KeRis-Dimas ATAH – Teknologi Maju untuk Pertanian dan Kesehatan"
+                  >
+                    KeRis-Dimas ATAH (Advanced Tech. for Agriculture & Health)
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <br />
+            <div class="about-card" style="border-top-color: var(--gold)">
+              <h4>
+                <i
+                  class="fas fa-envelope"
+                  style="color: var(--red); margin-right: 8px"
+                ></i>
+                <span data-en="Contact Info" data-id="Info Kontak"
+                  >Contact Info</span
+                >
+              </h4>
+              <ul>
+                <li><i class="fas fa-envelope"></i> khairul@unej.ac.id</li>
+                <li>
+                  <i class="fas fa-globe"></i>
+                  <a
+                    href="https://khairul.staff.unej.ac.id"
+                    style="color: var(--red)"
+                    >khairul.staff.unej.ac.id</a
+                  >
+                </li>
+                <li>
+                  <i class="fab fa-github"></i>
+                  <a
+                    href="https://github.com/khairul-anam"
+                    style="color: var(--red)"
+                    >github.com/khairul-anam</a
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span
+                    data-en="Jember, East Java, Indonesia"
+                    data-id="Jember, Jawa Timur, Indonesia"
+                    >Jember, East Java, Indonesia</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="about-text" data-aos="fade-left">
+            <p
+              data-en="Prof. Khairul Anam is a Professor of Electrical Engineering at Universitas Jember (UNEJ), Indonesia. He leads the Intelligent System and Robotics Laboratory (ISR Lab) at CDAST-UNEJ, where his team develops cutting-edge solutions at the intersection of robotics, artificial intelligence, and biomedical engineering."
+              data-id="Prof. Khairul Anam adalah Profesor Teknik Elektro di Universitas Jember (UNEJ), Indonesia. Beliau memimpin Laboratorium Sistem Cerdas dan Robotika (ISR Lab) di CDAST-UNEJ, di mana timnya mengembangkan solusi mutakhir di bidang robotika, kecerdasan buatan, dan teknik biomedis."
+            >
+              Prof. Khairul Anam is a Professor of Electrical Engineering at
+              Universitas Jember (UNEJ), Indonesia. He leads the Intelligent
+              System and Robotics Laboratory (ISR Lab) at CDAST-UNEJ, where his
+              team develops cutting-edge solutions at the intersection of
+              robotics, artificial intelligence, and biomedical engineering.
+            </p>
+            <p
+              data-en="His research focuses on two main pillars: Healthcare Robotics (prosthetic hands, stroke rehabilitation robots, smart wheelchairs) and AI for Agriculture & Health (intelligent coffee dryers, lung cancer detection via X-ray deep learning)."
+              data-id="Penelitiannya berfokus pada dua pilar utama: Robotika Medis (tangan prostetik, robot terapi stroke, kursi roda cerdas) dan AI untuk Pertanian & Kesehatan (pengering kopi cerdas, deteksi dini kanker paru berbasis X-ray deep learning)."
+            >
+              His research focuses on two main pillars:
+              <strong>Healthcare Robotics</strong> (prosthetic hands, stroke
+              rehabilitation robots, smart wheelchairs) and
+              <strong>AI for Agriculture & Health</strong> (intelligent coffee
+              dryers, lung cancer detection via X-ray deep learning).
+            </p>
+            <p
+              data-en="He actively mentors undergraduate (S1), master's (S2), and also ready for doctoral (S3) students in Electrical Engineering, guiding them from fundamental research to real-world application and publication."
+              data-id="Beliau aktif membimbing mahasiswa S1, S2, dan juga siap membimbing S3 Teknik Elektro, membimbing mereka dari penelitian dasar hingga aplikasi nyata dan publikasi internasional."
+            >
+              He actively mentors undergraduate (S1), master's (S2), and
+              doctoral (S3) students in Electrical Engineering, guiding them
+              from fundamental research to real-world application and
+              publication.
+            </p>
+            <div class="skill-tags">
+              <span class="skill-tag">EMG Signal Processing</span>
+              <span class="skill-tag">EEG / BCI</span>
+              <span class="skill-tag">Deep Learning</span>
+              <span class="skill-tag">LSTM / CNN</span>
+              <span class="skill-tag">ROS2</span>
+              <span class="skill-tag">Embedded Systems</span>
+              <span class="skill-tag">Jetson Orin</span>
+              <span class="skill-tag">LiDAR Navigation</span>
+              <span class="skill-tag">Robot Prosthetics</span>
+              <span class="skill-tag">IoT</span>
+              <span class="skill-tag">Computer Vision</span>
+              <span class="skill-tag">Medical Imaging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ RESEARCH ══ -->
+    <section id="research">
+      <div class="section-inner">
+        <p
+          class="section-label"
+          data-en="What We Work On"
+          data-id="Topik Riset"
+        >
+          What We Work On
+        </p>
+        <h2
+          class="section-title"
+          data-en="Research Areas"
+          data-id="Bidang Riset"
+        >
+          Research Areas
+        </h2>
+        <div class="divider"></div>
+        <p
+          class="section-sub"
+          data-en="Our lab conducts research on intelligent systems and robotics applied to healthcare and agriculture, from fundamental studies to real-world deployment."
+          data-id="Lab kami melakukan riset sistem cerdas dan robotika yang diterapkan pada bidang kesehatan dan pertanian, dari studi dasar hingga implementasi nyata."
+        >
+          Our lab conducts research on intelligent systems and robotics applied
+          to healthcare and agriculture, from fundamental studies to real-world
+          deployment.
+        </p>
+        <div class="research-grid" id="researchGrid">
+          <!-- Card 1 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="0">
+            <span class="tkt-badge">TKT 7–9</span>
+            <div class="research-icon"><i class="fas fa-hand-paper"></i></div>
+            <h3
+              data-en="Prosthetic Robot for Amputees"
+              data-id="Robot Prostetik untuk Amputasi"
+            >
+              Prosthetic Robot for Amputees
+            </h3>
+            <p
+              data-en="Smart prosthetic hand controlled via EMG/EEG signals and deep learning. Enabling amputees to regain natural hand movement through muscle force prediction."
+              data-id="Tangan prostetik cerdas yang dikendalikan melalui sinyal EMG/EEG dan deep learning. Memungkinkan penderita amputasi mendapatkan kembali gerakan tangan yang natural."
+            >
+              Smart prosthetic hand controlled via EMG/EEG signals and deep
+              learning. Enabling amputees to regain natural hand movement
+              through muscle force prediction.
+            </p>
+            <div class="research-tags">
+              <span class="rtag">EMG</span><span class="rtag">EEG</span
+              ><span class="rtag">LSTM</span><span class="rtag">CNN VGG16</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="80">
+            <span class="tkt-badge">TKT 4–6</span>
+            <div class="research-icon"><i class="fas fa-heartbeat"></i></div>
+            <h3
+              data-en="Hand Therapy Robot for Stroke"
+              data-id="Robot Terapi Tangan Pasca Stroke"
+            >
+              Hand Therapy Robot for Stroke
+            </h3>
+            <p
+              data-en="Wearable robotic exoskeleton for post-stroke hand rehabilitation, combining game-based therapy with adaptive control for patient recovery."
+              data-id="Exoskeleton robotik portabel untuk rehabilitasi tangan pasca stroke, menggabungkan terapi berbasis game dengan kontrol adaptif untuk pemulihan pasien."
+            >
+              Wearable robotic exoskeleton for post-stroke hand rehabilitation,
+              combining game-based therapy with adaptive control for patient
+              recovery.
+            </p>
+            <div class="research-tags">
+              <span class="rtag">Exoskeleton</span><span class="rtag">EMG</span
+              ><span class="rtag">Arduino</span
+              ><span class="rtag">Game Therapy</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="160">
+            <span class="tkt-badge">TKT 4–6</span>
+            <div class="research-icon"><i class="fas fa-wheelchair"></i></div>
+            <h3
+              data-en="Intelligent Wheelchair Navigation"
+              data-id="Navigasi Kursi Roda Cerdas"
+            >
+              Intelligent Wheelchair Navigation
+            </h3>
+            <p
+              data-en="AI-powered smart wheelchair with voice, EMG, and EEG control. Features LiDAR-based obstacle avoidance on Jetson Orin NX, designed for cerebral palsy and disabled patients."
+              data-id="Kursi roda cerdas berbasis AI dengan kendali suara, EMG, dan EEG. Dilengkapi penghindaran halangan berbasis LiDAR pada Jetson Orin NX, dirancang untuk pasien cerebral palsy."
+            >
+              AI-powered smart wheelchair with voice, EMG, and EEG control.
+              LiDAR-based obstacle avoidance on Jetson Orin NX, designed for
+              cerebral palsy patients.
+            </p>
+            <div class="research-tags">
+              <span class="rtag">Jetson Orin</span
+              ><span class="rtag">LiDAR</span><span class="rtag">Voice AI</span
+              ><span class="rtag">ROS2</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="0">
+            <span class="tkt-badge">TKT 1–3</span>
+            <div class="research-icon"><i class="fas fa-eye-slash"></i></div>
+            <h3
+              data-en="Guide Robot for the Blind"
+              data-id="Robot Pemandu Orang Buta"
+            >
+              Guide Robot for the Blind
+            </h3>
+            <p
+              data-en="Autonomous mobile robot that safely guides visually impaired users in indoor and outdoor environments using LiDAR-based navigation systems."
+              data-id="Robot mobile otonom yang memandu pengguna tunanetra dengan aman di lingkungan indoor maupun outdoor menggunakan sistem navigasi berbasis LiDAR."
+            >
+              Autonomous mobile robot that safely guides visually impaired users
+              in indoor and outdoor environments using LiDAR-based navigation
+              systems.
+            </p>
+            <div class="research-tags">
+              <span class="rtag">Navigation</span><span class="rtag">LiDAR</span
+              ><span class="rtag">SLAM</span
+              ><span class="rtag">Obstacle Avoidance</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="80">
+            <span class="tkt-badge" style="background: #2ecc71">TKT 1–3</span>
+            <div
+              class="research-icon"
+              style="background: rgba(46, 204, 113, 0.1)"
+            >
+              <i class="fas fa-coffee" style="color: #27ae60"></i>
+            </div>
+            <h3
+              data-en="Smart Coffee Dryer (Agriculture)"
+              data-id="Pengering Kopi Cerdas (Pertanian)"
+            >
+              Smart Coffee Dryer (Agriculture)
+            </h3>
+            <p
+              data-en="IoT-enabled intelligent drying system with Fuzzy-PID control, image recognition for coffee bean quality, and real-time monitoring dashboard for local farmers."
+              data-id="Sistem pengeringan cerdas berbasis IoT dengan kontrol Fuzzy-PID, pengenalan citra biji kopi, dan dashboard pemantauan real-time untuk petani lokal."
+            >
+              IoT-enabled intelligent drying system with Fuzzy-PID control,
+              image recognition for coffee bean quality, and real-time
+              monitoring dashboard.
+            </p>
+            <div class="research-tags">
+              <span
+                class="rtag"
+                style="background: rgba(46, 204, 113, 0.1); color: #27ae60"
+                >IoT</span
+              >
+              <span
+                class="rtag"
+                style="background: rgba(46, 204, 113, 0.1); color: #27ae60"
+                >Fuzzy-PID</span
+              >
+              <span
+                class="rtag"
+                style="background: rgba(46, 204, 113, 0.1); color: #27ae60"
+                >Computer Vision</span
+              >
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="research-card" data-aos="fade-up" data-aos-delay="160">
+            <span class="tkt-badge" style="background: #8e44ad">TKT 1–3</span>
+            <div
+              class="research-icon"
+              style="background: rgba(142, 68, 173, 0.1)"
+            >
+              <i class="fas fa-lungs" style="color: #8e44ad"></i>
+            </div>
+            <h3
+              data-en="Lung Cancer Detection via X-Ray"
+              data-id="Deteksi Dini Kanker Paru – X-Ray"
+            >
+              Lung Cancer Detection via X-Ray
+            </h3>
+            <p
+              data-en="Early-stage lung cancer detection using chest X-ray images with deep learning (U-Net, SegNet, VGG). Targeting clinical deployment at RS Paru Jember and East Java hospitals."
+              data-id="Deteksi dini kanker paru menggunakan citra X-ray dada dengan deep learning (U-Net, SegNet, VGG). Target implementasi klinis di RS Paru Jember dan RS Jawa Timur."
+            >
+              Early lung cancer detection from chest X-rays using deep learning
+              (U-Net, SegNet, VGG). Targeting clinical deployment at RS Paru
+              Jember.
+            </p>
+            <div class="research-tags">
+              <span
+                class="rtag"
+                style="background: rgba(142, 68, 173, 0.1); color: #8e44ad"
+                >U-Net</span
+              >
+              <span
+                class="rtag"
+                style="background: rgba(142, 68, 173, 0.1); color: #8e44ad"
+                >SegNet</span
+              >
+              <span
+                class="rtag"
+                style="background: rgba(142, 68, 173, 0.1); color: #8e44ad"
+                >Medical Imaging</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PUBLICATIONS ══ -->
+    <section id="publications">
+      <div class="section-inner">
+        <p
+          class="section-label"
+          data-en="Selected Works"
+          data-id="Karya Pilihan"
+        >
+          Selected Works
+        </p>
+        <h2 class="section-title" data-en="Publications" data-id="Publikasi">
+          Publications
+        </h2>
+        <div class="divider"></div>
+        <p
+          class="section-sub"
+          data-en="Selected recent publications. For a complete list, visit Google Scholar or SINTA profile."
+          data-id="Publikasi terpilih terkini. Untuk daftar lengkap, kunjungi Google Scholar atau profil SINTA."
+        >
+          Selected recent publications. For a complete list, visit Google
+          Scholar or SINTA profile.
+        </p>
+        <div class="pub-list" id="pubList">
+          <!-- Diisi otomatis dari content.json -->
+        </div>
+        <div style="text-align: center; margin-top: 32px">
+          <a
+            href="https://scholar.google.com"
+            target="_blank"
+            class="btn-primary"
+            style="display: inline-block"
+            data-en="View All on Google Scholar"
+            data-id="Lihat Semua di Google Scholar"
+          >
+            View All on Google Scholar &nbsp;<i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ NEWS ══ -->
+    <section id="news">
+      <div class="section-inner">
+        <p
+          class="section-label"
+          data-en="Latest Updates"
+          data-id="Pembaruan Terkini"
+        >
+          Latest Updates
+        </p>
+        <h2
+          class="section-title"
+          data-en="News & Activities"
+          data-id="Berita & Kegiatan"
+        >
+          News & Activities
+        </h2>
+        <div class="divider"></div>
+        <div class="news-grid" id="newsGrid">
+          <!-- Loaded dynamically from data/content.json -->
+        </div>
+        <div style="text-align: center; margin-top: 32px">
+          <p
+            style="color: var(--grey); font-size: 0.85rem"
+            data-en="📌 To add new news, edit the file: data/content.json"
+            data-id="📌 Untuk menambah berita baru, edit file: data/content.json"
+          >
+            📌 To add new news, edit the file: <code>data/content.json</code>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ JOIN US ══ -->
+    <section id="joinus">
+      <div class="join-inner">
+        <p
+          class="section-label"
+          data-en="Open Positions"
+          data-id="Posisi Terbuka"
+        >
+          Open Positions
+        </p>
+        <h2
+          class="section-title"
+          data-en="Join ISR Lab"
+          data-id="Bergabung ke ISR Lab"
+        >
+          Join ISR Lab
+        </h2>
+        <div class="divider"></div>
+        <p
+          class="section-sub"
+          data-en="We are looking for passionate students who want to contribute to cutting-edge research in robotics, AI, and biomedical engineering. Bachelor's, Master's, and Doctoral students are welcome."
+          data-id="Kami mencari mahasiswa yang bersemangat untuk berkontribusi dalam riset terdepan di bidang robotika, AI, dan teknik biomedis. Mahasiswa S1, S2, dan S3 dipersilakan bergabung."
+        >
+          We are looking for passionate students who want to contribute to
+          cutting-edge research in robotics, AI, and biomedical engineering.
+        </p>
+        <div class="positions-grid">
+          <div class="pos-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="pos-level">S1 – Undergraduate</div>
+            <h3
+              data-en="Bachelor's Research (Skripsi)"
+              data-id="Riset Skripsi S1"
+            >
+              Bachelor's Research (Skripsi)
+            </h3>
+            <ul>
+              <li
+                data-en="EMG/EEG signal processing"
+                data-id="Pengolahan sinyal EMG/EEG"
+              >
+                EMG/EEG signal processing
+              </li>
+              <li
+                data-en="Embedded systems (Arduino, Jetson)"
+                data-id="Sistem tertanam (Arduino, Jetson)"
+              >
+                Embedded systems (Arduino, Jetson)
+              </li>
+              <li
+                data-en="ROS2 robot programming"
+                data-id="Pemrograman robot ROS2"
+              >
+                ROS2 robot programming
+              </li>
+              <li
+                data-en="Computer vision projects"
+                data-id="Proyek computer vision"
+              >
+                Computer vision projects
+              </li>
+            </ul>
+          </div>
+          <div class="pos-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="pos-level">S2 – Master's</div>
+            <h3 data-en="Master's Thesis Research" data-id="Riset Tesis S2">
+              Master's Thesis Research
+            </h3>
+            <ul>
+              <li
+                data-en="Deep learning for biomedical signals"
+                data-id="Deep learning untuk sinyal biomedis"
+              >
+                Deep learning for biomedical signals
+              </li>
+              <li
+                data-en="Autonomous robot navigation"
+                data-id="Navigasi robot otonom"
+              >
+                Autonomous robot navigation
+              </li>
+              <li
+                data-en="Smart wheelchair systems"
+                data-id="Sistem kursi roda cerdas"
+              >
+                Smart wheelchair systems
+              </li>
+              <li data-en="IoT for agriculture" data-id="IoT untuk pertanian">
+                IoT for agriculture
+              </li>
+            </ul>
+          </div>
+          <div class="pos-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="pos-level">S3 – Doctoral</div>
+            <h3 data-en="PhD Research" data-id="Riset Doktoral S3">
+              PhD Research
+            </h3>
+            <ul>
+              <li
+                data-en="Agentic AI for rehabilitation robots"
+                data-id="Agentic AI untuk robot rehabilitasi"
+              >
+                Agentic AI for rehabilitation robots
+              </li>
+              <li
+                data-en="Medical imaging deep learning"
+                data-id="Deep learning citra medis"
+              >
+                Medical imaging deep learning
+              </li>
+              <li
+                data-en="Brain-computer interface (BCI)"
+                data-id="Brain-computer interface (BCI)"
+              >
+                Brain-computer interface (BCI)
+              </li>
+              <li
+                data-en="Multimodal intention recognition"
+                data-id="Pengenalan intensi multimodal"
+              >
+                Multimodal intention recognition
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="join-cta">
+          <p
+            data-en="Interested? Send your CV and a brief statement of interest to join our lab."
+            data-id="Tertarik? Kirimkan CV dan pernyataan minat singkat Anda untuk bergabung dengan lab kami."
+          >
+            Interested? Send your CV and a brief statement of interest to join
+            our lab.
+          </p>
+          <a
+            href="mailto:kh.anam.sk@gmail.com"
+            class="btn-primary"
+            data-en="Apply Now →"
+            data-id="Daftar Sekarang →"
+            >Apply Now →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ══ -->
+    <section id="contact">
+      <div class="section-inner">
+        <p class="section-label" data-en="Get In Touch" data-id="Hubungi Kami">
+          Get In Touch
+        </p>
+        <h2 class="section-title" data-en="Contact" data-id="Kontak">
+          Contact
+        </h2>
+        <div class="divider"></div>
+        <div class="contact-grid">
+          <div class="contact-info" data-aos="fade-right">
+            <h3 data-en="Let's Collaborate" data-id="Mari Berkolaborasi">
+              Let's Collaborate
+            </h3>
+            <p
+              style="
+                color: var(--grey);
+                font-size: 0.88rem;
+                line-height: 1.8;
+                margin-bottom: 28px;
+              "
+              data-en="Whether you are a student, researcher, hospital, or industry partner, feel free to reach out for collaboration, research discussion, or student mentorship."
+              data-id="Baik Anda mahasiswa, peneliti, rumah sakit, maupun mitra industri, jangan ragu menghubungi kami untuk kolaborasi, diskusi riset, atau bimbingan mahasiswa."
+            >
+              Whether you are a student, researcher, hospital, or industry
+              partner, feel free to reach out for collaboration, research
+              discussion, or student mentorship.
+            </p>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:khairul@unej.ac.id">khairul@unej.ac.id</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 data-en="Address" data-id="Alamat">Address</h4>
+                <p
+                  data-en="ISR Lab – CDAST, Universitas Jember, Jl. Kalimantan 37, Jember 68121, East Java, Indonesia"
+                  data-id="ISR Lab – CDAST, Universitas Jember, Jl. Kalimantan 37, Jember 68121, Jawa Timur, Indonesia"
+                >
+                  ISR Lab – CDAST, Universitas Jember,<br />Jl. Kalimantan 37,
+                  Jember 68121, East Java
+                </p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-globe"></i></div>
+              <div>
+                <h4 data-en="Official Website" data-id="Website Resmi">
+                  Official Website
+                </h4>
+                <a href="https://khairul.staff.unej.ac.id" target="_blank"
+                  >khairul.staff.unej.ac.id</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" style="background: var(--gold)">
+                <i class="fab fa-github"></i>
+              </div>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://github.com/khairul-anam" target="_blank"
+                  >github.com/khairul-anam</a
+                >
+              </div>
+            </div>
+          </div>
+          <div data-aos="fade-left">
+            <div class="contact-form">
+              <h3 data-en="Send a Message" data-id="Kirim Pesan">
+                Send a Message
+              </h3>
+              <form onsubmit="return false;">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label data-en="Full Name" data-id="Nama Lengkap"
+                      >Full Name</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      data-ph-en="Your name"
+                      data-ph-id="Nama Anda"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="your@email.com" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label data-en="Purpose" data-id="Keperluan">Purpose</label>
+                  <select>
+                    <option
+                      data-en="Student – S1 Research"
+                      data-id="Mahasiswa – Skripsi S1"
+                    >
+                      Student – S1 Research
+                    </option>
+                    <option
+                      data-en="Student – S2/S3 Thesis"
+                      data-id="Mahasiswa – Tesis S2/S3"
+                    >
+                      Student – S2/S3 Thesis
+                    </option>
+                    <option
+                      data-en="Research Collaboration"
+                      data-id="Kolaborasi Riset"
+                    >
+                      Research Collaboration
+                    </option>
+                    <option
+                      data-en="Industry Partnership"
+                      data-id="Kemitraan Industri"
+                    >
+                      Industry Partnership
+                    </option>
+                    <option data-en="Other" data-id="Lainnya">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label data-en="Message" data-id="Pesan">Message</label>
+                  <textarea
+                    placeholder="Tell me about your interest..."
+                    data-ph-en="Tell me about your interest..."
+                    data-ph-id="Ceritakan minat Anda..."
+                  ></textarea>
+                </div>
+                <button
+                  class="btn-submit"
+                  type="submit"
+                  onclick="window.location.href = 'mailto:kh.anam.sk@gmail.com'"
+                  data-en="Send Message"
+                  data-id="Kirim Pesan"
+                >
+                  Send Message &nbsp;<i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <div class="footer-links">
+        <a href="#about" data-en="About" data-id="Tentang">About</a>
+        <a href="#research" data-en="Research" data-id="Riset">Research</a>
+        <a href="#publications" data-en="Publications" data-id="Publikasi"
+          >Publications</a
+        >
+        <a href="#joinus" data-en="Join Us" data-id="Bergabung">Join Us</a>
+        <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
+        <a
+          href="https://khairul.staff.unej.ac.id"
+          target="_blank"
+          data-en="Official UNEJ Page"
+          data-id="Halaman Resmi UNEJ"
+          >Official UNEJ Page</a
+        >
+      </div>
+      <p>
+        &copy; 2026 <strong>Prof. Ir. Khairul Anam</strong> · ISR Lab, CDAST –
+        Universitas Jember ·
+        <a href="https://github.com/khairul-anam">GitHub</a>
+      </p>
+    </footer>
+
+    <!-- ══ LIGHTBOX ══ -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">
+        <i class="fas fa-times"></i>
+      </button>
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+
+    <!-- ══ MODAL HTML ══ -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="closeModalOnBg(event)"
+    >
+      <div class="modal-box" id="modalBox">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <div class="modal-badge" id="modalBadge"></div>
+            <h2 id="modalTitle"></h2>
+          </div>
+          <button class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="modalContent"></div>
+          <div class="modal-tags" id="modalTags"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SCRIPTS ══ -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 700, once: true, offset: 60 });
+
+      // ── LANGUAGE ──
+      let currentLang = "en";
+      function toggleLang() {
+        currentLang = currentLang === "en" ? "id" : "en";
+        document.documentElement.setAttribute("data-lang", currentLang);
+        document.getElementById("langToggle").textContent =
+          currentLang === "en" ? "ID" : "EN";
+        document.querySelectorAll("[data-en]").forEach((el) => {
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            el.placeholder =
+              el.getAttribute("data-ph-" + currentLang) || el.placeholder;
+          } else {
+            el.textContent = el.getAttribute("data-" + currentLang);
+          }
+        });
+        document.querySelectorAll("[data-ph-en]").forEach((el) => {
+          el.placeholder = el.getAttribute("data-ph-" + currentLang);
+        });
+        // Re-render dynamic cards in new language
+        if (window._contentData) {
+          renderNews(window._contentData.news);
+          renderResearch(window._contentData.research);
+          renderPublications(window._contentData.publications);
+        }
+      }
+
+      // ── HAMBURGER ──
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+
+      // ── ACTIVE NAV ──
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 100) current = s.id;
+        });
+        navLinks.forEach((a) => {
+          a.classList.remove("active");
+          if (a.getAttribute("href") === "#" + current)
+            a.classList.add("active");
+        });
+        const nav = document.getElementById("navbar");
+        nav.style.background =
+          window.scrollY > 50 ? "rgba(26,26,46,0.98)" : "rgba(26,26,46,0.96)";
+      });
+
+      // ── LIGHTBOX ──
+      function openLightbox(src) {
+        document.getElementById("lightboxImg").src = src;
+        document.getElementById("lightbox").classList.add("open");
+      }
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+      }
+
+      // ── YOUTUBE HELPER ──
+      function getYouTubeId(url) {
+        if (!url) return null;
+        // Support: youtu.be/ID, youtube.com/watch?v=ID, youtube.com/embed/ID
+        const match = url.match(
+          /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([A-Za-z0-9_-]{11})/,
+        );
+        return match ? match[1] : null;
+      }
+
+      // ── MODAL ──
+      // images : string | array | null
+      // youtube: string (URL) | array of URLs | null
+      function openModal(title, badge, content, tags, images, youtube) {
+        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalBadge").textContent = badge;
+
+        // 1. Teks konten (selalu di atas)
+        const renderedContent =
+          typeof marked !== "undefined"
+            ? marked.parse(content || "")
+            : content || "";
+
+        // 2. Gambar (di bawah teks)
+        let imagesHtml = "";
+        if (images) {
+          const arr = Array.isArray(images) ? images : [images];
+          if (arr.length === 1) {
+            imagesHtml = `<img class="modal-image" src="${arr[0]}"
+              alt="${title}" onerror="this.style.display='none'"
+              onclick="openLightbox('${arr[0]}')" style="cursor:zoom-in;margin-top:16px;">`;
+          } else {
+            imagesHtml =
+              `<div class="modal-image-gallery" style="margin-top:16px;">` +
+              arr.map((src) => `<img src="${src}" alt=""
+                onerror="this.style.display='none'"
+                onclick="openLightbox('${src}')">`).join("") +
+              `</div>`;
+          }
+        }
+
+        // 3. YouTube (paling bawah)
+        let youtubeHtml = "";
+        if (youtube) {
+          const urls = Array.isArray(youtube) ? youtube : [youtube];
+          urls.forEach((url) => {
+            const vid = getYouTubeId(url);
+            if (vid) {
+              youtubeHtml += `
+                <div class="modal-youtube-wrap">
+                  <div class="modal-youtube-label">
+                    <i class="fab fa-youtube" style="color:#e74c3c"></i> Video
+                  </div>
+                  <div class="modal-youtube">
+                    <iframe src="https://www.youtube.com/embed/${vid}"
+                      allowfullscreen loading="lazy"
+                      title="${title}"></iframe>
+                  </div>
+                </div>`;
+            }
+          });
+        }
+
+        document.getElementById("modalContent").innerHTML =
+          renderedContent + imagesHtml + youtubeHtml;
+        const tagsEl = document.getElementById("modalTags");
+        tagsEl.innerHTML = tags
+          .map((t) => `<span class="modal-tag">${t}</span>`)
+          .join("");
+        document.getElementById("modalOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal() {
+        document.getElementById("modalOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function closeModalOnBg(e) {
+        if (e.target === document.getElementById("modalOverlay")) closeModal();
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+          closeLightbox();
+        }
+      });
+
+      // ── COLOR MAP ──
+      const colorMap = {
+        red: { bg: "rgba(192,57,43,.08)", color: "#C0392B", badge: "#C0392B" },
+        green: {
+          bg: "rgba(46,204,113,.1)",
+          color: "#27ae60",
+          badge: "#27ae60",
+        },
+        purple: {
+          bg: "rgba(142,68,173,.1)",
+          color: "#8e44ad",
+          badge: "#8e44ad",
+        },
+      };
+
+      // ── RENDER RESEARCH CARDS ──
+      function renderResearch(data) {
+        const grid = document.getElementById("researchGrid");
+        grid.innerHTML = "";
+        data.forEach((r, i) => {
+          const cm = colorMap[r.color] || colorMap.red;
+          const title = r["title_" + currentLang];
+          const summary = r["summary_" + currentLang];
+          const content = r["content_" + currentLang];
+          const tags = r.tags
+            .map(
+              (t) =>
+                `<span class="rtag" style="background:${cm.bg};color:${cm.color};">${t}</span>`,
+            )
+            .join("");
+          const card = document.createElement("div");
+          card.className = "research-card";
+          card.setAttribute("data-aos", "fade-up");
+          card.setAttribute("data-aos-delay", String((i % 3) * 80));
+          card.innerHTML = `
+        <span class="tkt-badge" style="background:${cm.badge};">${r.tkt}</span>
+        <div class="research-icon" style="background:${cm.bg};">
+          <i class="fas ${r.icon}" style="color:${cm.color};"></i>
+        </div>
+        <h3>${title}</h3>
+        <p>${summary}</p>
+        <div class="research-tags">${tags}</div>
+        <span class="read-more-hint"><i class="fas fa-arrow-right"></i> Read more</span>
+      `;
+          // Resolve image paths untuk research
+          const resImages = resolveImages(r.images, "research");
+          card.addEventListener("click", () =>
+            openModal(
+              title,
+              r.tkt,
+              content,
+              r.tags,
+              resImages,
+              r.youtube || null,
+            ),
+          );
+          grid.appendChild(card);
+        });
+        AOS.refresh();
+      }
+
+      // ── RENDER NEWS CARDS ──
+      function renderNews(data) {
+        const grid = document.getElementById("newsGrid");
+        grid.innerHTML = "";
+        data.forEach((n, i) => {
+          const title = n["title_" + currentLang];
+          const summary = n["summary_" + currentLang];
+          const content = n["content_" + currentLang];
+          const cat = n["category_" + currentLang];
+
+          // Resolve thumbnail untuk card
+          const thumb = n.images
+            ? Array.isArray(n.images)
+              ? n.images[0]
+              : n.images
+            : null;
+          const thumbPath = thumb ? `assets/images/news/${thumb}` : null;
+
+          const cardImg = thumbPath
+            ? `<div class="news-img" style="background:none;padding:0;">
+             <img src="${thumbPath}" style="width:100%;height:100%;object-fit:cover;"
+                  onerror="this.parentElement.innerHTML='<i class=\\'fas ${n.icon}\\'></i>';this.parentElement.style='';">
+           </div>`
+            : `<div class="news-img"><i class="fas ${n.icon}"></i></div>`;
+
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.setAttribute("data-aos", "fade-up");
+          card.setAttribute("data-aos-delay", String(i * 80));
+          card.innerHTML = `
+        ${cardImg}
+        <div class="news-body">
+          <div class="news-date">${n.date}</div>
+          <div class="news-cat">${cat}</div>
+          <h4>${title}</h4>
+          <p>${summary}</p>
+          <span class="read-more-hint"><i class="fas fa-arrow-right"></i> Read more</span>
+        </div>
+      `;
+          const newsImages = resolveImages(n.images, "news");
+          card.addEventListener("click", () =>
+            openModal(title, cat, content, [], newsImages, n.youtube || null),
+          );
+          grid.appendChild(card);
+        });
+        AOS.refresh();
+      }
+
+      // ── HELPER: resolve image paths ──
+      function resolveImages(images, folder) {
+        if (!images) return null;
+        const arr = Array.isArray(images) ? images : [images];
+        return arr.map((f) => `assets/images/${folder}/${f}`);
+      }
+
+      // ── RENDER PUBLICATIONS ──
+      function renderPublications(data) {
+        const list = document.getElementById("pubList");
+        if (!list || !data) return;
+        list.innerHTML = "";
+        // Urutkan tahun terbaru di atas
+        const sorted = [...data].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        sorted.forEach((p, i) => {
+          const hasLink = p.doi && p.doi.trim() !== "";
+          const linkHtml = hasLink
+            ? `<a href="${p.doi}" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i> View Paper
+               </a>`
+            : `<span style="color:#aaa;font-size:.8rem;"><i class="fas fa-clock"></i> Link coming soon</span>`;
+          const badgeHtml = p.badge
+            ? `<span class="pub-badge">${p.badge}</span>`
+            : "";
+          const card = document.createElement("div");
+          card.className = "pub-card";
+          card.setAttribute("data-aos", "fade-up");
+          card.setAttribute("data-aos-delay", String(i * 60));
+          card.innerHTML = `
+            <div class="pub-year">${p.year}</div>
+            <div class="pub-content">
+              <h4>${p.title} ${badgeHtml}</h4>
+              <p>${p.authors} — ${p.journal}</p>
+              ${linkHtml}
+            </div>`;
+          list.appendChild(card);
+        });
+        AOS.refresh();
+      }
+
+      // ── LOAD DATA FROM JSON ──
+      fetch("data/content.json")
+        .then((r) => r.json())
+        .then((data) => {
+          window._contentData = data;
+          renderResearch(data.research);
+          renderNews(data.news);
+          renderPublications(data.publications);
+        })
+        .catch((err) => {
+          // Fallback jika fetch gagal (buka file langsung tanpa server)
+          console.warn("Fetch failed, using inline fallback:", err);
+        });
+    </script>
+  </body>
+</html>
