@@ -424,8 +424,8 @@
     {
       "id": "edu4",
       "degree": "Profesi",
-      "label_en": "Professional Engineer (Ir)",
-      "label_id": "Profesi Insinyur (Ir)",
+      "label_en": "Professional Engineer (IPU)",
+      "label_id": "Profesi Insinyur (IPU)",
       "field_en": "Professional Engineer",
       "field_id": "Insinyur Profesional",
       "institution": "Universitas Jember",
@@ -434,6 +434,21 @@
       "year": "2018",
       "thesis_en": "",
       "thesis_id": "",
+      "honor": ""
+    },
+    {
+      "id": "edu5",
+      "degree": "S2",
+      "label_en": "Master's – Islamic Studies (S2)",
+      "label_id": "Magister Studi Islam (S2)",
+      "field_en": "Islamic Education & Artificial Intelligence",
+      "field_id": "Pendidikan Islam & Kecerdasan Buatan",
+      "institution": "Universitas Muhammadiyah Jakarta (UMJ)",
+      "country_en": "Indonesia",
+      "country_id": "Indonesia",
+      "year": "2025",
+      "thesis_en": "Effectiveness of AI-Based Technology in Adult Tahfidz Learning at Gemma Pondok Pesantren Ibnu Katsir Jember",
+      "thesis_id": "Efektivitas Penggunaan Teknologi Berbasis Kecerdasan Buatan pada Pembelajaran Tahfidz Orang Dewasa di Gemma Pondok Pesantren Ibnu Katsir Jember",
       "honor": ""
     }
   ],
