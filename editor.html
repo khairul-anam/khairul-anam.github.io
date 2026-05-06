@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Content Editor – ISR Lab</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',sans-serif;background:#f0f2f5;color:#333}
+    header{background:#c0392b;color:#fff;padding:16px 28px;display:flex;align-items:center;gap:14px}
+    header h1{font-size:1.2rem;font-weight:700}
+    header p{font-size:.82rem;opacity:.85}
+    .tabs{display:flex;gap:0;background:#1a1a2e;padding:0 20px;flex-wrap:wrap}
+    .tab{padding:12px 20px;color:rgba(255,255,255,.6);cursor:pointer;font-size:.82rem;
+      font-weight:600;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap}
+    .tab.active{color:#f0a500;border-bottom-color:#f0a500}
+    .container{max-width:1400px;margin:0 auto;padding:24px}
+    .toolbar{display:flex;gap:10px;margin-bottom:18px;align-items:center;flex-wrap:wrap}
+    .btn{padding:9px 20px;border:none;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;transition:.2s}
+    .btn-add{background:#c0392b;color:#fff}.btn-add:hover{background:#e74c3c}
+    .btn-save{background:#27ae60;color:#fff}.btn-save:hover{background:#2ecc71}
+    .btn-del{background:#e74c3c;color:#fff;padding:6px 14px;font-size:.78rem;border-radius:6px}
+    .btn-del:hover{background:#c0392b}
+    .btn-sm{background:#3498db;color:#fff;padding:5px 12px;font-size:.75rem;
+      border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600}
+    .btn-sm:hover{background:#2980b9}
+    .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08);
+      margin-bottom:20px;overflow:hidden}
+    .card-header{background:#f8f9fa;padding:14px 20px;display:flex;justify-content:space-between;
+      align-items:center;border-bottom:1px solid #eee;cursor:pointer}
+    .card-header h3{font-size:.95rem;font-weight:600;color:#1a1a2e}
+    .card-body{padding:20px;display:none}
+    .card-body.open{display:block}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:14px}
+    label{display:block;font-size:.78rem;font-weight:600;color:#555;margin-bottom:5px}
+    input,select{width:100%;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;
+      font-size:.85rem;font-family:inherit;transition:.2s}
+    input:focus,select:focus{outline:none;border-color:#c0392b}
+    .md-editor{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid #ddd;
+      border-radius:8px;overflow:hidden;margin-top:5px}
+    .md-editor textarea{padding:12px;font-size:.83rem;font-family:'Courier New',monospace;
+      border:none;outline:none;resize:none;min-height:180px;background:#fafafa;line-height:1.6}
+    .md-preview{padding:12px;font-size:.83rem;border-left:1.5px solid #eee;
+      min-height:180px;overflow-y:auto;line-height:1.7;background:#fff}
+    .md-preview h4{margin:10px 0 6px;color:#c0392b;font-size:.9rem}
+    .md-preview ul{padding-left:20px;margin:6px 0}
+    .md-preview li{margin:3px 0}
+    .md-preview p{margin:6px 0}
+    .md-preview strong{color:#1a1a2e}
+    .md-label-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .md-col-label{font-size:.73rem;font-weight:700;color:#888;padding:4px 10px;
+      background:#f0f2f5;border-bottom:1px solid #eee}
+    .section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;
+      letter-spacing:1px;color:#888;margin:16px 0 8px}
+    .hint{font-size:.72rem;color:#999;margin-top:4px}
+    .saved-msg{background:#d4edda;color:#155724;padding:12px 16px;border-radius:8px;
+      font-size:.85rem;display:none;margin-bottom:12px;line-height:1.6}
+    .error-msg{background:#f8d7da;color:#721c24;padding:10px 16px;border-radius:8px;
+      font-size:.85rem;display:none;margin-bottom:12px}
+    .empty-state{text-align:center;padding:60px;color:#aaa;font-size:.9rem}
+    @media(max-width:768px){
+      .row,.row3,.md-editor{grid-template-columns:1fr}
+      .md-preview{display:none}
+    }
+
+    /* ── LOGIN OVERLAY ── */
+    #loginOverlay{
+      position:fixed;inset:0;z-index:9999;
+      background:linear-gradient(135deg,#1a1a2e,#16213e);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .login-box{
+      background:#fff;border-radius:20px;padding:40px 48px;
+      max-width:440px;width:90%;box-shadow:0 24px 80px rgba(0,0,0,.4);
+      text-align:center;
+    }
+    .login-box h2{font-size:1.3rem;color:#1a1a2e;margin-bottom:6px}
+    .login-box p{font-size:.83rem;color:#888;margin-bottom:28px;line-height:1.6}
+    .login-box input{
+      width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:8px;
+      font-size:.9rem;font-family:inherit;margin-bottom:8px;
+      letter-spacing:.5px;
+    }
+    .login-box input:focus{outline:none;border-color:#c0392b}
+    .login-box button{
+      width:100%;padding:12px;background:#c0392b;color:#fff;border:none;
+      border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;
+      font-family:inherit;transition:.2s;margin-top:6px;
+    }
+    .login-box button:hover{background:#e74c3c}
+    .login-error{color:#c0392b;font-size:.8rem;margin-top:6px;display:none}
+    .login-hint{font-size:.75rem;color:#aaa;margin-top:16px;line-height:1.6}
+    .login-hint a{color:#c0392b}
+    .btn-github{background:#27ae60;color:#fff}.btn-github:hover{background:#2ecc71}
+    .btn-download{background:#3498db;color:#fff;margin-left:8px}.btn-download:hover{background:#2980b9}
+    #saveStatus{font-size:.82rem;color:#555;margin-left:12px;font-style:italic}
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN OVERLAY ══ -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <div style="font-size:2.5rem;margin-bottom:12px">🔐</div>
+    <h2>ISR Lab – Content Editor</h2>
+    <p>Masukkan <strong>GitHub Personal Access Token</strong> Anda untuk mengakses editor.</p>
+    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+      onkeydown="if(event.key==='Enter') doLogin()">
+    <button onclick="doLogin()">Masuk →</button>
+    <div class="login-error" id="loginError">Token tidak valid atau tidak punya akses ke repo.</div>
+    <div class="login-hint">
+      Belum punya token? <a href="https://github.com/settings/tokens" target="_blank">Buat di sini</a><br>
+      Setting: <em>Fine-grained</em> → repo <code>khairul-anam.github.io</code> → <em>Contents: Read & Write</em>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div style="flex:1">
+    <h1>✏️ ISR Lab – Content Editor</h1>
+    <p>Edit konten website dari mana saja. Gunakan Markdown — preview langsung di sebelah kanan.</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+    <span id="saveStatus"></span>
+    <button class="btn btn-download" onclick="downloadJSON()" title="Backup lokal">⬇ Download</button>
+    <button class="btn btn-github" onclick="saveToGitHub()">☁ Save to GitHub</button>
+    <button onclick="doLogout()" style="background:rgba(255,255,255,.15);border:none;color:#fff;
+      padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.8rem;font-family:inherit">
+      🔓 Logout
+    </button>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('news')">📰 Berita</div>
+  <div class="tab" onclick="switchTab('research')">🔬 Riset</div>
+  <div class="tab" onclick="switchTab('publications')">📄 Publikasi</div>
+  <div class="tab" onclick="switchTab('books')">📖 Buku</div>
+  <div class="tab" onclick="switchTab('hki')">🏅 HKI</div>
+  <div class="tab" onclick="switchTab('education')">🎓 Pendidikan</div>
+  <div class="tab" onclick="switchTab('courses')">📚 Kuliah</div>
+  <div class="tab" onclick="switchTab('topics')">🎯 Topik S1/S2/S3</div>
+</div>
+
+<div class="container">
+  <div id="savedMsg" class="saved-msg"></div>
+  <div id="errorMsg" class="error-msg"></div>
+
+  <div class="toolbar">
+    <button class="btn btn-add" onclick="addItem()">+ Tambah Item Baru</button>
+    <span style="font-size:.8rem;color:#888">Klik <strong>☁ Save to GitHub</strong> di atas untuk menyimpan langsung ke website.</span>
+  </div>
+
+  <div id="itemList"></div>
+</div>
+
+<script>
+let currentTab = 'news';
+let data = { news:[], research:[], publications:[], books:[], hki:[], education:[], courses:[], topics:[] };
+
+const colorOptions = ['red','green','blue','purple','orange'];
+
+// ── LOAD ──
+async function loadData() {
+  try {
+    const res = await fetch('data/content.json?t=' + Date.now());
+    data = await res.json();
+    // Pastikan semua key ada
+    data.news         = data.news         || [];
+    data.research     = data.research     || [];
+    data.publications = data.publications || [];
+    data.books        = data.books        || [];
+    data.hki          = data.hki          || [];
+    data.education    = data.education    || [];
+    data.courses      = data.courses      || [];
+    data.topics       = data.topics       || [];
+    renderList();
+  } catch(e) {
+    showError('Gagal load content.json. Pastikan server Python sudah berjalan: python3 -m http.server 8080');
+  }
+}
+
+// ── TAB ──
+const tabOrder = ['news','research','publications','books','hki','education','courses','topics'];
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', tabOrder[i] === tab);
+  });
+  renderList();
+}
+
+// ── RENDER LIST ──
+function renderList() {
+  const list = document.getElementById('itemList');
+  const items = data[currentTab] || [];
+  if (!items.length) {
+    list.innerHTML = '<div class="empty-state">Belum ada item. Klik "+ Tambah Item Baru"</div>';
+    return;
+  }
+  list.innerHTML = '';
+  items.forEach((item, idx) => list.appendChild(buildCard(item, idx)));
+}
+
+function buildCard(item, idx) {
+  const div = document.createElement('div');
+  div.className = 'card';
+  if      (currentTab==='news')         div.innerHTML = buildNewsCard(item,idx);
+  else if (currentTab==='research')     div.innerHTML = buildResearchCard(item,idx);
+  else if (currentTab==='publications') div.innerHTML = buildPublicationCard(item,idx);
+  else if (currentTab==='books')        div.innerHTML = buildBookCard(item,idx);
+  else if (currentTab==='hki')          div.innerHTML = buildHKICard(item,idx);
+  else if (currentTab==='education')    div.innerHTML = buildEducationCard(item,idx);
+  else if (currentTab==='courses')      div.innerHTML = buildCourseCard(item,idx);
+  else                                  div.innerHTML = buildTopicCard(item,idx);
+
+  div.querySelector('.card-header').addEventListener('click', e => {
+    if (e.target.closest('button')) return;
+    div.querySelector('.card-body').classList.toggle('open');
+  });
+
+  div.querySelectorAll('textarea[data-preview]').forEach(ta => {
+    const prev = div.querySelector('#' + ta.getAttribute('data-preview'));
+    if (prev) {
+      ta.addEventListener('input', () => prev.innerHTML = marked.parse(ta.value||''));
+      prev.innerHTML = marked.parse(ta.value||'');
+    }
+  });
+  return div;
+}
+
+// ══════════════════════════════════════
+// CARD BUILDERS
+// ══════════════════════════════════════
+
+function buildNewsCard(n, idx) {
+  const title = n.title_en || 'Item '+(idx+1);
+  return `
+  <div class="card-header">
+    <h3>📰 ${idx+1}. ${escHtml(title)}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(n.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="n1"></div>
+      <div><label>Tanggal (untuk sorting)</label>
+        <input type="date" value="${esc(n.date||'')}" onchange="updateField(${idx},'date',this.value)"></div>
+      <div><label>Tampilan (EN)</label>
+        <input value="${esc(n.date_en||'')}" onchange="updateField(${idx},'date_en',this.value)" placeholder="May 15, 2026"></div>
+      <div><label>Tampilan (ID)</label>
+        <input value="${esc(n.date_id||'')}" onchange="updateField(${idx},'date_id',this.value)" placeholder="15 Mei 2026"></div>
+      <div><label>Icon (Font Awesome)</label>
+        <input value="${esc(n.icon||'fa-newspaper')}" onchange="updateField(${idx},'icon',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Kategori (EN)</label>
+        <input value="${esc(n.category_en||'')}" onchange="updateField(${idx},'category_en',this.value)"></div>
+      <div><label>Kategori (ID)</label>
+        <input value="${esc(n.category_id||'')}" onchange="updateField(${idx},'category_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Judul (EN)</label>
+        <input value="${esc(n.title_en||'')}" onchange="updateField(${idx},'title_en',this.value)"></div>
+      <div><label>Judul (ID)</label>
+        <input value="${esc(n.title_id||'')}" onchange="updateField(${idx},'title_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Ringkasan (EN)</label>
+        <input value="${esc(n.summary_en||'')}" onchange="updateField(${idx},'summary_en',this.value)"></div>
+      <div><label>Ringkasan (ID)</label>
+        <input value="${esc(n.summary_id||'')}" onchange="updateField(${idx},'summary_id',this.value)"></div>
+    </div>
+    <div class="section-title">Konten Lengkap (Markdown)</div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (EN)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="nprev_en_${idx}"
+        onchange="updateField(${idx},'content_en',this.value)"
+        placeholder="Tulis konten EN di sini..."
+      >${escHtml(n.content_en||'')}</textarea>
+      <div class="md-preview" id="nprev_en_${idx}"></div>
+    </div>
+    <div style="margin-top:12px"></div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (ID)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="nprev_id_${idx}"
+        onchange="updateField(${idx},'content_id',this.value)"
+        placeholder="Tulis konten ID di sini..."
+      >${escHtml(n.content_id||'')}</textarea>
+      <div class="md-preview" id="nprev_id_${idx}"></div>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <div><label>Gambar (nama file, pisah koma)</label>
+        <input value="${esc(Array.isArray(n.images)?n.images.join(', '):(n.images||''))}"
+          onchange="updateImages(${idx},this.value)" placeholder="foto1.jpg, foto2.jpg">
+        <div class="hint">Taruh file di: assets/images/news/</div></div>
+      <div><label>Link YouTube</label>
+        <input value="${esc(n.youtube||'')}" onchange="updateField(${idx},'youtube',this.value||null)"
+          placeholder="https://youtu.be/xxxxx"></div>
+    </div>
+  </div>`;
+}
+
+function buildResearchCard(r, idx) {
+  const title = r.title_en || 'Item '+(idx+1);
+  const colorOpts = colorOptions.map(c =>
+    `<option value="${c}" ${r.color===c?'selected':''}>${c}</option>`).join('');
+  return `
+  <div class="card-header">
+    <h3>🔬 ${idx+1}. ${escHtml(title)}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(r.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="r1"></div>
+      <div><label>Badge TKT</label>
+        <input value="${esc(r.tkt||'')}" onchange="updateField(${idx},'tkt',this.value)" placeholder="TKT 1–3"></div>
+      <div><label>Warna</label>
+        <select onchange="updateField(${idx},'color',this.value)">${colorOpts}</select></div>
+    </div>
+    <div class="row">
+      <div><label>Icon (Font Awesome)</label>
+        <input value="${esc(r.icon||'fa-flask')}" onchange="updateField(${idx},'icon',this.value)"></div>
+      <div><label>Tags (pisah koma)</label>
+        <input value="${esc((r.tags||[]).join(', '))}" onchange="updateTags(${idx},this.value)"
+          placeholder="ROS2, LiDAR, Python"></div>
+    </div>
+    <div class="row">
+      <div><label>Judul (EN)</label>
+        <input value="${esc(r.title_en||'')}" onchange="updateField(${idx},'title_en',this.value)"></div>
+      <div><label>Judul (ID)</label>
+        <input value="${esc(r.title_id||'')}" onchange="updateField(${idx},'title_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Ringkasan (EN)</label>
+        <input value="${esc(r.summary_en||'')}" onchange="updateField(${idx},'summary_en',this.value)"></div>
+      <div><label>Ringkasan (ID)</label>
+        <input value="${esc(r.summary_id||'')}" onchange="updateField(${idx},'summary_id',this.value)"></div>
+    </div>
+    <div class="section-title">Konten Lengkap (Markdown)</div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (EN)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="rprev_en_${idx}"
+        onchange="updateField(${idx},'content_en',this.value)"
+      >${escHtml(r.content_en||'')}</textarea>
+      <div class="md-preview" id="rprev_en_${idx}"></div>
+    </div>
+    <div style="margin-top:12px"></div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (ID)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="rprev_id_${idx}"
+        onchange="updateField(${idx},'content_id',this.value)"
+      >${escHtml(r.content_id||'')}</textarea>
+      <div class="md-preview" id="rprev_id_${idx}"></div>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <div><label>Gambar (nama file, pisah koma)</label>
+        <input value="${esc(Array.isArray(r.images)?r.images.join(', '):(r.images||''))}"
+          onchange="updateImages(${idx},this.value)" placeholder="foto.jpg">
+        <div class="hint">Taruh file di: assets/images/research/</div></div>
+      <div><label>Link YouTube</label>
+        <input value="${esc(r.youtube||'')}" onchange="updateField(${idx},'youtube',this.value||null)"
+          placeholder="https://youtu.be/xxxxx"></div>
+    </div>
+  </div>`;
+}
+
+function buildPublicationCard(p, idx) {
+  const title = p.title || 'Item '+(idx+1);
+  return `
+  <div class="card-header">
+    <h3>📄 ${idx+1}. ${escHtml(title)}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(p.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="p1"></div>
+      <div><label>Tahun</label>
+        <input value="${esc(p.year||'')}" onchange="updateField(${idx},'year',this.value)" placeholder="2025"></div>
+      <div><label>Badge (Q1/Sinta S2/dll)</label>
+        <input value="${esc(p.badge||'')}" onchange="updateField(${idx},'badge',this.value)"></div>
+    </div>
+    <div style="margin-bottom:14px"><label>Judul Artikel</label>
+      <input value="${esc(p.title||'')}" onchange="updateField(${idx},'title',this.value)"></div>
+    <div class="row">
+      <div><label>Penulis</label>
+        <input value="${esc(p.authors||'')}" onchange="updateField(${idx},'authors',this.value)"
+          placeholder="Anam, K., et al."></div>
+      <div><label>Nama Jurnal / Prosiding</label>
+        <input value="${esc(p.journal||'')}" onchange="updateField(${idx},'journal',this.value)"></div>
+    </div>
+    <div><label>🔗 Link DOI / URL Artikel</label>
+      <input type="url" value="${esc(p.doi||'')}" onchange="updateField(${idx},'doi',this.value)"
+        placeholder="https://doi.org/10.xxxx/xxxxx"
+        style="border-color:${p.doi?'#27ae60':'#e74c3c'}">
+      <div class="hint">${p.doi
+        ? `✅ <a href="${esc(p.doi)}" target="_blank" style="color:#27ae60">Cek link</a>`
+        : '⚠️ Belum ada DOI — isi agar tombol "View Paper" aktif'}</div>
+    </div>
+  </div>`;
+}
+
+function buildCourseCard(c, idx) {
+  const title = c.name_en || 'Item '+(idx+1);
+  const levelOpts = ['S1','S2','S3'].map(l =>
+    `<option value="${l}" ${c.level===l?'selected':''}>${l}</option>`).join('');
+  return `
+  <div class="card-header">
+    <h3>📚 ${idx+1}. ${escHtml(title)}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(c.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="c1"></div>
+      <div><label>Kode MK</label>
+        <input value="${esc(c.code||'')}" onchange="updateField(${idx},'code',this.value)" placeholder="TKE3201"></div>
+      <div><label>Level</label>
+        <select onchange="updateField(${idx},'level',this.value)">${levelOpts}</select></div>
+    </div>
+    <div class="row3">
+      <div><label>SKS</label>
+        <input type="number" value="${c.credits||3}" onchange="updateField(${idx},'credits',parseInt(this.value))" min="1" max="6"></div>
+      <div><label>Semester (EN)</label>
+        <input value="${esc(c.semester_en||'')}" onchange="updateField(${idx},'semester_en',this.value)" placeholder="Odd 2025/2026"></div>
+      <div><label>Semester (ID)</label>
+        <input value="${esc(c.semester_id||'')}" onchange="updateField(${idx},'semester_id',this.value)" placeholder="Ganjil 2025/2026"></div>
+    </div>
+    <div class="row">
+      <div><label>Nama MK (EN)</label>
+        <input value="${esc(c.name_en||'')}" onchange="updateField(${idx},'name_en',this.value)"></div>
+      <div><label>Nama MK (ID)</label>
+        <input value="${esc(c.name_id||'')}" onchange="updateField(${idx},'name_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Deskripsi singkat (EN)</label>
+        <input value="${esc(c.desc_en||'')}" onchange="updateField(${idx},'desc_en',this.value)"></div>
+      <div><label>Deskripsi singkat (ID)</label>
+        <input value="${esc(c.desc_id||'')}" onchange="updateField(${idx},'desc_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Jadwal (EN)</label>
+        <input value="${esc(c.schedule_en||'')}" onchange="updateField(${idx},'schedule_en',this.value)" placeholder="Monday 08:00–10:30"></div>
+      <div><label>Jadwal (ID)</label>
+        <input value="${esc(c.schedule_id||'')}" onchange="updateField(${idx},'schedule_id',this.value)" placeholder="Senin 08:00–10:30"></div>
+    </div>
+    <div class="section-title">Konten / Silabus (Markdown)</div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (EN)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="cprev_en_${idx}"
+        onchange="updateField(${idx},'content_en',this.value)"
+        placeholder="#### Topics Covered&#10;&#10;- Topic one&#10;- Topic two"
+      >${escHtml(c.content_en||'')}</textarea>
+      <div class="md-preview" id="cprev_en_${idx}"></div>
+    </div>
+    <div style="margin-top:12px"></div>
+    <div class="md-label-inner">
+      <div class="md-col-label">✍️ Tulis (ID)</div><div class="md-col-label">👁 Preview</div>
+    </div>
+    <div class="md-editor">
+      <textarea data-preview="cprev_id_${idx}"
+        onchange="updateField(${idx},'content_id',this.value)"
+        placeholder="#### Topik yang Dibahas&#10;&#10;- Topik satu"
+      >${escHtml(c.content_id||'')}</textarea>
+      <div class="md-preview" id="cprev_id_${idx}"></div>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <div><label>🔗 Link Silabus (PDF/Drive)</label>
+        <input type="url" value="${esc(c.syllabus_url||'')}" onchange="updateField(${idx},'syllabus_url',this.value)"
+          placeholder="https://drive.google.com/...">
+        <div class="hint">Akan muncul tombol "Download Silabus" di popup</div></div>
+      <div><label>Link YouTube (video kuliah)</label>
+        <input value="${esc(c.youtube||'')}" onchange="updateField(${idx},'youtube',this.value||null)"
+          placeholder="https://youtu.be/xxxxx"></div>
+    </div>
+  </div>`;
+}
+
+function buildBookCard(b, idx) {
+  return `
+  <div class="card-header">
+    <h3>📖 ${idx+1}. ${escHtml(b.title||'Buku '+(idx+1))}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(b.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="bk1"></div>
+      <div><label>Tahun</label>
+        <input value="${esc(b.year||'')}" onchange="updateField(${idx},'year',this.value)" placeholder="2023"></div>
+      <div><label>ISBN</label>
+        <input value="${esc(b.isbn||'')}" onchange="updateField(${idx},'isbn',this.value)" placeholder="978-xxx-xxx-xxx-x"></div>
+    </div>
+    <div style="margin-bottom:14px"><label>Judul Buku</label>
+      <input value="${esc(b.title||'')}" onchange="updateField(${idx},'title',this.value)"></div>
+    <div style="margin-bottom:14px"><label>Penerbit</label>
+      <input value="${esc(b.publisher||'')}" onchange="updateField(${idx},'publisher',this.value)"
+        placeholder="UPT Penerbitan UNEJ"></div>
+    <div><label>Cover (nama file gambar, opsional)</label>
+      <input value="${esc(b.cover||'')}" onchange="updateField(${idx},'cover',this.value||null)"
+        placeholder="cover-buku.jpg">
+      <div class="hint">Taruh file di: assets/images/books/ — kosongkan jika belum ada</div></div>
+  </div>`;
+}
+
+function buildHKICard(h, idx) {
+  const typeOpts = ['Patent (Granted)','Copyright','Patent (Pending)','Industrial Design'].map(t =>
+    `<option value="${t}" ${(h.type_en||'')==t?'selected':''}>${t}</option>`).join('');
+  const typeOptsId = ['Paten (Granted)','Hak Cipta','Paten (Pending)','Desain Industri'].map(t =>
+    `<option value="${t}" ${(h.type_id||'')==t?'selected':''}>${t}</option>`).join('');
+  return `
+  <div class="card-header">
+    <h3>🏅 ${idx+1}. ${escHtml(h.title_en||'HKI '+(idx+1))}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(h.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="hki1"></div>
+      <div><label>Tahun</label>
+        <input value="${esc(h.year||'')}" onchange="updateField(${idx},'year',this.value)" placeholder="2023"></div>
+      <div><label>No. Registrasi / ID</label>
+        <input value="${esc(h.id_number||'')}" onchange="updateField(${idx},'id_number',this.value)"
+          placeholder="EC00202271832 atau —"></div>
+    </div>
+    <div class="row">
+      <div><label>Jenis (EN)</label>
+        <select onchange="updateField(${idx},'type_en',this.value)">${typeOpts}</select></div>
+      <div><label>Jenis (ID)</label>
+        <select onchange="updateField(${idx},'type_id',this.value)">${typeOptsId}</select></div>
+    </div>
+    <div class="row">
+      <div><label>Judul (EN)</label>
+        <input value="${esc(h.title_en||'')}" onchange="updateField(${idx},'title_en',this.value)"></div>
+      <div><label>Judul (ID)</label>
+        <input value="${esc(h.title_id||'')}" onchange="updateField(${idx},'title_id',this.value)"></div>
+    </div>
+    <div><label>Lembaga Pendaftar</label>
+      <input value="${esc(h.registrar||'DJKI Indonesia')}" onchange="updateField(${idx},'registrar',this.value)"
+        placeholder="DJKI Indonesia"></div>
+  </div>`;
+}
+
+function buildEducationCard(e, idx) {
+  return `
+  <div class="card-header">
+    <h3>🎓 ${idx+1}. ${escHtml(e.label_en||'Pendidikan '+(idx+1))}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>ID</label>
+        <input value="${esc(e.id||'')}" onchange="updateField(${idx},'id',this.value)" placeholder="edu1"></div>
+      <div><label>Jenjang (degree)</label>
+        <input value="${esc(e.degree||'')}" onchange="updateField(${idx},'degree',this.value)" placeholder="S3"></div>
+      <div><label>Tahun (e.g. 2012–2016)</label>
+        <input value="${esc(e.year||'')}" onchange="updateField(${idx},'year',this.value)" placeholder="2012–2016"></div>
+    </div>
+    <div class="row">
+      <div><label>Label (EN)</label>
+        <input value="${esc(e.label_en||'')}" onchange="updateField(${idx},'label_en',this.value)"
+          placeholder="Doctoral Degree (Ph.D)"></div>
+      <div><label>Label (ID)</label>
+        <input value="${esc(e.label_id||'')}" onchange="updateField(${idx},'label_id',this.value)"
+          placeholder="Doktor (S3)"></div>
+    </div>
+    <div><label>Institusi</label>
+      <input value="${esc(e.institution||'')}" onchange="updateField(${idx},'institution',this.value)"
+        placeholder="University of Technology Sydney"></div>
+    <div class="row" style="margin-top:12px">
+      <div><label>Bidang Ilmu (EN)</label>
+        <input value="${esc(e.field_en||'')}" onchange="updateField(${idx},'field_en',this.value)"
+          placeholder="Electrical Engineering"></div>
+      <div><label>Bidang Ilmu (ID)</label>
+        <input value="${esc(e.field_id||'')}" onchange="updateField(${idx},'field_id',this.value)"
+          placeholder="Teknik Elektro"></div>
+    </div>
+    <div class="row">
+      <div><label>Negara (EN)</label>
+        <input value="${esc(e.country_en||'Indonesia')}" onchange="updateField(${idx},'country_en',this.value)"></div>
+      <div><label>Negara (ID)</label>
+        <input value="${esc(e.country_id||'Indonesia')}" onchange="updateField(${idx},'country_id',this.value)"></div>
+    </div>
+    <div class="row">
+      <div><label>Judul Skripsi/Tesis/Disertasi (EN) — opsional</label>
+        <input value="${esc(e.thesis_en||'')}" onchange="updateField(${idx},'thesis_en',this.value)"></div>
+      <div><label>Judul (ID) — opsional</label>
+        <input value="${esc(e.thesis_id||'')}" onchange="updateField(${idx},'thesis_id',this.value)"></div>
+    </div>
+    <div><label>Penghargaan / Predikat (e.g. Cumlaude) — kosongkan jika tidak ada</label>
+      <input value="${esc(e.honor||'')}" onchange="updateField(${idx},'honor',this.value)"
+        placeholder="Cumlaude"></div>
+  </div>`;
+}
+
+function buildTopicCard(t, idx) {
+  const itemRows = (t.items||[]).map((it,j) => `
+    <div class="row" style="margin-bottom:8px;align-items:center;">
+      <div><input type="text" value="${esc(it.en||'')}"
+        onchange="updateTopicItem(${idx},${j},'en',this.value)" placeholder="Topic (EN)"></div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" value="${esc(it.id||'')}" style="flex:1"
+          onchange="updateTopicItem(${idx},${j},'id',this.value)" placeholder="Topik (ID)">
+        <button class="btn btn-del" style="padding:6px 10px;font-size:.75rem;flex-shrink:0"
+          onclick="deleteTopicItem(${idx},${j})">✕</button>
+      </div>
+    </div>`).join('');
+  return `
+  <div class="card-header">
+    <h3>🎯 ${t.label_en||t.level||'Level '+(idx+1)}</h3>
+    <button class="btn btn-del" onclick="deleteItem(${idx})">🗑 Hapus</button>
+  </div>
+  <div class="card-body">
+    <div class="row3">
+      <div><label>Level</label>
+        <input value="${esc(t.level||'')}" onchange="updateField(${idx},'level',this.value)" placeholder="S1"></div>
+      <div><label>Label (EN)</label>
+        <input value="${esc(t.label_en||'')}" onchange="updateField(${idx},'label_en',this.value)" placeholder="S1 – Undergraduate"></div>
+      <div><label>Label (ID)</label>
+        <input value="${esc(t.label_id||'')}" onchange="updateField(${idx},'label_id',this.value)" placeholder="S1 – Sarjana"></div>
+    </div>
+    <div class="row">
+      <div><label>Judul (EN)</label>
+        <input value="${esc(t.title_en||'')}" onchange="updateField(${idx},'title_en',this.value)"></div>
+      <div><label>Judul (ID)</label>
+        <input value="${esc(t.title_id||'')}" onchange="updateField(${idx},'title_id',this.value)"></div>
+    </div>
+    <div class="section-title" style="margin-top:16px">
+      Daftar Topik
+      <button class="btn-sm" style="margin-left:10px" onclick="addTopicItem(${idx})">+ Tambah Topik</button>
+    </div>
+    <div style="margin:8px 0 4px">
+      <div class="row"><div><span style="font-size:.72rem;font-weight:700;color:#888">TOPIK (EN)</span></div>
+      <div><span style="font-size:.72rem;font-weight:700;color:#888">TOPIK (ID)</span></div></div>
+    </div>
+    <div id="topicItems_${idx}">${itemRows}</div>
+  </div>`;
+}
+
+// ══════════════════════════════════════
+// DATA UPDATES
+// ══════════════════════════════════════
+
+function updateField(idx, field, value) {
+  data[currentTab][idx][field] = (value===''||value===null) ? null : value;
+}
+function updateImages(idx, value) {
+  const parts = value.split(',').map(s=>s.trim()).filter(Boolean);
+  data[currentTab][idx].images = parts.length===0?null:parts.length===1?parts[0]:parts;
+}
+function updateTags(idx, value) {
+  data[currentTab][idx].tags = value.split(',').map(s=>s.trim()).filter(Boolean);
+}
+function updateTopicItem(idx, j, lang, value) {
+  data.topics[idx].items[j][lang] = value;
+}
+function deleteTopicItem(idx, j) {
+  data.topics[idx].items.splice(j,1);
+  renderList();
+}
+function addTopicItem(idx) {
+  data.topics[idx].items = data.topics[idx].items||[];
+  data.topics[idx].items.push({en:'',id:''});
+  renderList();
+  setTimeout(()=>{
+    const cards = document.querySelectorAll('.card-body');
+    if(cards[idx]) cards[idx].classList.add('open');
+  },50);
+}
+
+// ── ADD ITEM ──
+function addItem() {
+  if (currentTab==='books') {
+    data.books.push({
+      id:'bk'+(data.books.length+1), year: new Date().getFullYear().toString(),
+      title:'Judul Buku Baru', isbn:'', publisher:'UPT Penerbitan UNEJ', cover:null
+    });
+  } else if (currentTab==='hki') {
+    data.hki.push({
+      id:'hki'+(data.hki.length+1), year: new Date().getFullYear().toString(),
+      title_en:'New HKI Title', title_id:'Judul HKI Baru',
+      type_en:'Copyright', type_id:'Hak Cipta',
+      registrar:'DJKI Indonesia', id_number:''
+    });
+  } else if (currentTab==='education') {
+    data.education.push({
+      id:'edu'+(data.education.length+1), degree:'S1',
+      label_en:"Bachelor's Degree (S1)", label_id:'Sarjana (S1)',
+      field_en:'Electrical Engineering', field_id:'Teknik Elektro',
+      institution:'Universitas', country_en:'Indonesia', country_id:'Indonesia',
+      year:'20XX–20XX', thesis_en:'', thesis_id:'', honor:''
+    });
+  } else if (currentTab==='topics') {
+    data.topics.push({
+      level:'S1',label_en:'S1 – Undergraduate',label_id:'S1 – Sarjana',
+      title_en:"Bachelor's Research",title_id:'Riset Skripsi',
+      items:[{en:'New topic',id:'Topik baru'}]
+    });
+  } else if (currentTab==='courses') {
+    data.courses.push({
+      id:'c'+(data.courses.length+1),code:'TKE0000',level:'S1',credits:3,
+      semester_en:'Odd 2025/2026',semester_id:'Ganjil 2025/2026',
+      name_en:'New Course',name_id:'Mata Kuliah Baru',
+      desc_en:'Short description.',desc_id:'Deskripsi singkat.',
+      content_en:'#### Topics\n\n- Topic one\n- Topic two',
+      content_id:'#### Topik\n\n- Topik satu\n- Topik dua',
+      schedule_en:'',schedule_id:'',syllabus_url:'',youtube:null,images:null
+    });
+  } else if (currentTab==='publications') {
+    data.publications.push({
+      id:'p'+(data.publications.length+1),year:'2025',
+      title:'New Article Title',authors:'Anam, K., et al.',
+      journal:'Journal Name (2025)',badge:'Q1 Journal',doi:''
+    });
+  } else if (currentTab==='research') {
+    data.research.push({
+      id:'r'+(data.research.length+1),icon:'fa-flask',tkt:'TKT 1–3',color:'red',
+      title_en:'New Research',title_id:'Riset Baru',
+      summary_en:'Short summary.',summary_id:'Ringkasan singkat.',
+      tags:['Tag1','Tag2'],
+      content_en:'#### Highlights\n\n- Point one\n\n**Open for:** S1, S2',
+      content_id:'#### Highlight\n\n- Poin satu\n\n**Terbuka untuk:** S1, S2',
+      images:null,youtube:null
+    });
+  } else {
+    data.news.push({
+      id:'n'+(data.news.length+1),date:new Date().toISOString().slice(0,10),
+      date_en:'', date_id:'',
+      category_en:'Research',category_id:'Riset',icon:'fa-newspaper',
+      title_en:'New Article',title_id:'Artikel Baru',
+      summary_en:'Short summary.',summary_id:'Ringkasan singkat.',
+      content_en:'Write content here.\n\n#### Section\n\n- Point one',
+      content_id:'Tulis konten di sini.\n\n#### Bagian\n\n- Poin satu',
+      images:null,youtube:null
+    });
+  }
+  renderList();
+  setTimeout(()=>{
+    const cards = document.querySelectorAll('.card-body');
+    if(cards.length) cards[cards.length-1].classList.add('open');
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+  },100);
+}
+
+// ── DELETE ──
+function deleteItem(idx) {
+  if (!confirm('Hapus item ini?')) return;
+  data[currentTab].splice(idx,1);
+  renderList();
+}
+
+// ══════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════
+const REPO_OWNER = 'khairul-anam';
+const REPO_NAME  = 'khairul-anam.github.io';
+const FILE_PATH  = 'data/content.json';
+const BRANCH     = 'main';
+
+function getToken() { return sessionStorage.getItem('gh_token') || ''; }
+
+async function doLogin() {
+  const token = document.getElementById('tokenInput').value.trim();
+  if (!token) return;
+  // Verifikasi token dengan cek akses repo
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+    headers: { Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' }
+  });
+  if (res.ok) {
+    sessionStorage.setItem('gh_token', token);
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('tokenInput').value = '';
+    loadData();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('gh_token');
+  location.reload();
+}
+
+// ══════════════════════════════════════
+// SAVE TO GITHUB
+// ══════════════════════════════════════
+async function saveToGitHub() {
+  const token = getToken();
+  if (!token) { doLogout(); return; }
+
+  const status = document.getElementById('saveStatus');
+  status.textContent = '⏳ Menyimpan...';
+
+  try {
+    // 1. Ambil SHA file saat ini
+    const getRes = await fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`,
+      { headers: { Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' } }
+    );
+    if (!getRes.ok) throw new Error('Gagal ambil file dari GitHub');
+    const fileInfo = await getRes.json();
+    const sha = fileInfo.sha;
+
+    // 2. Encode konten ke base64
+    const json    = JSON.stringify(data, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(json)));
+
+    // 3. Commit perubahan
+    const now = new Date().toLocaleString('id-ID', {timeZone:'Asia/Jakarta'});
+    const putRes = await fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        body: JSON.stringify({
+          message: `Update content.json via editor [${now}]`,
+          content: encoded,
+          sha: sha,
+          branch: BRANCH
+        })
+      }
+    );
+
+    if (!putRes.ok) {
+      const err = await putRes.json();
+      throw new Error(err.message || 'Gagal menyimpan');
+    }
+
+    status.textContent = '✅ Tersimpan! Website akan update ~1 menit.';
+    const el = document.getElementById('savedMsg');
+    el.style.display = 'block';
+    el.innerHTML = '🎉 <strong>Berhasil disimpan ke GitHub!</strong> Website khairul-anam.github.io akan diperbarui otomatis dalam ~1 menit.';
+    setTimeout(()=>{ el.style.display='none'; status.textContent=''; }, 12000);
+
+  } catch(e) {
+    status.textContent = '';
+    showError('❌ Gagal simpan: ' + e.message);
+  }
+}
+
+// ── DOWNLOAD BACKUP ──
+function downloadJSON() {
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'content.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.innerHTML = msg; el.style.display='block';
+  setTimeout(()=>el.style.display='none', 8000);
+}
+
+function esc(s)     { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;') }
+function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+// Cek apakah sudah login
+if (getToken()) {
+  document.getElementById('loginOverlay').style.display = 'none';
+  loadData();
+}
+</script>
+</body>
+</html>
