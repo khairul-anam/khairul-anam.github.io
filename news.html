@@ -463,7 +463,7 @@
   fetch('data/content.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
-      allNews = data.news || [];
+      allNews = (data.news || []).sort((a, b) => new Date(b.date) - new Date(a.date));
       applyFilters();
     })
     .catch(() => {
