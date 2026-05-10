@@ -136,7 +136,9 @@
       "summary_id": "ISR Lab memulai pengembangan kendaraan listrik otonom untuk logistik rumah sakit menggunakan ROS2 dan Jetson Orin.",
       "content_en": "ISR Lab has officially started the development of an **Autonomous Hospital Transporter Robot** — an electric vehicle capable of navigating hospital corridors, ramps, and elevators without human intervention.\n\nThe system will use **ROS2 (Jazzy)** as the middleware, **NVIDIA Jetson Orin** as the main computing unit, LiDAR for obstacle detection, and a depth camera for visual perception.\n\n#### Key Technologies\n\n- ROS2 + Nav2 Stack for autonomous navigation\n- SLAM Toolbox for real-time hospital mapping\n- micro-ROS on Arduino for low-level actuator control\n- LiDAR + Camera sensor fusion\n\nThis project is open for **S1 and S2 student collaboration**. Contact us if you are interested in joining!",
       "content_id": "ISR Lab secara resmi memulai pengembangan **Robot Transporter Otonom Rumah Sakit** — kendaraan listrik yang mampu bernavigasi di koridor rumah sakit, ramp, dan lift tanpa intervensi manusia.\n\nSistem ini menggunakan **ROS2 (Jazzy)** sebagai middleware, **NVIDIA Jetson Orin** sebagai unit komputasi utama, LiDAR untuk deteksi halangan, dan kamera depth untuk persepsi visual.\n\n#### Teknologi Utama\n\n- ROS2 + Nav2 Stack untuk navigasi otonom\n- SLAM Toolbox untuk pemetaan rumah sakit secara real-time\n- micro-ROS pada Arduino untuk kendali aktuator level rendah\n- Fusi sensor LiDAR + Kamera\n\nProyek ini terbuka untuk **kolaborasi mahasiswa S1 dan S2**. Hubungi kami jika Anda tertarik bergabung!",
-      "images": ["transporter1.jpeg"],
+      "images": [
+        "transporter1.jpeg"
+      ],
       "youtube": "https://youtu.be/JHaTujRCupg"
     },
     {
@@ -187,6 +189,23 @@
       "content_id": "Strategi Penulisan Paper IEEE: Conference & Jurnal \n\n#### Pelaksaan\n\n- Sabtu, 2 Mei 2026, 15.00 WIB\n- Via ZOOM\n- Dibuka Prof. Dr. Adrianus Amheka, ST., M.Eng. & Assoc. Prof. Dr. Kurnianingsih, ST, MT\n\n#### Narasumber\n- Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN Eng.\nStrategi Penulisan Paper untuk IEEE Conference\n- Assoc. Prof. Dr.Eng. Ir. Sunu Wibirama, S.T., M.Eng., IPM.\nStrategi Penulisan Paper untuk IEEE Journal Bereputasi\n\n#### Moderator:\n- Prof. Dr. Mike Yuliana, ST, MT\n\nAcaranya berlangsung dengan baik.\n",
       "images": "isas.jpeg",
       "youtube": null
+    },
+    {
+      "id": "n5",
+      "date": "2026-05-10",
+      "date_en": "",
+      "date_id": "",
+      "category_en": "Research",
+      "category_id": "Riset",
+      "icon": "fa-newspaper",
+      "title_en": "New Article",
+      "title_id": "Artikel Baru",
+      "summary_en": "Short summary.",
+      "summary_id": "Ringkasan singkat.",
+      "content_en": "Write content here.\n\n#### Section\n\n- Point one",
+      "content_id": "Tulis konten di sini.\n\n#### Bagian\n\n- Poin satu",
+      "images": null,
+      "youtube": null
     }
   ],
   "research": [
@@ -199,7 +218,12 @@
       "title_id": "Robot Prostetik untuk Amputasi",
       "summary_en": "Smart prosthetic hand controlled via EMG/EEG signals and deep learning.",
       "summary_id": "Tangan prostetik cerdas yang dikendalikan melalui sinyal EMG/EEG dan deep learning.",
-      "tags": ["EMG", "EEG", "LSTM", "CNN VGG16"],
+      "tags": [
+        "EMG",
+        "EEG",
+        "LSTM",
+        "CNN VGG16"
+      ],
       "content_en": "This research develops a **smart prosthetic hand** for amputees, controlled by muscle signals (EMG) and brain signals (EEG) combined with deep learning algorithms.\n\n#### Research Highlights\n\n- EMG-based hand gesture recognition using CNN and LSTM\n- Muscle force prediction using LSTM-SAE (Stacked Autoencoder)\n- Transfer learning with VGG16 for fingertip force estimation\n- EEG-based motor imagery for brain-controlled prosthetics\n- Incremental learning for personalized adaptation\n- 3D-printed prosthetic hand prototype\n\n#### Roadmap\n\n- **TKT 1–3** (before 2027): Basic research — signal processing, feature extraction, pattern recognition\n- **TKT 4–6** (2020–2030): Applied research — mechanical design, embedded systems, feedback control\n- **TKT 7–9** (2028–2032): Commercialization — beta testing, patient acceptance, market deployment\n\n**Open for:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
       "content_id": "Penelitian ini mengembangkan sistem kontrol **tangan prostetik cerdas** untuk penderita amputasi, dikendalikan oleh sinyal otot (EMG) dan sinyal otak (EEG) yang dikombinasikan dengan algoritma deep learning.\n\n#### Highlight Riset\n\n- Pengenalan gestur tangan berbasis EMG menggunakan CNN dan LSTM\n- Prediksi kekuatan otot menggunakan LSTM-SAE (Stacked Autoencoder)\n- Transfer learning VGG16 untuk estimasi kekuatan ujung jari\n- Motor imagery EEG untuk prostetik kendali otak\n- Incremental learning untuk adaptasi personal\n- Prototipe tangan prostetik cetak 3D\n\n#### Roadmap\n\n- **TKT 1–3** (sebelum 2027): Riset dasar — pengolahan sinyal, ekstraksi fitur, pengenalan pola\n- **TKT 4–6** (2020–2030): Riset terapan — desain mekanik, sistem tertanam, feedback control\n- **TKT 7–9** (2028–2032): Komersialisasi — uji beta, penerimaan pasien, pemasaran\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
       "youtube": "https://youtu.be/Jtk1hRX0Z40",
@@ -214,7 +238,12 @@
       "title_id": "Robot Terapi Tangan Pasca Stroke",
       "summary_en": "Wearable robotic exoskeleton for post-stroke hand rehabilitation.",
       "summary_id": "Exoskeleton robotik portabel untuk rehabilitasi tangan pasca stroke.",
-      "tags": ["Exoskeleton", "EMG", "Arduino", "Game Therapy"],
+      "tags": [
+        "Exoskeleton",
+        "EMG",
+        "Arduino",
+        "Game Therapy"
+      ],
       "content_en": "This research develops a **portable hand exoskeleton robot** for rehabilitation of post-stroke patients, combining robotic therapy with game-based interaction.\n\n#### Research Highlights\n\n- 5-finger exoskeleton with linear motor actuation\n- EMG-based feedback control for natural movement assistance\n- Game-based therapy interface to motivate patients\n- Customized myoware band for signal acquisition\n- Adaptive control for personalized therapy\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
       "content_id": "Penelitian ini mengembangkan **robot exoskeleton tangan portable** untuk rehabilitasi pasien pasca stroke, menggabungkan terapi robotik dengan interaksi berbasis game.\n\n#### Highlight Riset\n\n- Exoskeleton 5 jari dengan aktuasi motor linier\n- Feedback control berbasis EMG untuk bantuan gerakan alami\n- Antarmuka terapi berbasis game untuk memotivasi pasien\n- Customized myoware band untuk akuisisi sinyal\n- Kontrol adaptif untuk terapi personal\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
       "youtube": "https://youtu.be/QmcubqNPBr8",
@@ -229,7 +258,12 @@
       "title_id": "Navigasi Kursi Roda Cerdas",
       "summary_en": "AI-powered smart wheelchair with voice, EMG, and EEG control.",
       "summary_id": "Kursi roda cerdas berbasis AI dengan kendali suara, EMG, dan EEG.",
-      "tags": ["Jetson Orin", "LiDAR", "Voice AI", "ROS2"],
+      "tags": [
+        "Jetson Orin",
+        "LiDAR",
+        "Voice AI",
+        "ROS2"
+      ],
       "content_en": "This project develops an **AI-powered intelligent wheelchair** navigation system that enables people with physical disabilities (cerebral palsy, quadriplegia) to control their wheelchair using voice, EMG, and EEG.\n\n#### System Features\n\n- Voice command recognition (customized AI model per patient)\n- EMG pattern recognition (kNN, SVM classifiers)\n- EEG motor imagery for brain-controlled navigation\n- LiDAR-based obstacle avoidance (SLAM)\n- Emergency panic button\n- Runs on NVIDIA Jetson Orin NX 16GB\n\n**Open for:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
       "content_id": "Proyek ini mengembangkan sistem navigasi **kursi roda cerdas berbasis AI** yang memungkinkan penyandang disabilitas fisik (cerebral palsy, quadriplegia) mengendalikan kursi roda menggunakan suara, EMG, dan EEG.\n\n#### Fitur Sistem\n\n- Pengenalan perintah suara (model AI dikustomisasi per pasien)\n- Pengenalan pola EMG (klasifikasi kNN, SVM)\n- Motor imagery EEG untuk navigasi kendali otak\n- Penghindaran halangan berbasis LiDAR (SLAM)\n- Tombol panik darurat\n- Berjalan pada NVIDIA Jetson Orin NX 16GB\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis), S3 (Disertasi)",
       "youtube": "https://youtu.be/lG_jw3itYGo",
@@ -244,7 +278,12 @@
       "title_id": "Robot Pemandu Orang Buta",
       "summary_en": "Autonomous mobile robot that guides visually impaired users in indoor and outdoor environments.",
       "summary_id": "Robot mobile otonom yang memandu pengguna tunanetra di lingkungan indoor maupun outdoor.",
-      "tags": ["Navigation", "LiDAR", "SLAM", "Obstacle Avoidance"],
+      "tags": [
+        "Navigation",
+        "LiDAR",
+        "SLAM",
+        "Obstacle Avoidance"
+      ],
       "content_en": "This project develops an **autonomous guide robot** for visually impaired individuals, capable of navigating both indoor and outdoor environments while safely avoiding obstacles.\n\n#### Research Highlights\n\n- Wheeled and legged robot variants\n- LiDAR-based indoor/outdoor navigation\n- SLAM (Simultaneous Localization and Mapping)\n- Real-time obstacle avoidance\n- Participation in Kontes Robot Cerdas Indonesia (KRCI)\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
       "content_id": "Proyek ini mengembangkan **robot pemandu otonom** untuk penyandang tunanetra, yang mampu bernavigasi di lingkungan indoor maupun outdoor sambil menghindari halangan dengan aman.\n\n#### Highlight Riset\n\n- Varian robot beroda dan berkaki\n- Navigasi indoor/outdoor berbasis LiDAR\n- SLAM (Simultaneous Localization and Mapping)\n- Penghindaran halangan real-time\n- Partisipasi dalam Kontes Robot Cerdas Indonesia (KRCI)\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
       "youtube": null
@@ -258,7 +297,12 @@
       "title_id": "Pengering Kopi Cerdas (Pertanian)",
       "summary_en": "IoT-enabled intelligent drying system with Fuzzy-PID control and image recognition for coffee bean quality.",
       "summary_id": "Sistem pengeringan cerdas berbasis IoT dengan kontrol Fuzzy-PID dan pengenalan citra biji kopi.",
-      "tags": ["IoT", "Fuzzy-PID", "Computer Vision", "Photobox"],
+      "tags": [
+        "IoT",
+        "Fuzzy-PID",
+        "Computer Vision",
+        "Photobox"
+      ],
       "content_en": "This research develops an **intelligent portable coffee drying system** for local coffee farmers in East Java, combining IoT sensors, AI-based quality detection, and automated temperature/humidity control.\n\n#### System Features\n\n- Fuzzy-PID temperature and humidity control\n- Image-based coffee bean quality classification\n- Photobox for standardized bean photography\n- IoT dashboard for real-time monitoring\n- Mobile app for remote control and notifications\n\n**Open for:** S1 (Skripsi), S2 (Tesis)",
       "content_id": "Penelitian ini mengembangkan **sistem pengering kopi portable cerdas** untuk petani kopi lokal di Jawa Timur, menggabungkan sensor IoT, deteksi kualitas berbasis AI, dan kontrol suhu/kelembaban otomatis.\n\n#### Fitur Sistem\n\n- Kontrol suhu dan kelembaban Fuzzy-PID\n- Klasifikasi kualitas biji kopi berbasis citra\n- Photobox untuk foto biji kopi terstandarisasi\n- Dashboard IoT untuk pemantauan real-time\n- Aplikasi mobile untuk kontrol jarak jauh dan notifikasi\n\n**Terbuka untuk:** S1 (Skripsi), S2 (Tesis)",
       "youtube": null
@@ -272,10 +316,33 @@
       "title_id": "Deteksi Dini Kanker Paru – X-Ray",
       "summary_en": "Early lung cancer detection from chest X-rays using deep learning (U-Net, SegNet, VGG).",
       "summary_id": "Deteksi dini kanker paru dari X-ray dada menggunakan deep learning (U-Net, SegNet, VGG).",
-      "tags": ["U-Net", "SegNet", "Medical Imaging", "Deep Learning"],
+      "tags": [
+        "U-Net",
+        "SegNet",
+        "Medical Imaging",
+        "Deep Learning"
+      ],
       "content_en": "This research develops an **AI-based early lung cancer detection system** using chest X-ray images. The system aims to achieve CT-scan level accuracy using only X-ray, making screening more accessible and affordable.\n\n#### Research Highlights\n\n- Lung and nodule segmentation using RESIDUAL ATTENTION U-NET\n- Cancer classification using SegNet, Mask Dino, Yolo12-Seg, VitUNet\n- Dataset: JSRT public dataset + RS Paru Jember local dataset\n- Target accuracy: comparable to CT-scan\n- Clinical testing at RS Paru Jember and East Java hospitals\n\n**Open for:** S2 (Tesis), S3 (Disertasi)",
       "content_id": "Penelitian ini mengembangkan **sistem deteksi dini kanker paru berbasis AI** menggunakan citra X-ray dada. Sistem ini bertujuan mencapai akurasi setara CT-scan menggunakan X-ray saja, membuat skrining lebih mudah diakses dan terjangkau.\n\n#### Highlight Riset\n\n- Segmentasi paru dan nodul menggunakan RESIDUAL ATTENTION U-NET\n- Klasifikasi kanker menggunakan SegNet, Mask Dino, Yolo12-Seg, VitUNet\n- Dataset: Dataset publik JSRT + dataset lokal RS Paru Jember\n- Target akurasi: setara CT-scan\n- Pengujian klinis di RS Paru Jember dan RS Jawa Timur\n\n**Terbuka untuk:** S2 (Tesis), S3 (Disertasi)",
       "youtube": null
+    },
+    {
+      "id": "r7",
+      "icon": "fa-flask",
+      "tkt": "TKT 1–3",
+      "color": "red",
+      "title_en": "Deep Learning-based Analysis of Plant Physiological Signals for the Mitigation of Plant Stress",
+      "title_id": "Analisis Sinyal Fisiologis Tanaman berbasis Deep Learning untuk Mitigasi Cekaman Tanaman",
+      "summary_en": "The aim of this study is to develop a stress mitigation system for horticultural and plantation crops to prevent plant stress, which can lead to a decline in crop production",
+      "summary_id": "Penelitian ini bertujuan untuk mengembangkan sistem mitigasi cekaman atau stress pada tanaman hortikultura dan tanaman perkebunan untuk mencegah stress tanaman yang dapat menyebabkan turunannya produksi tanaman",
+      "tags": [
+        "Tag1",
+        "Tag2"
+      ],
+      "content_en": "#### Plant Stress Mitigation\n\n- Instrumentation for plant signal data acquisition\n- Analysis of plant physiological signals\n- Plant stress prediction using machine learning/deep learning\n- Plant stress mitigation using intelligent systems and IoT\n\n**Open to:** Undergraduate, Master’s, PhD",
+      "content_id": "#### Mitigasi Cekaman pada Tanaman\n\n- Instrumentasi akuisisi data sinyal tanaman\n- Analisis sinyal fisiologis tanaman\n- Prediksi stress tanaman berbasis machine learning/Deep Learning\n- Mitigasi stress tanaman berbasis sistem cerdas dan IoT\n\n**Terbuka untuk:** S1, S2, S3",
+      "images": null,
+      "youtube": "https://youtu.be/jf-rtX5Knqo?si=FIITQOZNXWZFMWaD"
     }
   ],
   "courses": [
