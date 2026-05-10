@@ -317,6 +317,32 @@
         border-color: var(--red);
         transform: translateY(-2px);
       }
+      .hero-social a {
+        position: relative;
+      }
+      .hero-social a::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: rgba(20, 20, 40, 0.92);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 4px 10px;
+        border-radius: 6px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s, transform 0.2s;
+        border: 1px solid rgba(255,255,255,0.12);
+        letter-spacing: 0.02em;
+      }
+      .hero-social a:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
 
       /* ── STATS ── */
       #stats {
@@ -1597,55 +1623,63 @@
             >
           </div>
           <div class="hero-social">
-            <a href="mailto:khairul@unej.ac.id" title="Email"
+            <a href="mailto:khairul@unej.ac.id" title="Email" data-tooltip="Email"
               ><i class="fas fa-envelope"></i
             ></a>
             <a
               href="https://scholar.google.com/citations?user=OryG4o4AAAAJ&hl=en"
               target="_blank"
               title="Google Scholar"
+              data-tooltip="Google Scholar"
               ><i class="fas fa-graduation-cap"></i
             ></a>
             <a
               href="https://www.scopus.com/authid/detail.uri?authorId=55566596100"
               target="_blank"
               title="Scopus"
+              data-tooltip="Scopus"
               ><i class="fas fa-book-open"></i
             ></a>
             <a
               href="https://webofscience.com/wos/author/record/1289307"
               target="_blank"
               title="Web of Science"
+              data-tooltip="Web of Science"
               ><i class="fas fa-atom"></i
             ></a>
             <a
               href="https://orcid.org/0000-0003-4169-2237"
               target="_blank"
               title="ORCID"
+              data-tooltip="ORCID"
               ><i class="fab fa-orcid"></i
             ></a>
             <a
               href="https://www.linkedin.com/in/khairul-anam-707689a/"
               target="_blank"
               title="LinkedIn"
+              data-tooltip="LinkedIn"
               ><i class="fab fa-linkedin-in"></i
             ></a>
             <a
               href="https://sinta.kemdiktisaintek.go.id/authors/profile/55778"
               target="_blank"
               title="SINTA"
+              data-tooltip="SINTA"
               ><i class="fas fa-star"></i
             ></a>
             <a
               href="https://khairul.staff.unej.ac.id"
               target="_blank"
               title="Web Kampus UNEJ"
+              data-tooltip="Web Kampus UNEJ"
               ><i class="fas fa-university"></i
             ></a>
             <a
               href="https://www.youtube.com/@khairulanam_unej"
               target="_blank"
-              title="YouTube ISR Lab"
+              title="YouTube Prof. Anam"
+              data-tooltip="YouTube Prof. Anam"
               ><i class="fab fa-youtube"></i
             ></a>
           </div>
