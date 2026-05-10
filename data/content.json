@@ -330,14 +330,14 @@
       "id": "r7",
       "icon": "fa-flask",
       "tkt": "TKT 1–3",
-      "color": "red",
+      "color": "green",
       "title_en": "Deep Learning-based Analysis of Plant Physiological Signals for the Mitigation of Plant Stress",
       "title_id": "Analisis Sinyal Fisiologis Tanaman berbasis Deep Learning untuk Mitigasi Cekaman Tanaman",
       "summary_en": "The aim of this study is to develop a stress mitigation system for horticultural and plantation crops to prevent plant stress, which can lead to a decline in crop production",
       "summary_id": "Penelitian ini bertujuan untuk mengembangkan sistem mitigasi cekaman atau stress pada tanaman hortikultura dan tanaman perkebunan untuk mencegah stress tanaman yang dapat menyebabkan turunannya produksi tanaman",
       "tags": [
-        "Tag1",
-        "Tag2"
+        "Plant biosignal",
+        "Deep Learning for Agriculture"
       ],
       "content_en": "#### Plant Stress Mitigation\n\n- Instrumentation for plant signal data acquisition\n- Analysis of plant physiological signals\n- Plant stress prediction using machine learning/deep learning\n- Plant stress mitigation using intelligent systems and IoT\n\n**Open to:** Undergraduate, Master’s, PhD",
       "content_id": "#### Mitigasi Cekaman pada Tanaman\n\n- Instrumentasi akuisisi data sinyal tanaman\n- Analisis sinyal fisiologis tanaman\n- Prediksi stress tanaman berbasis machine learning/Deep Learning\n- Mitigasi stress tanaman berbasis sistem cerdas dan IoT\n\n**Terbuka untuk:** S1, S2, S3",
