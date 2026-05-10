@@ -26,6 +26,10 @@
         {
           "en": "IoT sensor systems for agriculture and healthcare",
           "id": "Sistem sensor IoT untuk pertanian dan kesehatan"
+        },
+        {
+          "en": "Acquisition of plant physiological signals",
+          "id": "Akuisisi sinyal fisiologi Tanaman"
         }
       ]
     },
@@ -55,6 +59,10 @@
         {
           "en": "Medical image segmentation",
           "id": "Segmentasi citra medis"
+        },
+        {
+          "en": "Machine Learning-based Analysis of Plant Physiological Signals",
+          "id": "Analisis Sinyal Fisiologis Tanaman berbasis Machine Learning"
         }
       ]
     },
@@ -80,6 +88,10 @@
         {
           "en": "Multimodal intention recognition",
           "id": "Pengenalan intensi multimodal"
+        },
+        {
+          "en": "Analysis of Plant Physiological Signals Using Deep Learning and Agentic AI",
+          "id": "Analisis Sinyal Fisiologis Tanaman berbasis Deep Learning dan Agentic AI"
         }
       ]
     },
@@ -117,6 +129,10 @@
         {
           "en": "Internet of Things for health and agriculture",
           "id": "Internet of Things untuk kesehatan dan Pertanian"
+        },
+        {
+          "en": "AI-based Plant Stress Prediction",
+          "id": "Prediksi Stress Tanaman berbasis AI"
         }
       ]
     }
