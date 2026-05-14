@@ -223,6 +223,21 @@
   .rule-text { font-size: 16px; color: #333; line-height: 1.6; }
   .rule-text strong { color: #0f1f3d; }
 
+  /* DONE DIVIDER */
+  .done-divider {
+    display: flex; align-items: center; gap: 10px; padding: 6px 0; cursor: pointer;
+    user-select: none; margin-top: 8px;
+  }
+  .done-divider-line { flex: 1; height: 1px; background: #ddd4c0; }
+  .done-divider-label {
+    font-size: 13px; font-weight: 700; color: #16a34a; background: #f0fdf4;
+    border: 1px solid #bbf7d0; border-radius: 20px; padding: 5px 14px;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .done-divider:hover .done-divider-label { background: #dcfce7; }
+  .done-divider-arrow { font-size: 11px; }
+
   /* JADWAL BACK BUTTON */
   .jadwal-nav { background: linear-gradient(135deg,#0f1f3d 0%,#1a3460 100%);
     padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
@@ -524,6 +539,7 @@ let items = [];
 let activeTab = "all";
 let expandedId = null;
 let showForm = false;
+let showDone = false;
 let editId = null;
 let searchVal = "";
 let formData = {};
@@ -642,69 +658,95 @@ function render() {
     </div>
 
     <div class="list">
-      ${filtered.length === 0 ? `
-        <div class="empty">
-          <div class="empty-icon">🗂️</div>
-          <div style="font-size:14px">Tidak ada item${searchVal?` untuk "${searchVal}"`:""}.</div>
-        </div>` :
-        filtered.map(item => {
-          const cat = CATEGORIES[item.category];
-          const sc = STATUS_COLORS[item.status] || {c:"#888",b:"#f5f5f5"};
-          const exp = expandedId === item.id;
-          const d = daysLeft(item.deadline);
-          const isUrgent = d!==null && d<=7 && item.status!=="done" && item.status!=="published";
-          const isDone = item.status==="done"||item.status==="published";
+      ${(() => {
+        const activeItems = filtered.filter(i => i.status!=="done" && i.status!=="published");
+        const doneItems = filtered.filter(i => i.status==="done" || i.status==="published");
 
-          return `
-            <div class="item-card ${isUrgent?'urgent-card':''} ${isDone?'done-card':''}">
-              <div class="item-header" onclick="toggleExpand('${item.id}')">
-                <span class="item-icon">${cat.icon}</span>
-                <div class="item-body">
-                  <div class="item-title ${isDone?'done-title':''}">${item.title}</div>
-                  ${item.detail?`<div class="item-detail">${item.detail}</div>`:""}
-                  <div class="item-tags">
-                    <span class="tag" style="background:${sc.b};color:${sc.c}">${STATUS_LABELS[item.status]}</span>
-                    <span class="tag" style="color:#bbb">${PRIORITY_LABELS[item.priority]}</span>
-                    ${item.deadline?deadlineChip(item.deadline):""}
-                  </div>
-                </div>
-                <span class="item-arrow">${exp?"▲":"▼"}</span>
+        if (filtered.length === 0) return `
+          <div class="empty">
+            <div class="empty-icon">🗂️</div>
+            <div style="font-size:14px">Tidak ada item${searchVal?` untuk "${searchVal}"`:""}.</div>
+          </div>`;
+
+        let html = activeItems.map(item => renderCard(item)).join("");
+
+        if (doneItems.length > 0) {
+          html += `
+            <div class="done-divider" onclick="toggleDone()">
+              <div class="done-divider-line"></div>
+              <div class="done-divider-label">
+                ✅ Selesai (${doneItems.length})
+                <span class="done-divider-arrow">${showDone ? '▲ sembunyikan' : '▼ tampilkan'}</span>
               </div>
-
-              ${exp ? `
-                <div class="item-expanded">
-                  ${item.nextStep?`
-                    <div class="next-step">
-                      <div class="next-step-label">LANGKAH BERIKUTNYA</div>
-                      ${item.nextStep}
-                    </div>`:""}
-                  ${item.notes?`<div class="notes-text">${item.notes}</div>`:""}
-                  ${item.deadline?`<div class="deadline-text">🗓 ${formatDate(item.deadline)}</div>`:""}
-
-                  <div class="section-label">UBAH STATUS</div>
-                  <div class="status-buttons">
-                    ${(STATUS_BY_CAT[item.category]||[]).map(s => {
-                      const scc = STATUS_COLORS[s]||{c:"#888",b:"#f5f5f5"};
-                      const isActive = item.status===s;
-                      return `<button class="status-btn ${isActive?'active-status':''}"
-                        style="${isActive?`background:${scc.b};color:${scc.c};border-color:${scc.c}`:''}"
-                        onclick="changeStatus('${item.id}','${s}')">${STATUS_LABELS[s]}</button>`;
-                    }).join("")}
-                  </div>
-
-                  <div class="action-buttons">
-                    <button class="btn-edit" onclick="openEdit('${item.id}')">✏️ Edit</button>
-                    <button class="btn-delete" onclick="deleteItem('${item.id}')">🗑 Hapus</button>
-                  </div>
-                </div>` : ""}
+              <div class="done-divider-line"></div>
             </div>`;
-        }).join("")
-      }
+          if (showDone) {
+            html += doneItems.map(item => renderCard(item)).join("");
+          }
+        }
+
+        return html;
+      })()}
     </div>
 
     ${showForm ? renderModal() : ""}
   `;
 }
+
+function renderCard(item) {
+  const cat = CATEGORIES[item.category];
+  const sc = STATUS_COLORS[item.status] || {c:"#888",b:"#f5f5f5"};
+  const exp = expandedId === item.id;
+  const d = daysLeft(item.deadline);
+  const isUrgent = d!==null && d<=7 && item.status!=="done" && item.status!=="published";
+  const isDone = item.status==="done"||item.status==="published";
+
+  return `
+    <div class="item-card ${isUrgent?'urgent-card':''} ${isDone?'done-card':''}">
+      <div class="item-header" onclick="toggleExpand('${item.id}')">
+        <span class="item-icon">${cat.icon}</span>
+        <div class="item-body">
+          <div class="item-title ${isDone?'done-title':''}">${item.title}</div>
+          ${item.detail?`<div class="item-detail">${item.detail}</div>`:""}
+          <div class="item-tags">
+            <span class="tag" style="background:${sc.b};color:${sc.c}">${STATUS_LABELS[item.status]}</span>
+            <span class="tag" style="color:#bbb">${PRIORITY_LABELS[item.priority]}</span>
+            ${item.deadline?deadlineChip(item.deadline):""}
+          </div>
+        </div>
+        <span class="item-arrow">${exp?"▲":"▼"}</span>
+      </div>
+
+      ${exp ? `
+        <div class="item-expanded">
+          ${item.nextStep?`
+            <div class="next-step">
+              <div class="next-step-label">LANGKAH BERIKUTNYA</div>
+              ${item.nextStep}
+            </div>`:""}
+          ${item.notes?`<div class="notes-text">${item.notes}</div>`:""}
+          ${item.deadline?`<div class="deadline-text">🗓 ${formatDate(item.deadline)}</div>`:""}
+
+          <div class="section-label">UBAH STATUS</div>
+          <div class="status-buttons">
+            ${(STATUS_BY_CAT[item.category]||[]).map(s => {
+              const scc = STATUS_COLORS[s]||{c:"#888",b:"#f5f5f5"};
+              const isActive = item.status===s;
+              return `<button class="status-btn ${isActive?'active-status':''}"
+                style="${isActive?`background:${scc.b};color:${scc.c};border-color:${scc.c}`:''}"
+                onclick="changeStatus('${item.id}','${s}')">${STATUS_LABELS[s]}</button>`;
+            }).join("")}
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-edit" onclick="openEdit('${item.id}')">✏️ Edit</button>
+            <button class="btn-delete" onclick="deleteItem('${item.id}')">🗑 Hapus</button>
+          </div>
+        </div>` : ""}
+    </div>`;
+}
+
+function toggleDone() { showDone = !showDone; render(); }
 
 function renderModal() {
   const statuses = STATUS_BY_CAT[formData.category] || [];
