@@ -253,6 +253,8 @@
   .jadwal-quote { font-size: 12px; color: rgba(255,255,255,0.4); font-style: italic; }
   .jadwal-logo { font-size: 12px; color: #c9a84c; font-weight: 700; letter-spacing: 1px; }
 </style>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -430,6 +432,20 @@
 </div>
 
 <script>
+// ── FIREBASE INIT ───────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyCES81FQXsnCVC77vOV0a6dOK7pDe42Fqk",
+  authDomain: "dashboard-akademik-74a99.firebaseapp.com",
+  databaseURL: "https://dashboard-akademik-74a99-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "dashboard-akademik-74a99",
+  storageBucket: "dashboard-akademik-74a99.firebasestorage.app",
+  messagingSenderId: "179476163522",
+  appId: "1:179476163522:web:e14c35c606f7bd5233c45b"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const dbRef = db.ref("dashboard_items");
+
 // ── LOGIN ────────────────────────────────────────────────
 function checkLogin() {
   const val = document.getElementById("pwd-input").value;
@@ -437,7 +453,7 @@ function checkLogin() {
     sessionStorage.setItem("dash_auth", "1");
     document.getElementById("login-gate").style.display = "none";
     document.getElementById("main-app").style.display = "block";
-    loadData(); render();
+    render();
   } else {
     document.getElementById("login-error").style.display = "block";
     document.getElementById("pwd-input").value = "";
@@ -557,15 +573,28 @@ let searchVal = "";
 let formData = {};
 
 function loadData() {
-  try {
-    const saved = localStorage.getItem("dashboard_akademik_v1");
-    items = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(INITIAL_DATA));
-  } catch { items = JSON.parse(JSON.stringify(INITIAL_DATA)); }
+  // Data akan dimuat via Firebase listener, ini hanya fallback awal
+  items = JSON.parse(JSON.stringify(INITIAL_DATA));
 }
 
 function saveData() {
-  localStorage.setItem("dashboard_akademik_v1", JSON.stringify(items));
+  dbRef.set(items);
 }
+
+// ── FIREBASE REAL-TIME SYNC ─────────────────────────────
+let firebaseReady = false;
+dbRef.on("value", (snapshot) => {
+  const data = snapshot.val();
+  if (data) {
+    items = Array.isArray(data) ? data : Object.values(data);
+  } else {
+    // Database kosong → upload INITIAL_DATA
+    items = JSON.parse(JSON.stringify(INITIAL_DATA));
+    dbRef.set(items);
+  }
+  firebaseReady = true;
+  if (sessionStorage.getItem("dash_auth") === "1") render();
+});
 
 function daysLeft(d) {
   if (!d) return null;
@@ -883,7 +912,9 @@ function deleteItem(id) {
 }
 
 if (sessionStorage.getItem("dash_auth") === "1") {
-  loadData(); render();
+  // Data dimuat otomatis via Firebase listener
+  // render() akan dipanggil saat data masuk
+  if (firebaseReady) render();
 }
 </script>
 </body>
