@@ -466,6 +466,8 @@ const CATEGORIES = {
   docreview: { label:"Reviewer Dok.",   icon:"📋", color:"#0891b2", bg:"#ecfeff" },
   research:  { label:"Penelitian",      icon:"🔬", color:"#059669", bg:"#ecfdf5" },
   abdimas:   { label:"Pengabdian",      icon:"🤝", color:"#d97706", bg:"#fffbeb" },
+  teaching:  { label:"Pengajaran",      icon:"📚", color:"#db2777", bg:"#fdf2f8" },
+  mgmt:      { label:"Manajemen",       icon:"🏛️", color:"#6366f1", bg:"#eef2ff" },
 };
 
 const STATUS_BY_CAT = {
@@ -474,6 +476,8 @@ const STATUS_BY_CAT = {
   docreview: ["assigned","reviewing","done"],
   research:  ["planning","running","analysis","reporting","done"],
   abdimas:   ["planning","running","reporting","done"],
+  teaching:  ["planning","drafting","reviewing","done"],
+  mgmt:      ["scheduled","running","followup","done"],
 };
 
 const STATUS_LABELS = {
@@ -482,6 +486,7 @@ const STATUS_LABELS = {
   assigned:"Ditugaskan", reading:"Membaca", reviewing:"Mereview",
   done:"✅ Selesai", planning:"Perencanaan", running:"Berjalan",
   analysis:"Analisis", reporting:"Pelaporan",
+  scheduled:"Dijadwalkan", followup:"Tindak Lanjut",
 };
 
 const STATUS_COLORS = {
@@ -498,10 +503,13 @@ const STATUS_COLORS = {
   running:   {c:"#2563eb",b:"#eff6ff"},
   analysis:  {c:"#7c3aed",b:"#f5f3ff"},
   reporting: {c:"#d97706",b:"#fffbeb"},
+  scheduled: {c:"#6366f1",b:"#eef2ff"},
+  followup:  {c:"#d97706",b:"#fffbeb"},
 };
 
 const CAT_NUM_COLORS = {
-  article:"#60a5fa", reviewer:"#a78bfa", docreview:"#38bdf8", research:"#34d399", abdimas:"#fbbf24"
+  article:"#60a5fa", reviewer:"#a78bfa", docreview:"#38bdf8", research:"#34d399", abdimas:"#fbbf24",
+  teaching:"#f472b6", mgmt:"#a5b4fc"
 };
 
 const PRIORITY_LABELS = { high:"🔴 Tinggi", medium:"🟡 Sedang", low:"🟢 Rendah" };
@@ -533,6 +541,10 @@ const INITIAL_DATA = [
   {id:"24", title:"Penelitian RAIS",              detail:"",                                    category:"research",  status:"running",   priority:"high",   deadline:"", nextStep:"", notes:""},
   {id:"25", title:"Proposal Sawit",               detail:"Penelitian kelapa sawit",              category:"research",  status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
   {id:"26", title:"Pengabdian Pelatihan Robot SD",detail:"Pelatihan robotika untuk SD",          category:"abdimas",   status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"27", title:"RPS Sistem Cerdas & Robotika",detail:"Update RPS semester genap",            category:"teaching",  status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"28", title:"Bahan Ajar Pengolahan Sinyal",detail:"Modul praktikum",                      category:"teaching",  status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"29", title:"Evaluasi Kurikulum Magister TE",detail:"Tugas Koprodi",                      category:"mgmt",      status:"scheduled", priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"30", title:"Rapat Prodi Magister TE",     detail:"Agenda bulanan",                       category:"mgmt",      status:"scheduled", priority:"medium", deadline:"", nextStep:"", notes:""},
 ];
 
 let items = [];
