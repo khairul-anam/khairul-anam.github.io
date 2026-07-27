@@ -239,7 +239,9 @@
       "summary_id": "Prof. Anam menjadi narasumber utama pada Bimbingan Teknis (Bimtek) Penyusunan Kurikulum dan RPS OBE yang diselenggarakan oleh FORTEI Regional IV di UKI Paulus Makassar, secara onsite dan online via Zoom.",
       "content_en": "Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN Eng. was officially assigned by **FORTEI Pusat** as the lead resource person at the **Technical Guidance (Bimtek) on OBE-Based Curriculum and RPS** organized by FORTEI Regional IV.\n\nThe event was held on **January 29–30, 2026**, starting at 08.00 WITA, at **UKI Paulus Makassar Campus** (hybrid: onsite and online via Zoom).\n\nProf. Anam serves as the **Head of the Curriculum Division of FORTEI** and was assigned based on an official appointment letter from the FORTEI Chairman (Prof. Dr.Eng. Ir. Arief Udhiarto, S.T., M.T., IPU).\n\n#### Topics Presented\n\n1. **OBE-Based Curriculum Development** for Electrical Engineering Study Programs in accordance with FORTEI association policies and guidelines\n2. **Semester Learning Plan (RPS) Development** and assessment techniques for Graduate Learning Outcomes (CPL) based on OBE\n\n#### Fellow Resource Person\n\n- Ir. Firdaus, S.T., M.T., Ph.D. – Universitas Islam Indonesia (UII)\n\n#### Organized by\n\nFORTEI Regional IV — chaired by Dr. Ir. Yuli Asmi Rahman, ST., M.Eng (Period 2025–2027)",
       "content_id": "Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN Eng. resmi ditugaskan oleh **FORTEI Pusat** sebagai narasumber utama pada **Bimbingan Teknis (Bimtek) Penyusunan Kurikulum dan RPS Berbasis OBE** yang diselenggarakan oleh FORTEI Regional IV.\n\nKegiatan berlangsung pada **29–30 Januari 2026**, mulai pukul 08.00 WITA, di **Kampus UKI Paulus Makassar** secara hybrid (onsite dan online via Zoom).\n\nProf. Anam menjabat sebagai **Ketua Divisi Kurikulum FORTEI** dan ditugaskan berdasarkan surat penugasan resmi dari Ketua FORTEI Pusat (Prof. Dr.Eng. Ir. Arief Udhiarto, S.T., M.T., IPU).\n\n#### Materi yang Disampaikan\n\n1. **Penyusunan Kurikulum Berbasis OBE** untuk Program Studi Teknik Elektro mengacu pada kebijakan dan panduan asosiasi FORTEI\n2. **Penyusunan Rencana Pembelajaran Semester (RPS)** serta Teknik Asesmen Capaian Pembelajaran Lulusan (CPL) Berbasis OBE\n\n#### Narasumber Bersama\n\n- Ir. Firdaus, S.T., M.T., Ph.D. – Universitas Islam Indonesia (UII)\n\n#### Penyelenggara\n\nFORTEI Regional IV — diketuai oleh Dr. Ir. Yuli Asmi Rahman, ST., M.Eng (Periode 2025–2027)",
-      "images": ["fortei4.jpeg"],
+      "images": [
+        "fortei4.jpeg"
+      ],
       "youtube": null
     },
     {
@@ -256,7 +258,9 @@
       "summary_id": "Prof. Anam diundang sebagai narasumber pada webinar yang diselenggarakan oleh Pusat Riset Mekatronika Cerdas BRIN, memaparkan navigasi kendaraan otonom untuk aplikasi medis.",
       "content_en": "Prof. Ir. Khairul Anam, Ph.D. was invited as **Speaker 2** at the webinar organized by the **Center for Intelligent Mechatronics Research (Pusat Riset Mekatronika Cerdas), Badan Riset dan Inovasi Nasional (BRIN)**.\n\nThe webinar was held **online via Zoom** on **Thursday, December 18, 2025**, from 09.30 to 12.45 WIB.\n\n#### Webinar Topic\n\n*\"AI-Driven Autonomous Vehicles for Railway Diagnostics and Medical Navigation\"*\n\n#### Prof. Anam's Presentation\n\n**\"Autonomous Vehicle Navigation for Medical Applications: Insights and Preliminary Studies\"**\n\nThe presentation covered research on autonomous navigation systems designed for medical environments, including hospital corridors and rehabilitation settings, with preliminary study findings.\n\n#### Fellow Speaker\n\n- Prof. Dr. Eng. Mohammad Abu Jami'in, S.T., M.T. – Politeknik Perkapalan Negeri Surabaya\n  *\"Development of Autonomous Vehicles Based on Computer Vision and Artificial Intelligence for Railway Infrastructure Damage Detection and Prediction\"*\n\n#### Organized by\n\nPusat Riset Mekatronika Cerdas, BRIN — headed by Prof. Yanuandri Putrasari, M.Eng., Ph.D.",
       "content_id": "Prof. Ir. Khairul Anam, Ph.D. diundang sebagai **Narasumber 2** pada webinar yang diselenggarakan oleh **Pusat Riset Mekatronika Cerdas, Badan Riset dan Inovasi Nasional (BRIN)**.\n\nWebinar dilaksanakan secara **daring via Zoom** pada **Kamis, 18 Desember 2025**, pukul 09.30–12.45 WIB.\n\n#### Topik Webinar\n\n*\"AI-Driven Autonomous Vehicles for Railway Diagnostics and Medical Navigation\"*\n\n#### Paparan Prof. Anam\n\n**\"Autonomous Vehicle Navigation for Medical Applications: Insights and Preliminary Studies\"**\n\nPaparan mencakup penelitian sistem navigasi otonom yang dirancang untuk lingkungan medis, termasuk koridor rumah sakit dan setting rehabilitasi, beserta temuan studi awal.\n\n#### Narasumber Bersama\n\n- Prof. Dr. Eng. Mohammad Abu Jami'in, S.T., M.T. – Politeknik Perkapalan Negeri Surabaya\n  *\"Development of Autonomous Vehicles Based on Computer Vision and Artificial Intelligence for Railway Infrastructure Damage Detection and Prediction\"*\n\n#### Penyelenggara\n\nPusat Riset Mekatronika Cerdas, BRIN — dikepalai oleh Prof. Yanuandri Putrasari, M.Eng., Ph.D.",
-      "images": ["brinweb2025.jpeg"],
+      "images": [
+        "brinweb2025.jpeg"
+      ],
       "youtube": "https://www.youtube.com/watch?v=4DkeGqoyLto"
     }
   ],
@@ -452,6 +456,45 @@
       "schedule_en": "Tuesday 13:00–15:30, Ruang Pascasarjana TE",
       "schedule_id": "Selasa 13:00–15:30, Ruang Pascasarjana TE",
       "syllabus_url": "",
+      "youtube": null,
+      "images": null
+    },
+    {
+      "id": "c4",
+      "code": "TKE1468",
+      "level": "S1",
+      "credits": 3,
+      "semester_en": "Even 2025/2026",
+      "semester_id": "Genap 2025/2026",
+      "name_en": "Control Systems",
+      "name_id": "Sistem Kontrol",
+      "desc_en": "Fundamentals of modeling, analysis, and design of control systems for dynamic systems, covering open-loop and closed-loop systems, stability analysis, and time/frequency domain performance evaluation.",
+      "desc_id": "Prinsip dasar pemodelan, analisis, dan perancangan sistem pengendalian pada sistem dinamik, meliputi sistem loop terbuka dan tertutup, analisis kestabilan, serta evaluasi kinerja berdasarkan respon waktu dan frekuensi.",
+      "content_en": "#### Course Description\n\nThis course covers the fundamental principles of modeling, analysis, and control system design for dynamic systems. Topics include open-loop and closed-loop systems, stability analysis, and performance evaluation based on time and frequency response. Students are equipped with the ability to design basic controllers and apply them to engineering problems.\n\n#### Topics Covered\n\n1. **Introduction to Control Systems** — History, basic concepts, components of automatic control\n2. **System Dynamic Models** — 1st, 2nd, and higher-order systems, Transfer Functions, State Space\n3. **Dynamic System Response** — System characteristics, test signals, 1st/2nd/higher-order response, Routh stability\n4. **Root Locus Diagram** — Root locus plot, stability analysis based on root locus\n5. **Controller Design** — Lag, Lead, and Lag-Lead compensators via root locus\n6. **Frequency Response Analysis** — Bode diagram\n7. **Frequency-Based Controller Design**\n8. **PID Controller** — P, I, D, PI, PD, PID control, Ziegler-Nichols tuning\n\n#### Assessment\n\n| Component | Weight |\n|-----------|--------|\n| LKM1: Basic Concepts & Models | 10% |\n| LKM2: Mathematical Models | 20% |\n| LKM3: System Response & Stability | 20% |\n| LKM4: Root Locus & Bode Diagram | 20% |\n| RTM: PID Control System Project (Team-based) | 30% |\n\n#### References\n\n- Ogata, K. *Modern Control Engineering*, 5th Ed., Pearson, 2010\n- Benjamin C. Kuo, *Automatic Control System*, 7th Ed.\n- Negara, MAP, Anam, K & Intyanto, GW, *Sistem Kontrol*, UNEJ Press, 2023\n\n#### Software & Tools\n\n- Google Colab (Python)\n- Laptop/PC\n\n#### Teaching Team\n\n- Prof. Ir. Khairul Anam, Ph.D.\n- Gramandha Wega Intyanto, S.ST., M.T.\n\n#### Prerequisites\n\nDifferential Equations; Signals and Systems\n\n#### Simulation Modules\n\n[📂 Access Simulation Materials on Google Drive](https://drive.google.com/open?id=1sTDnWAgfII5fDeWrpKgUoI9Mv7w8WCQc&usp=drive_fs)",
+      "content_id": "#### Deskripsi Mata Kuliah\n\nMata kuliah Sistem Kontrol membahas prinsip dasar pemodelan, analisis, dan perancangan sistem pengendalian pada sistem dinamik. Materi meliputi sistem loop terbuka dan tertutup, analisis kestabilan, serta evaluasi kinerja berdasarkan respon waktu dan frekuensi. Mahasiswa dibekali kemampuan merancang pengendali dasar dan menerapkannya pada permasalahan rekayasa.\n\n#### Materi Pembelajaran\n\n1. **Pengantar Sistem Kontrol** — Sejarah, konsep dasar, komponen pengendalian otomatis\n2. **Model Dinamika Sistem** — Sistem orde 1, 2, tinggi, Fungsi Alih, Ruang Keadaan (State Space)\n3. **Respon Sistem Dinamis** — Karakteristik sistem, sinyal uji, respon orde 1/2/tinggi, Kestabilan Routh\n4. **Diagram Tempat Kedudukan Akar** — Plot TKA, kestabilan berdasarkan TKA\n5. **Perancangan Sistem Kendali** — Kompensator Lag, Lead, dan Lag-Lead berdasarkan TKA\n6. **Analisa Respon Frekuensi** — Bode diagram\n7. **Pengendali Berbasis Respon Frekuensi**\n8. **Pengendali PID** — P, I, D, PI, PD, PID, Tuning Ziegler-Nichols\n\n#### Penilaian\n\n| Komponen | Bobot |\n|----------|-------|\n| LKM1: Konsep Dasar & Model | 10% |\n| LKM2: Model Matematik | 20% |\n| LKM3: Respon & Kestabilan Sistem | 20% |\n| LKM4: TKA & Bode Diagram | 20% |\n| RTM: Proyek Percangan Sistem Kendali PID (Tim) | 30% |\n\n#### Pustaka\n\n- Ogata, K. *Modern Control Engineering*, Edisi 5, Pearson, 2010\n- Benjamin C. Kuo, *Automatic Control System*, Edisi 7\n- Negara, MAP, Anam, K & Intyanto, GW, *Sistem Kontrol*, UNEJ Press, 2023\n\n#### Software & Tools\n\n- Google Colab (Python)\n- Laptop/PC\n\n#### Tim Pengajar\n\n- Prof. Ir. Khairul Anam, Ph.D.\n- Gramandha Wega Intyanto, S.ST., M.T.\n\n#### Prasyarat\n\nMatematika Persamaan Diferensial; Sinyal dan Sistem\n\n#### Modul Simulasi\n\n[📂 Akses Materi Simulasi di Google Drive](https://drive.google.com/open?id=1sTDnWAgfII5fDeWrpKgUoI9Mv7w8WCQc&usp=drive_fs)",
+      "schedule_en": "Semester 4",
+      "schedule_id": "Semester 4",
+      "syllabus_url": "docs/Silabus_Siskon.pdf",
+      "youtube": null,
+      "images": null
+    },
+    {
+      "id": "c5",
+      "code": "",
+      "level": "S2",
+      "credits": 3,
+      "semester_en": "Even 2025/2026",
+      "semester_id": "Genap 2025/2026",
+      "name_en": "Intelligent Control Systems",
+      "name_id": "Sistem Kendali Cerdas",
+      "desc_en": "Introduction to intelligent control using AI techniques including expert systems, neural control, and fuzzy logic applied to control engineering problems.",
+      "desc_id": "Pengantar kendali cerdas menggunakan teknik kecerdasan buatan meliputi sistem pakar, kontrol neural, dan logika fuzzy yang diterapkan pada permasalahan rekayasa kendali.",
+      "content_en": "#### Course Description\n\nThis course introduces intelligent control systems that integrate artificial intelligence techniques with classical control theory. Students learn to design and implement smart controllers using expert systems, neural networks, and fuzzy logic.\n\n#### Topics Covered\n\n1. **Introduction to Artificial Intelligence** — Definitions, basic concepts, history, expert systems\n2. **Intelligent Control Systems** — Structure and architecture of intelligent controllers\n3. **Neural Control** — Neural network-based control systems\n4. **Interactive Learning** — Simulations, 3D models, circuit analysis\n5. **Assessment & Tracking** — Adaptive quizzes, interactive video\n\n#### E-Learning Module\n\nThis course includes an interactive e-learning module built with eXeLearning, featuring:\n- 📖 Structured learning content with multimedia\n- 🎮 Interactive games and quizzes\n- 🔬 3D models and circuit simulations\n- 🎯 Adaptive assessments\n- 🗺️ Interactive maps and panoramic views",
+      "content_id": "#### Deskripsi Mata Kuliah\n\nMata kuliah ini memperkenalkan sistem kendali cerdas yang mengintegrasikan teknik kecerdasan buatan dengan teori kontrol klasik. Mahasiswa belajar merancang dan mengimplementasikan pengendali cerdas menggunakan sistem pakar, jaringan saraf tiruan, dan logika fuzzy.\n\n#### Materi Pembelajaran\n\n1. **Pendahuluan Artificial Intelligence** — Definisi, konsep dasar, sejarah, sistem pakar\n2. **Sistem Kendali Cerdas** — Struktur dan arsitektur pengendali cerdas\n3. **Kontrol Neural** — Sistem kendali berbasis jaringan saraf tiruan\n4. **Pembelajaran Interaktif** — Simulasi, model 3D, analisis rangkaian\n5. **Asesmen & Tracking** — Kuis adaptif, video interaktif\n\n#### Modul E-Learning\n\nMata kuliah ini dilengkapi modul e-learning interaktif berbasis eXeLearning, meliputi:\n- 📖 Konten pembelajaran terstruktur dengan multimedia\n- 🎮 Game dan kuis interaktif\n- 🔬 Model 3D dan simulasi rangkaian\n- 🎯 Asesmen adaptif\n- 🗺️ Peta interaktif dan tampilan panoramik",
+      "schedule_en": "",
+      "schedule_id": "",
+      "syllabus_url": "",
+      "elearning_url": "elearning/sistem-kendali-cerdas/index.html",
       "youtube": null,
       "images": null
     }

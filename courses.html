@@ -83,6 +83,8 @@
     .badge-s3{background:#f4ecf7;color:#8e44ad}
     .badge-credits{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;
       background:#f0f0f0;color:#555}
+    .badge-elearning{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;
+      background:#ecfdf5;color:#059669}
     .course-code{font-size:.72rem;font-weight:600;color:#aaa;letter-spacing:.5px}
     .course-card-body{padding:0 20px 16px}
     .course-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.4}
@@ -126,6 +128,10 @@
       background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
       padding:10px 20px;font-size:.85rem;font-weight:600;margin-top:16px;transition:.2s}
     .modal-syllabus-btn:hover{background:var(--red2)}
+    .modal-elearning-btn{display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(135deg,#059669,#10b981);color:#fff;text-decoration:none;border-radius:8px;
+      padding:10px 20px;font-size:.85rem;font-weight:600;margin-top:10px;transition:.2s}
+    .modal-elearning-btn:hover{background:linear-gradient(135deg,#047857,#059669)}
     .modal-youtube-wrap{margin-top:20px;border-top:1px solid #eee;padding-top:16px}
     .modal-youtube-label{font-size:.78rem;font-weight:700;color:#555;
       margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
@@ -283,6 +289,7 @@
           <div class="course-badges">
             <span class="badge-level ${levelClass}">${c.level}</span>
             <span class="badge-credits">${c.credits} SKS</span>
+            ${c.elearning_url ? '<span class="badge-elearning">E-Learning</span>' : ''}
           </div>
           <span class="course-code">${c.code || ''}</span>
         </div>
@@ -332,6 +339,14 @@
       </a>`;
     }
 
+    let elearningBtn = '';
+    if (c.elearning_url && c.elearning_url.trim()) {
+      elearningBtn = `<a href="${c.elearning_url}" target="_blank" class="modal-elearning-btn">
+        <i class="fas fa-laptop-code"></i>
+        ${currentLang === 'en' ? 'Open E-Learning Module' : 'Buka Modul E-Learning'}
+      </a>`;
+    }
+
     let youtubeHtml = '';
     if (c.youtube) {
       const urls = Array.isArray(c.youtube) ? c.youtube : [c.youtube];
@@ -348,7 +363,7 @@
       });
     }
 
-    document.getElementById('modalBody').innerHTML = renderedContent + syllabusBtn + youtubeHtml;
+    document.getElementById('modalBody').innerHTML = renderedContent + syllabusBtn + elearningBtn + youtubeHtml;
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
