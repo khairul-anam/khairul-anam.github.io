@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulasi Interaktif — Sinyal dan Sistem | Prof. Khairul Anam</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --red:#c0392b; --dark:#1a1a2e; --navy:#16213e; --gold:#f0a500; --green:#059669; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:#f8f9fa; color:#333; }
+
+  /* NAV */
+  .top-nav { background:var(--dark); padding:14px 5%; display:flex; align-items:center; justify-content:space-between; }
+  .top-nav a { color:#fff; text-decoration:none; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:8px; }
+  .top-nav a:hover { color:var(--gold); }
+  .top-nav .title { color:var(--gold); font-size:1rem; font-weight:700; }
+
+  /* HERO */
+  .hero { background:linear-gradient(135deg,var(--dark),var(--navy),#0d3b6e); padding:30px 5% 20px; text-align:center; }
+  .hero h1 { color:#fff; font-size:2rem; font-weight:800; margin-bottom:8px; }
+  .hero h1 em { color:var(--gold); font-style:normal; }
+  .hero p { color:rgba(255,255,255,.65); font-size:.9rem; max-width:600px; margin:0 auto; }
+
+  /* TAB NAV */
+  .tab-nav { background:#fff; border-bottom:2px solid #eee; padding:0 5%; display:flex; gap:0; overflow-x:auto;
+    position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .tab-btn { padding:14px 22px; border:none; background:none; font-family:inherit; font-size:.85rem;
+    font-weight:600; color:#888; cursor:pointer; border-bottom:3px solid transparent; transition:.2s; white-space:nowrap; }
+  .tab-btn:hover { color:var(--red); }
+  .tab-btn.active { color:var(--red); border-bottom-color:var(--red); }
+
+  /* SIM PANELS */
+  .sim-panel { display:none; max-width:900px; margin:16px auto; padding:0 20px; }
+  .sim-panel.active { display:block; }
+  .sim-card { background:#fff; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,.08); padding:20px 24px; margin-bottom:16px; }
+  .sim-card h2 { font-size:1.1rem; color:var(--dark); margin-bottom:4px; }
+  .sim-card .desc { font-size:.82rem; color:#888; margin-bottom:12px; line-height:1.5; }
+
+  /* CONTROLS */
+  .controls { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:18px; }
+  .control-group { display:flex; flex-direction:column; gap:4px; }
+  .control-group label { font-size:.72rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.5px; }
+  .control-group select, .control-group input[type=range] { font-family:inherit; font-size:.82rem; }
+  .control-group select { padding:6px 12px; border:1.5px solid #ddd; border-radius:8px; background:#fff; cursor:pointer; }
+  .control-group input[type=range] { width:140px; accent-color:var(--red); }
+  .param-value { font-size:.78rem; font-weight:700; color:var(--red); min-width:40px; text-align:center; }
+
+  /* CANVAS */
+  canvas { display:block; border:1.5px solid #eee; border-radius:10px; background:#fafafa; max-width:100%; }
+
+  /* INFO BOX */
+  .info-box { background:#f0f7ff; border-left:4px solid #2563eb; border-radius:0 8px 8px 0;
+    padding:10px 14px; margin-top:10px; font-size:.78rem; color:#333; line-height:1.6; }
+  .info-box code { background:#e0ecff; padding:2px 6px; border-radius:4px; font-size:.8rem; }
+
+  /* FORMULA */
+  .formula { background:var(--dark); color:#fff; padding:8px 14px; border-radius:8px;
+    font-size:.82rem; text-align:center; margin:8px 0; font-family:'Courier New',monospace; letter-spacing:1px; }
+
+  @media(max-width:600px) {
+    .hero h1 { font-size:1.4rem; }
+    .sim-card { padding:18px; }
+    .controls { gap:10px; }
+    .control-group input[type=range] { width:110px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="../../courses.html">← Kembali ke Teaching</a>
+  <span class="title">TKE1363 · Sinyal & Sistem</span>
+</div>
+
+<div class="hero">
+  <h1>Simulasi <em>Interaktif</em></h1>
+  <p>Eksplorasi konsep sinyal, konvolusi, dan respon sistem LTI secara visual dan interaktif.</p>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('sig')">📊 Signal Generator</button>
+  <button class="tab-btn" onclick="showTab('conv')">🔄 Konvolusi</button>
+  <button class="tab-btn" onclick="showTab('imp')">📈 Impulse Response</button>
+</div>
+
+<!-- ═══════ 1. SIGNAL GENERATOR ═══════ -->
+<div class="sim-panel active" id="panel-sig">
+  <div class="sim-card">
+    <h2>📊 Signal Generator</h2>
+    <div class="desc">Visualisasikan berbagai jenis sinyal dasar. Ubah parameter untuk melihat perubahan bentuk sinyal secara real-time.</div>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Jenis Sinyal</label>
+        <select id="sigType" onchange="drawSignal()">
+          <option value="sine">Sinusoidal</option>
+          <option value="cosine">Cosinus</option>
+          <option value="step">Unit Step u(t)</option>
+          <option value="impulse">Impulse δ(t)</option>
+          <option value="ramp">Ramp r(t)</option>
+          <option value="exp_decay">Eksponensial e⁻ᵃᵗ</option>
+          <option value="exp_grow">Eksponensial eᵃᵗ</option>
+          <option value="rect">Rectangular Pulse</option>
+          <option value="sawtooth">Sawtooth</option>
+          <option value="square">Square Wave</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Amplitudo (A)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="sigAmp" min="0.1" max="3" step="0.1" value="1" oninput="drawSignal()">
+          <span class="param-value" id="sigAmpVal">1.0</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label>Frekuensi (Hz)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="sigFreq" min="0.5" max="8" step="0.5" value="2" oninput="drawSignal()">
+          <span class="param-value" id="sigFreqVal">2.0</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label>Fase (°)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="sigPhase" min="0" max="360" step="15" value="0" oninput="drawSignal()">
+          <span class="param-value" id="sigPhaseVal">0°</span>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="canvasSig" height="220"></canvas>
+    <div class="formula" id="sigFormula">x(t) = sin(2π · 2 · t)</div>
+
+    <div class="info-box">
+      <strong>Konsep:</strong> Sinyal adalah fungsi yang membawa informasi. Sinyal dasar seperti
+      <code>u(t)</code>, <code>δ(t)</code>, dan <code>e⁻ᵃᵗ</code> menjadi fondasi analisis sistem LTI.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 2. KONVOLUSI ═══════ -->
+<div class="sim-panel" id="panel-conv">
+  <div class="sim-card">
+    <h2>🔄 Konvolusi Interaktif</h2>
+    <div class="desc">Geser parameter τ untuk melihat proses konvolusi antara sinyal input x(t) dan respon impuls h(t). Hasil y(t) = x(t) * h(t) dihitung secara real-time.</div>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Input x(t)</label>
+        <select id="convX" onchange="drawConv()">
+          <option value="step">Unit Step u(t)</option>
+          <option value="rect">Rectangular Pulse</option>
+          <option value="exp">Eksponensial e⁻²ᵗ·u(t)</option>
+          <option value="ramp">Ramp t·u(t)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Respon Impuls h(t)</label>
+        <select id="convH" onchange="drawConv()">
+          <option value="exp">e⁻ᵗ · u(t)</option>
+          <option value="rect">Rectangular Pulse</option>
+          <option value="step">Unit Step u(t)</option>
+          <option value="exp2">e⁻²ᵗ · u(t)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Geser τ</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="convTau" min="-2" max="6" step="0.05" value="0" oninput="drawConv()">
+          <span class="param-value" id="convTauVal">0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="canvasConvTop" height="170"></canvas>
+    <div style="height:6px"></div>
+    <canvas id="canvasConvBot" height="170"></canvas>
+
+    <div class="formula">y(t) = ∫ x(τ) · h(t − τ) dτ = x(t) * h(t)</div>
+
+    <div class="info-box">
+      <strong>Konvolusi</strong> adalah operasi fundamental pada sistem LTI. Output <code>y(t)</code>
+      diperoleh dengan menggeser (shift), membalik (flip), mengalikan, dan mengintegrasikan
+      sinyal input dengan respon impuls sistem.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 3. IMPULSE RESPONSE ═══════ -->
+<div class="sim-panel" id="panel-imp">
+  <div class="sim-card">
+    <h2>📈 Respon Sistem LTI</h2>
+    <div class="desc">Lihat respon impuls dan respon step dari sistem LTI orde 1 dan orde 2. Ubah parameter untuk mengamati perilaku overdamped, underdamped, dan critically damped.</div>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Tipe Sistem</label>
+        <select id="impType" onchange="drawImpulse()">
+          <option value="order1">Orde 1: H(s) = a/(s+a)</option>
+          <option value="order2">Orde 2: H(s) = ωn²/(s²+2ζωns+ωn²)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Input</label>
+        <select id="impInput" onchange="drawImpulse()">
+          <option value="impulse">Impulse δ(t)</option>
+          <option value="step">Step u(t)</option>
+        </select>
+      </div>
+      <div class="control-group" id="grpA">
+        <label>a (pole)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="impA" min="0.5" max="8" step="0.5" value="2" oninput="drawImpulse()">
+          <span class="param-value" id="impAVal">2.0</span>
+        </div>
+      </div>
+      <div class="control-group" id="grpZeta" style="display:none">
+        <label>ζ (damping)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="impZeta" min="0.05" max="2" step="0.05" value="0.3" oninput="drawImpulse()">
+          <span class="param-value" id="impZetaVal">0.30</span>
+        </div>
+      </div>
+      <div class="control-group" id="grpWn" style="display:none">
+        <label>ωn (natural freq)</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="range" id="impWn" min="1" max="10" step="0.5" value="4" oninput="drawImpulse()">
+          <span class="param-value" id="impWnVal">4.0</span>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="canvasImp" height="220"></canvas>
+    <div class="formula" id="impFormula">H(s) = 2 / (s + 2)</div>
+
+    <div class="info-box" id="impInfo">
+      <strong>Sistem Orde 1:</strong> Respon impuls berupa <code>h(t) = a·e⁻ᵃᵗ·u(t)</code>.
+      Semakin besar <code>a</code>, semakin cepat sistem mencapai steady state.
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════ UTILITY ═══════
+function getCtx(id) {
+  const c = document.getElementById(id);
+  const w = c.parentElement.clientWidth;
+  const h = parseInt(c.getAttribute('height'));
+  c.width = w;
+  c.height = h;
+  const ctx = c.getContext('2d');
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  return { ctx, w, h };
+}
+
+function drawAxes(ctx, w, h, xMin, xMax, yMin, yMax, xlabel, ylabel) {
+  const px = (t) => ((t - xMin) / (xMax - xMin)) * (w - 60) + 40;
+  const py = (v) => h - 30 - ((v - yMin) / (yMax - yMin)) * (h - 50);
+
+  // grid
+  ctx.strokeStyle = '#eee';
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 8; i++) {
+    const y = 20 + i * (h - 50) / 8;
+    ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(w - 20, y); ctx.stroke();
+  }
+
+  // axes
+  ctx.strokeStyle = '#999';
+  ctx.lineWidth = 1;
+  const y0 = py(0);
+  if (y0 >= 20 && y0 <= h - 30) {
+    ctx.beginPath(); ctx.moveTo(40, y0); ctx.lineTo(w - 20, y0); ctx.stroke();
+  }
+  const x0 = px(0);
+  if (x0 >= 40 && x0 <= w - 20) {
+    ctx.beginPath(); ctx.moveTo(x0, 20); ctx.lineTo(x0, h - 30); ctx.stroke();
+  }
+
+  // labels
+  ctx.fillStyle = '#888';
+  ctx.font = '11px Poppins';
+  ctx.textAlign = 'center';
+  const step = (xMax - xMin) / 8;
+  for (let i = 0; i <= 8; i++) {
+    const v = xMin + i * step;
+    ctx.fillText(v.toFixed(1), px(v), h - 14);
+  }
+  ctx.fillText(xlabel || 't', w - 10, h - 14);
+  ctx.textAlign = 'right';
+  ctx.fillText(ylabel || '', 36, 16);
+
+  return { px, py };
+}
+
+function plotLine(ctx, px, py, data, color, lineWidth) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth || 2;
+  ctx.beginPath();
+  let started = false;
+  data.forEach(([t, v]) => {
+    const x = px(t), y = py(v);
+    if (!started) { ctx.moveTo(x, y); started = true; }
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+}
+
+function fillArea(ctx, px, py, data, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(px(data[0][0]), py(0));
+  data.forEach(([t, v]) => ctx.lineTo(px(t), py(v)));
+  ctx.lineTo(px(data[data.length-1][0]), py(0));
+  ctx.closePath();
+  ctx.fill();
+}
+
+// ═══════ TAB SWITCH ═══════
+function showTab(id) {
+  document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'sig') drawSignal();
+  if (id === 'conv') drawConv();
+  if (id === 'imp') drawImpulse();
+}
+
+// ═══════ 1. SIGNAL GENERATOR ═══════
+function drawSignal() {
+  const type = document.getElementById('sigType').value;
+  const A = parseFloat(document.getElementById('sigAmp').value);
+  const f = parseFloat(document.getElementById('sigFreq').value);
+  const phi = parseFloat(document.getElementById('sigPhase').value) * Math.PI / 180;
+
+  document.getElementById('sigAmpVal').textContent = A.toFixed(1);
+  document.getElementById('sigFreqVal').textContent = f.toFixed(1);
+  document.getElementById('sigPhaseVal').textContent = document.getElementById('sigPhase').value + '°';
+
+  const { ctx, w, h } = getCtx('canvasSig');
+  ctx.clearRect(0, 0, w * 2, h * 2);
+
+  const tMin = -2, tMax = 4;
+  const Amax = 3;
+  let yMin = -Amax * 1.2, yMax = Amax * 1.2;
+  if (['step','impulse','ramp','exp_decay','exp_grow','rect'].includes(type)) { yMin = -0.5; yMax = Amax * 1.5; }
+  if (type === 'ramp') yMax = Amax * tMax * 1.1;
+  if (type === 'exp_grow') yMax = Amax * Math.exp(2 * 1.5);
+
+  const { px, py } = drawAxes(ctx, w, h, tMin, tMax, yMin, yMax, 't', 'x(t)');
+
+  const data = [];
+  const dt = 0.01;
+  for (let t = tMin; t <= tMax; t += dt) {
+    let v = 0;
+    switch (type) {
+      case 'sine': v = A * Math.sin(2 * Math.PI * f * t + phi); break;
+      case 'cosine': v = A * Math.cos(2 * Math.PI * f * t + phi); break;
+      case 'step': v = t >= 0 ? A : 0; break;
+      case 'impulse': v = (Math.abs(t) < 0.03) ? A * 10 : 0; break;
+      case 'ramp': v = t >= 0 ? A * t : 0; break;
+      case 'exp_decay': v = t >= 0 ? A * Math.exp(-2 * t) : 0; break;
+      case 'exp_grow': v = t >= 0 ? A * Math.exp(2 * t) : 0; break;
+      case 'rect': v = (t >= -0.5 / f && t <= 0.5 / f) ? A : 0; break;
+      case 'sawtooth': v = A * 2 * (t * f - Math.floor(t * f + 0.5)); break;
+      case 'square': v = A * Math.sign(Math.sin(2 * Math.PI * f * t + phi)); break;
+    }
+    if (type === 'exp_grow' && v > yMax) v = yMax;
+    data.push([t, v]);
+  }
+
+  fillArea(ctx, px, py, data, 'rgba(192,57,43,0.1)');
+  plotLine(ctx, px, py, data, '#c0392b', 2.5);
+
+  // impulse arrow
+  if (type === 'impulse') {
+    ctx.strokeStyle = '#c0392b';
+    ctx.lineWidth = 3;
+    const x0 = px(0), y0 = py(0), yt = py(A * 8);
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, yt); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x0 - 6, yt + 10); ctx.lineTo(x0, yt); ctx.lineTo(x0 + 6, yt + 10); ctx.stroke();
+  }
+
+  // formula
+  const formulas = {
+    sine: `x(t) = ${A.toFixed(1)} · sin(2π · ${f.toFixed(1)} · t + ${(phi*180/Math.PI).toFixed(0)}°)`,
+    cosine: `x(t) = ${A.toFixed(1)} · cos(2π · ${f.toFixed(1)} · t + ${(phi*180/Math.PI).toFixed(0)}°)`,
+    step: `x(t) = ${A.toFixed(1)} · u(t)`,
+    impulse: `x(t) = ${A.toFixed(1)} · δ(t)`,
+    ramp: `x(t) = ${A.toFixed(1)} · t · u(t)`,
+    exp_decay: `x(t) = ${A.toFixed(1)} · e⁻²ᵗ · u(t)`,
+    exp_grow: `x(t) = ${A.toFixed(1)} · e²ᵗ · u(t)`,
+    rect: `x(t) = ${A.toFixed(1)} · rect(t · ${f.toFixed(1)})`,
+    sawtooth: `x(t) = ${A.toFixed(1)} · sawtooth(${f.toFixed(1)}t)`,
+    square: `x(t) = ${A.toFixed(1)} · square(2π · ${f.toFixed(1)} · t)`,
+  };
+  document.getElementById('sigFormula').textContent = formulas[type];
+}
+
+// ═══════ 2. KONVOLUSI ═══════
+function genSignal(type, t) {
+  switch (type) {
+    case 'step': return t >= 0 ? 1 : 0;
+    case 'rect': return (t >= 0 && t <= 1) ? 1 : 0;
+    case 'exp': return t >= 0 ? Math.exp(-2 * t) : 0;
+    case 'exp2': return t >= 0 ? Math.exp(-2 * t) : 0;
+    case 'ramp': return t >= 0 ? t : 0;
+  }
+  return 0;
+}
+
+function convolve(xType, hType, tMax, dt) {
+  const result = [];
+  for (let t = -2; t <= tMax; t += dt) {
+    let sum = 0;
+    for (let tau = -2; tau <= t + 2; tau += dt) {
+      sum += genSignal(xType, tau) * genSignal(hType, t - tau) * dt;
+    }
+    result.push([t, sum]);
+  }
+  return result;
+}
+
+function drawConv() {
+  const xType = document.getElementById('convX').value;
+  const hType = document.getElementById('convH').value;
+  const tau = parseFloat(document.getElementById('convTau').value);
+  document.getElementById('convTauVal').textContent = tau.toFixed(2);
+
+  // Top canvas: x(τ) and h(t-τ)
+  const top = getCtx('canvasConvTop');
+  top.ctx.clearRect(0, 0, top.w * 2, top.h * 2);
+  const tMin = -2, tMax = 6, yMin = -0.3, yMax = 1.8;
+  const a1 = drawAxes(top.ctx, top.w, top.h, tMin, tMax, yMin, yMax, 'τ');
+
+  // x(τ)
+  const xData = [];
+  for (let t = tMin; t <= tMax; t += 0.02) xData.push([t, genSignal(xType, t)]);
+  fillArea(top.ctx, a1.px, a1.py, xData, 'rgba(37,99,235,0.1)');
+  plotLine(top.ctx, a1.px, a1.py, xData, '#2563eb', 2);
+
+  // h(t-τ) flipped and shifted
+  const hData = [];
+  for (let t = tMin; t <= tMax; t += 0.02) hData.push([t, genSignal(hType, tau - t)]);
+  fillArea(top.ctx, a1.px, a1.py, hData, 'rgba(192,57,43,0.1)');
+  plotLine(top.ctx, a1.px, a1.py, hData, '#c0392b', 2);
+
+  // product (shaded overlap)
+  const prodData = [];
+  for (let t = tMin; t <= tMax; t += 0.02) {
+    prodData.push([t, genSignal(xType, t) * genSignal(hType, tau - t)]);
+  }
+  fillArea(top.ctx, a1.px, a1.py, prodData, 'rgba(5,150,105,0.25)');
+
+  // Legend
+  top.ctx.font = 'bold 11px Poppins';
+  top.ctx.fillStyle = '#2563eb'; top.ctx.fillText('x(τ)', top.w - 100, 30);
+  top.ctx.fillStyle = '#c0392b'; top.ctx.fillText('h(t−τ)', top.w - 50, 30);
+  top.ctx.fillStyle = '#059669'; top.ctx.fillText('overlap', top.w - 100, 46);
+
+  // tau marker
+  const tauX = a1.px(tau);
+  top.ctx.strokeStyle = '#c0392b';
+  top.ctx.setLineDash([4, 4]);
+  top.ctx.beginPath(); top.ctx.moveTo(tauX, 20); top.ctx.lineTo(tauX, top.h - 30); top.ctx.stroke();
+  top.ctx.setLineDash([]);
+  top.ctx.fillStyle = '#c0392b';
+  top.ctx.font = 'bold 11px Poppins';
+  top.ctx.textAlign = 'center';
+  top.ctx.fillText('t=' + tau.toFixed(1), tauX, 16);
+
+  // Bottom canvas: y(t) result
+  const bot = getCtx('canvasConvBot');
+  bot.ctx.clearRect(0, 0, bot.w * 2, bot.h * 2);
+
+  const convResult = convolve(xType, hType, tMax, 0.05);
+  let convMax = 0;
+  convResult.forEach(([,v]) => { if (Math.abs(v) > convMax) convMax = Math.abs(v); });
+  convMax = Math.max(convMax * 1.3, 0.5);
+
+  const a2 = drawAxes(bot.ctx, bot.w, bot.h, tMin, tMax, -0.3, convMax, 't', 'y(t)');
+  fillArea(bot.ctx, a2.px, a2.py, convResult, 'rgba(5,150,105,0.15)');
+  plotLine(bot.ctx, a2.px, a2.py, convResult, '#059669', 2.5);
+
+  // current point
+  let yAtTau = 0;
+  for (let t2 = -2; t2 <= tau + 2; t2 += 0.05) {
+    yAtTau += genSignal(xType, t2) * genSignal(hType, tau - t2) * 0.05;
+  }
+  const dotX = a2.px(tau), dotY = a2.py(yAtTau);
+  bot.ctx.fillStyle = '#c0392b';
+  bot.ctx.beginPath(); bot.ctx.arc(dotX, dotY, 5, 0, Math.PI * 2); bot.ctx.fill();
+  bot.ctx.font = 'bold 11px Poppins';
+  bot.ctx.textAlign = 'left';
+  bot.ctx.fillText('y(' + tau.toFixed(1) + ') = ' + yAtTau.toFixed(3), dotX + 10, dotY - 8);
+
+  bot.ctx.font = 'bold 12px Poppins';
+  bot.ctx.fillStyle = '#059669';
+  bot.ctx.textAlign = 'left';
+  bot.ctx.fillText('y(t) = x(t) * h(t)', 50, 30);
+}
+
+// ═══════ 3. IMPULSE RESPONSE ═══════
+function drawImpulse() {
+  const type = document.getElementById('impType').value;
+  const input = document.getElementById('impInput').value;
+  const a = parseFloat(document.getElementById('impA').value);
+  const zeta = parseFloat(document.getElementById('impZeta').value);
+  const wn = parseFloat(document.getElementById('impWn').value);
+
+  document.getElementById('impAVal').textContent = a.toFixed(1);
+  document.getElementById('impZetaVal').textContent = zeta.toFixed(2);
+  document.getElementById('impWnVal').textContent = wn.toFixed(1);
+
+  document.getElementById('grpA').style.display = type === 'order1' ? '' : 'none';
+  document.getElementById('grpZeta').style.display = type === 'order2' ? '' : 'none';
+  document.getElementById('grpWn').style.display = type === 'order2' ? '' : 'none';
+
+  const { ctx, w, h } = getCtx('canvasImp');
+  ctx.clearRect(0, 0, w * 2, h * 2);
+
+  const tMin = 0, tMax = 5;
+  const data = [];
+  let yMax = 2;
+
+  for (let t = 0; t <= tMax; t += 0.01) {
+    let v = 0;
+    if (type === 'order1') {
+      if (input === 'impulse') v = a * Math.exp(-a * t);
+      else v = 1 - Math.exp(-a * t);
+    } else {
+      const wd = wn * Math.sqrt(Math.abs(1 - zeta * zeta));
+      if (zeta < 1) {
+        if (input === 'impulse') {
+          v = (wn / Math.sqrt(1 - zeta * zeta)) * Math.exp(-zeta * wn * t) * Math.sin(wd * t);
+        } else {
+          v = 1 - (Math.exp(-zeta * wn * t) / Math.sqrt(1 - zeta * zeta)) *
+              Math.sin(wd * t + Math.acos(zeta));
+        }
+      } else if (zeta === 1) {
+        if (input === 'impulse') v = wn * wn * t * Math.exp(-wn * t);
+        else v = 1 - (1 + wn * t) * Math.exp(-wn * t);
+      } else {
+        const s1 = -zeta * wn + wn * Math.sqrt(zeta * zeta - 1);
+        const s2 = -zeta * wn - wn * Math.sqrt(zeta * zeta - 1);
+        if (input === 'impulse') {
+          v = (wn * wn / (s1 - s2)) * (Math.exp(s1 * t) - Math.exp(s2 * t));
+        } else {
+          v = 1 + (1 / (s1 - s2)) * (s2 * Math.exp(s1 * t) - s1 * Math.exp(s2 * t));
+        }
+      }
+    }
+    data.push([t, v]);
+  }
+
+  let maxV = 0;
+  data.forEach(([, v]) => { if (Math.abs(v) > maxV) maxV = Math.abs(v); });
+  yMax = maxV * 1.3 || 2;
+  const yMin = type === 'order2' && input === 'impulse' ? -yMax * 0.5 : -0.3;
+
+  const { px, py } = drawAxes(ctx, w, h, tMin, tMax, yMin, yMax, 't');
+
+  // steady state line for step
+  if (input === 'step') {
+    ctx.strokeStyle = '#ddd';
+    ctx.setLineDash([6, 4]);
+    ctx.lineWidth = 1;
+    const ssY = py(1);
+    ctx.beginPath(); ctx.moveTo(40, ssY); ctx.lineTo(w - 20, ssY); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#aaa';
+    ctx.font = '10px Poppins';
+    ctx.fillText('steady state = 1', w - 90, ssY - 6);
+  }
+
+  fillArea(ctx, px, py, data, 'rgba(192,57,43,0.1)');
+  plotLine(ctx, px, py, data, '#c0392b', 2.5);
+
+  // Formula & info
+  if (type === 'order1') {
+    document.getElementById('impFormula').textContent = `H(s) = ${a.toFixed(1)} / (s + ${a.toFixed(1)})`;
+    document.getElementById('impInfo').innerHTML = input === 'impulse'
+      ? `<strong>Respon Impuls Orde 1:</strong> <code>h(t) = ${a.toFixed(1)}·e<sup>-${a.toFixed(1)}t</sup>·u(t)</code>. Time constant τ = ${(1/a).toFixed(2)}s. Semakin besar <code>a</code>, semakin cepat peluruhan.`
+      : `<strong>Respon Step Orde 1:</strong> <code>y(t) = (1 - e<sup>-${a.toFixed(1)}t</sup>)·u(t)</code>. Sistem mencapai 63% pada t = τ = ${(1/a).toFixed(2)}s dan 95% pada t = 3τ = ${(3/a).toFixed(2)}s.`;
+  } else {
+    document.getElementById('impFormula').textContent = `H(s) = ${(wn*wn).toFixed(1)} / (s² + ${(2*zeta*wn).toFixed(1)}s + ${(wn*wn).toFixed(1)})   [ζ=${zeta.toFixed(2)}, ωn=${wn.toFixed(1)}]`;
+    const dampType = zeta < 1 ? 'Underdamped (osilasi teredam)' : zeta === 1 ? 'Critically damped' : 'Overdamped';
+    document.getElementById('impInfo').innerHTML = `<strong>Sistem Orde 2 — ${dampType}:</strong> ζ = ${zeta.toFixed(2)}, ωn = ${wn.toFixed(1)} rad/s. `
+      + (zeta < 1 ? `Sistem berosilasi dengan frekuensi teredam ωd = ${(wn*Math.sqrt(1-zeta*zeta)).toFixed(2)} rad/s.` : zeta === 1 ? 'Sistem kembali ke steady state secepat mungkin tanpa osilasi.' : 'Sistem kembali ke steady state tanpa osilasi, lebih lambat dari critically damped.');
+  }
+}
+
+// ═══════ INIT ═══════
+window.addEventListener('load', () => { drawSignal(); });
+window.addEventListener('resize', () => {
+  if (document.getElementById('panel-sig').classList.contains('active')) drawSignal();
+  if (document.getElementById('panel-conv').classList.contains('active')) drawConv();
+  if (document.getElementById('panel-imp').classList.contains('active')) drawImpulse();
+});
+</script>
+</body>
+</html>

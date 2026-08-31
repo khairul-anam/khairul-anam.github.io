@@ -497,6 +497,26 @@
       "elearning_url": "elearning/sistem-kendali-cerdas/index.html",
       "youtube": null,
       "images": null
+    },
+    {
+      "id": "c6",
+      "code": "TKE1363",
+      "level": "S1",
+      "credits": 3,
+      "semester_en": "Odd 2026/2027",
+      "semester_id": "Ganjil 2026/2027",
+      "name_en": "Signals and Systems",
+      "name_id": "Sinyal dan Sistem",
+      "desc_en": "Introduction to signal and system concepts, LTI system characteristics, and mathematical transformations including Fourier, Laplace, and Z-transforms for electrical engineering design.",
+      "desc_id": "Pengantar konsep sinyal dan sistem, karakteristik sistem LTI, serta transformasi matematis meliputi transformasi Fourier, Laplace, dan Z untuk perancangan sistem teknik elektro.",
+      "content_en": "#### Course Description\n\nThis course prepares students to understand various types of signals and systems, and to apply transformation concepts such as Fourier transform, Laplace transform, and Z-transform.\n\n#### Topics Covered\n\n1. **Signal and System Concepts** — Types of signals, system properties\n2. **Linear Time-Invariant (LTI) Systems** — Characteristics, convolution, impulse response\n3. **Fourier Transform** — Fourier series, DFT, frequency domain analysis\n4. **Laplace Transform** — s-domain analysis, transfer functions, inverse Laplace\n5. **Z-Transform** — Discrete-time systems, inverse Z-transform\n\n#### Assessment\n\n| Component | Weight |\n|-----------|--------|\n| LKM1: Signal & System Concepts | 10% |\n| LKM2: LTI Systems | 15% |\n| LKM3: Fourier Transform (Case Study) | 25% |\n| LKM4: Laplace Transform (Case Study) | 25% |\n| LKM5: Z-Transform (Case Study) | 25% |\n\n#### References\n\n- Sayood, Khalid. *Signals and Systems*, Morgan & Claypool Publishers, 2022\n- Unpingco, Jose. *Python for Signal Processing*, Springer, 2016\n\n#### Teaching Team\n\n- Prof. Ir. Khairul Anam, S.T., M.T., M.Ag., Ph.D., IPU, ASEAN Eng\n- Dedy Wahyu Herdiyanto, S.T., M.T.\n- Ali Rizal Chaidir, S.T., M.T.\n- Andrita Ceriana Eska, S.T., M.T.\n- Dr. Ir. Mohamad Agung Prawira Negara, S.T., M.T.\n- Gramandha Wega Intyanto, S.ST., M.T.\n\n#### Software & Tools\n\n- Python (Google Colab)\n- PC / Laptop\n\n#### Interactive Simulations\n\nThis course includes browser-based interactive simulations:\n- 📊 **Signal Generator** — Visualize basic signals (sine, step, impulse, ramp, exponential)\n- 🔄 **Convolution** — See real-time convolution of x(t) and h(t)\n- 📈 **LTI System Response** — Explore impulse and step response of 1st and 2nd order systems",
+      "content_id": "#### Deskripsi Mata Kuliah\n\nMata kuliah ini mempersiapkan mahasiswa untuk mengenal sinyal dan sistem dan menganalisis berbagai jenis konsep sinyal dan sistem, memahami dan mampu menerapkan berbagai konsep transformasi seperti transformasi Fourier, transformasi Laplace, dan transformasi Z.\n\n#### Materi Pembelajaran\n\n1. **Konsep Sinyal dan Sistem** — Jenis-jenis sinyal, properti sistem\n2. **Sistem Linear Time-Invariant (LTI)** — Karakteristik, konvolusi, respon impuls\n3. **Transformasi Fourier** — Deret Fourier, DFT, analisis domain frekuensi\n4. **Transformasi Laplace** — Analisis domain-s, fungsi alih, invers Laplace\n5. **Transformasi Z** — Sistem waktu diskrit, invers transformasi Z\n\n#### Penilaian\n\n| Komponen | Bobot |\n|----------|-------|\n| LKM1: Konsep Sinyal & Sistem | 10% |\n| LKM2: Sistem LTI | 15% |\n| LKM3: Transformasi Fourier (Studi Kasus) | 25% |\n| LKM4: Transformasi Laplace (Studi Kasus) | 25% |\n| LKM5: Transformasi Z (Studi Kasus) | 25% |\n\n#### Pustaka\n\n- Sayood, Khalid. *Signals and Systems*, Morgan & Claypool Publishers, 2022\n- Unpingco, Jose. *Python for Signal Processing*, Springer, 2016\n\n#### Tim Pengajar\n\n- Prof. Ir. Khairul Anam, S.T., M.T., M.Ag., Ph.D., IPU, ASEAN Eng\n- Dedy Wahyu Herdiyanto, S.T., M.T.\n- Ali Rizal Chaidir, S.T., M.T.\n- Andrita Ceriana Eska, S.T., M.T.\n- Dr. Ir. Mohamad Agung Prawira Negara, S.T., M.T.\n- Gramandha Wega Intyanto, S.ST., M.T.\n\n#### Software & Tools\n\n- Python (Google Colab)\n- PC / Laptop\n\n#### Simulasi Interaktif\n\nMata kuliah ini dilengkapi simulasi interaktif berbasis browser:\n- 📊 **Signal Generator** — Visualisasi sinyal dasar (sinus, step, impuls, ramp, eksponensial)\n- 🔄 **Konvolusi** — Lihat konvolusi x(t) dan h(t) secara real-time\n- 📈 **Respon Sistem LTI** — Eksplorasi respon impuls dan step sistem orde 1 dan 2",
+      "schedule_en": "Semester 3",
+      "schedule_id": "Semester 3",
+      "syllabus_url": "docs/RPS_SinyalSistem.pdf",
+      "youtube": null,
+      "images": null,
+      "elearning_url": "simulations/sinyal-sistem/index.html"
     }
   ],
   "publications": [
