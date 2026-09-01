@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Kendali Cerdas — TEE1815 | Prof. Khairul Anam</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --red:#c0392b; --dark:#1a1a2e; --navy:#16213e; --gold:#f0a500; --green:#059669; --blue:#2563eb; --purple:#7c3aed; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:#f8f9fa; color:#333; }
+
+  .top-nav { background:var(--dark); padding:14px 5%; display:flex; align-items:center; justify-content:space-between; }
+  .top-nav a { color:#fff; text-decoration:none; font-size:.85rem; font-weight:600; }
+  .top-nav a:hover { color:var(--gold); }
+  .top-nav .title { color:var(--gold); font-size:1rem; font-weight:700; }
+
+  .hero { background:linear-gradient(135deg,var(--dark),var(--navy),#0d3b6e); padding:40px 5% 30px; text-align:center; }
+  .hero h1 { color:#fff; font-size:2rem; font-weight:800; margin-bottom:6px; }
+  .hero h1 em { color:var(--gold); font-style:normal; }
+  .hero p { color:rgba(255,255,255,.65); font-size:.9rem; max-width:650px; margin:0 auto 16px; line-height:1.6; }
+  .hero .badges { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+  .hero .badge { display:inline-flex; align-items:center; gap:5px; padding:5px 14px; border-radius:20px; font-size:.75rem; font-weight:600; }
+  .badge-s1 { background:rgba(240,165,0,.2); color:var(--gold); }
+  .badge-sks { background:rgba(255,255,255,.1); color:rgba(255,255,255,.7); }
+  .badge-sem { background:rgba(5,150,105,.2); color:#6ee7b7; }
+
+  .container { max-width:900px; margin:0 auto; padding:24px 20px; }
+
+  .section-title { font-size:1.1rem; font-weight:700; color:var(--dark); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  .section-title .line { flex:1; height:2px; background:#eee; }
+
+  .topic-card { background:#fff; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,.08); padding:24px; margin-bottom:20px; }
+  .topic-header { display:flex; align-items:flex-start; gap:14px; margin-bottom:12px; }
+  .topic-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+  .topic-icon.t1 { background:linear-gradient(135deg,#dbeafe,#bfdbfe); }
+  .topic-icon.t2 { background:linear-gradient(135deg,#fee2e2,#fecaca); }
+  .topic-icon.t3 { background:linear-gradient(135deg,#d1fae5,#a7f3d0); }
+  .topic-icon.t4 { background:linear-gradient(135deg,#ede9fe,#ddd6fe); }
+  .topic-icon.t5 { background:linear-gradient(135deg,#fef3c7,#fde68a); }
+
+  .topic-info h3 { font-size:.95rem; font-weight:700; color:var(--dark); margin-bottom:2px; }
+  .topic-info .week { font-size:.72rem; font-weight:600; color:#888; text-transform:uppercase; letter-spacing:.5px; }
+  .topic-desc { font-size:.82rem; color:#666; line-height:1.6; margin-bottom:14px; }
+
+  .topic-links { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .topic-link { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:10px; font-size:.78rem; font-weight:600; text-decoration:none; transition:.2s; }
+  .link-colab { background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff; }
+  .link-colab:hover { background:linear-gradient(135deg,#d97706,#ea580c); }
+  .link-pdf { background:linear-gradient(135deg,var(--blue),#3b82f6); color:#fff; }
+  .link-pdf:hover { background:linear-gradient(135deg,#1d4ed8,var(--blue)); }
+
+  /* VIDEO LIST */
+  .video-list { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px; }
+  .video-item { display:flex; gap:10px; align-items:center; background:#f8f9fa; border-radius:10px; padding:10px 12px; text-decoration:none; color:#333; transition:.2s; }
+  .video-item:hover { background:#eef2ff; transform:translateX(2px); }
+  .video-thumb { width:100px; min-width:100px; border-radius:8px; aspect-ratio:16/9; object-fit:cover; }
+  .video-info { flex:1; min-width:0; }
+  .video-info .vtitle { font-size:.78rem; font-weight:600; color:var(--dark); line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .video-info .vdur { font-size:.68rem; color:#888; margin-top:2px; }
+
+  .syllabus-section { background:#fff; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,.08); padding:20px 24px; margin-bottom:20px; }
+  .syllabus-section h3 { font-size:.95rem; font-weight:700; color:var(--dark); margin-bottom:10px; }
+  .team-list { font-size:.82rem; color:#666; line-height:1.8; }
+
+  .playlist-banner { display:flex; align-items:center; gap:12px; background:linear-gradient(135deg,#c0392b,#e74c3c); color:#fff; padding:14px 20px; border-radius:12px; margin-bottom:20px; text-decoration:none; transition:.2s; }
+  .playlist-banner:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(192,57,43,.3); }
+  .playlist-banner .pl-icon { font-size:1.6rem; }
+  .playlist-banner .pl-text { flex:1; }
+  .playlist-banner .pl-title { font-size:.9rem; font-weight:700; }
+  .playlist-banner .pl-sub { font-size:.72rem; opacity:.8; }
+
+  @media(max-width:600px) {
+    .hero h1 { font-size:1.4rem; }
+    .topic-card { padding:18px; }
+    .video-list { grid-template-columns:1fr; }
+    .topic-link { padding:7px 12px; font-size:.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="../../courses.html">← Kembali ke Teaching</a>
+  <span class="title">TEE1815 · Sistem Kendali Cerdas</span>
+</div>
+
+<div class="hero">
+  <h1>Sistem Kendali <em>Cerdas</em></h1>
+  <p>Portal pembelajaran mata kuliah Sistem Kendali Cerdas — materi teori, video kuliah, dan latihan Python di Google Colab.</p>
+  <div class="badges">
+    <span class="badge badge-s1">S1 Teknik Elektro</span>
+    <span class="badge badge-sks">3 SKS</span>
+    <span class="badge badge-sem">Semester Genap 2025/2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <a href="https://youtube.com/playlist?list=PLBGuryHevXT4CcA2p13jeUn3fUfx67m4T" target="_blank" class="playlist-banner">
+    <span class="pl-icon">▶️</span>
+    <div class="pl-text">
+      <div class="pl-title">Playlist YouTube — Sistem Kendali Cerdas</div>
+      <div class="pl-sub">16 video · Tonton semua materi kuliah di YouTube</div>
+    </div>
+  </a>
+
+  <div class="section-title">Materi Pembelajaran <span class="line"></span></div>
+
+  <!-- BAB 1: PENDAHULUAN AI -->
+  <div class="topic-card">
+    <div class="topic-header">
+      <div class="topic-icon t1">🤖</div>
+      <div class="topic-info">
+        <h3>BAB 1 — Pendahuluan Artificial Intelligence</h3>
+        <span class="week">Pertemuan 1–2</span>
+      </div>
+    </div>
+    <div class="topic-desc">
+      Definisi dan sejarah kecerdasan buatan, konsep dasar AI, sistem pakar, serta pengantar sistem kendali cerdas dan strukturnya.
+    </div>
+    <div class="video-list">
+      <a href="https://www.youtube.com/watch?v=-1VBJNbsJ-o" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/-1VBJNbsJ-o/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Selamat Datang di Kuliah SKC</div>
+          <div class="vdur">25:52</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=Vyey2_CjyJ0" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/Vyey2_CjyJ0/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Pendahuluan (Pertemuan 1)</div>
+          <div class="vdur">20:32</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- BAB 2: PID PAKAR -->
+  <div class="topic-card">
+    <div class="topic-header">
+      <div class="topic-icon t2">⚙️</div>
+      <div class="topic-info">
+        <h3>BAB 2 — PID Pakar (Expert PID)</h3>
+        <span class="week">Pertemuan 3–4</span>
+      </div>
+    </div>
+    <div class="topic-desc">
+      Konsep PID konvensional, PID Pakar berbasis aturan (rule-based), simulasi dan implementasi PID Pakar menggunakan Python.
+    </div>
+    <div class="topic-links">
+      <a href="https://colab.research.google.com/github/khairul-anam/khairul-anam.github.io/blob/main/simulations/sistem-kendali-cerdas/notebooks/pid_expert_real.ipynb" target="_blank" class="topic-link link-colab">🐍 Latihan PID Pakar (Colab)</a>
+      <a href="https://colab.research.google.com/github/khairul-anam/khairul-anam.github.io/blob/main/simulations/sistem-kendali-cerdas/notebooks/Copy_of_pid_biasa.ipynb" target="_blank" class="topic-link link-colab">🐍 PID Biasa (Colab)</a>
+    </div>
+    <div class="video-list">
+      <a href="https://www.youtube.com/watch?v=ihXQMBXY2hM" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/ihXQMBXY2hM/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">PID Pakar</div>
+          <div class="vdur">31:58</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=SXE_AJTxlGc" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/SXE_AJTxlGc/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">PID Pakar — Diskusi</div>
+          <div class="vdur">41:11</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- BAB 3: LOGIKA FUZZY & KENDALI FUZZY -->
+  <div class="topic-card">
+    <div class="topic-header">
+      <div class="topic-icon t3">🌿</div>
+      <div class="topic-info">
+        <h3>BAB 3 — Logika Fuzzy & Kendali Fuzzy</h3>
+        <span class="week">Pertemuan 5–11</span>
+      </div>
+    </div>
+    <div class="topic-desc">
+      Teori logika fuzzy, Fuzzy Inference Mamdani, Sugeno-Tsukamoto, perancangan kendali fuzzy loop terbuka dan tertutup, serta implementasi Fuzzy Mamdani dengan Python.
+    </div>
+    <div class="video-list">
+      <a href="https://www.youtube.com/watch?v=DYTV67C1mRg" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/DYTV67C1mRg/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Pendahuluan Logika Fuzzy</div>
+          <div class="vdur">18:09</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=pXYwjTf4KhI" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/pXYwjTf4KhI/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Logika Fuzzy — Diskusi</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=MZ_GfBe3VxQ" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/MZ_GfBe3VxQ/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Kontrol Fuzzy (Mamdani)</div>
+          <div class="vdur">17:20</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=uFuRTwulKwo" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/uFuRTwulKwo/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Kontrol Fuzzy (Mamdani) — Diskusi</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=XuOKbDZTRWA" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/XuOKbDZTRWA/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Fuzzy Inference Sugeno & Tsukamoto</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=qMxd9HTohac" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/qMxd9HTohac/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Kendali Fuzzy</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=FeWHVjpdfsc" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/FeWHVjpdfsc/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Kendali Fuzzy — Diskusi</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=lrohsveSFqk" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/lrohsveSFqk/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Fuzzy Mamdani dengan Python</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=4Sx5oAcHlDM" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/4Sx5oAcHlDM/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Kendali Fuzzy Loop Tertutup</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- BAB 4: ANN & BACKPROPAGATION -->
+  <div class="topic-card">
+    <div class="topic-header">
+      <div class="topic-icon t4">🧠</div>
+      <div class="topic-info">
+        <h3>BAB 4 — Artificial Neural Network & Backpropagation</h3>
+        <span class="week">Pertemuan 12–14</span>
+      </div>
+    </div>
+    <div class="topic-desc">
+      Pengantar jaringan saraf tiruan, arsitektur Multilayer Perceptron (MLP), algoritma Backpropagation, serta penerapan ANN pada sistem kendali (kontrol neuro).
+    </div>
+    <div class="video-list">
+      <a href="https://www.youtube.com/watch?v=g4CAfDkqD7Y" target="_blank" class="video-item">
+        <img class="video-thumb" src="https://img.youtube.com/vi/g4CAfDkqD7Y/mqdefault.jpg" alt="">
+        <div class="video-info">
+          <div class="vtitle">Algoritma Backpropagasi untuk MLP</div>
+          <div class="vdur">Video</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section-title">Informasi Mata Kuliah <span class="line"></span></div>
+
+  <div class="syllabus-section">
+    <h3>📄 Dokumen</h3>
+    <div class="topic-links" style="margin-top:8px">
+      <a href="../../docs/RPS_Siskon.pdf" target="_blank" class="topic-link link-pdf">📋 RPS / Silabus</a>
+    </div>
+  </div>
+
+  <div class="syllabus-section">
+    <h3>👨‍🏫 Tim Pengajar</h3>
+    <div class="team-list">
+      Prof. Ir. Khairul Anam, S.T., M.T., M.Ag., Ph.D., IPU, ASEAN Eng
+    </div>
+  </div>
+
+  <div class="syllabus-section">
+    <h3>📚 Capaian Pembelajaran</h3>
+    <div class="team-list">
+      <strong>CLO-1:</strong> Mampu menerapkan matematika, sains, dan prinsip rekayasa dalam sistem cerdas<br>
+      <strong>CLO-2:</strong> Mampu merancang dan menganalisis sistem kendali cerdas pada bidang teknik elektro<br>
+      <strong>CLO-3:</strong> Mampu bekerja secara mandiri maupun berkelompok dalam perancangan dan analisis sistem kendali cerdas
+    </div>
+  </div>
+
+  <div class="syllabus-section">
+    <h3>📚 Pustaka</h3>
+    <div class="team-list">
+      Passino, K.M. & Yurkovich, S. <em>Fuzzy Control</em>, Addison Wesley Longman, 1998<br>
+      Ogata, K. <em>Modern Control Engineering</em>, 5th Ed., Pearson, 2010<br>
+      Haykin, S. <em>Neural Networks and Learning Machines</em>, 3rd Ed., Pearson, 2009
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
