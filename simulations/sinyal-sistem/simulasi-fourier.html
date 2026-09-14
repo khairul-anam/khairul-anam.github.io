@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulasi Interaktif — Sinyal dan Sistem: Deret Fourier</title>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'global' } };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root{
+    --dark:#0C3B2E; --dark2:#123F30; --mid:#1B7A4A; --lime:#C6F24E; --limeDeep:#8FB100;
+    --paper:#FFFFFF; --ink:#10241C; --muted:#5B7768; --red:#B14A3F; --card:#F0F6F1; --border:#DCE7DF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:Calibri,'Segoe UI',Arial,sans-serif; background:var(--paper); color:var(--ink);
+  }
+  header{ background:var(--dark); color:var(--paper); padding:28px 6vw 22px; }
+  header .kicker{ color:var(--lime); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; }
+  header h1{ font-family:Cambria,Georgia,serif; font-size:clamp(26px,4vw,40px); margin:6px 0 4px; }
+  header p{ color:#CFE3D6; margin:0; font-size:15px; max-width:760px; line-height:1.4; }
+  header .backlink{ display:inline-block; color:#9FC2AE; text-decoration:none; font-size:13px; margin-bottom:10px; }
+  header .backlink:hover{ color:var(--lime); }
+
+  nav{ display:flex; flex-wrap:wrap; gap:6px; background:var(--dark2); padding:10px 6vw; position:sticky; top:0; z-index:20; }
+  nav button{
+    background:transparent; border:2px solid transparent; color:#BFE0CC; font-weight:700; font-size:13px;
+    padding:8px 14px; cursor:pointer; font-family:Calibri,Arial,sans-serif; letter-spacing:.3px;
+  }
+  nav button:hover{ color:var(--paper); border-color:#2A5A45; }
+  nav button.active{ background:var(--lime); color:var(--dark); border-color:var(--lime); }
+
+  main{ padding:26px 6vw 60px; max-width:1180px; margin:0 auto; }
+  section.panel{ display:none; }
+  section.panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
+
+  h2.sect-title{ font-family:Cambria,Georgia,serif; font-size:28px; color:var(--ink); margin:0 0 4px; }
+  p.sect-desc{ color:var(--muted); margin:0 0 22px; font-size:15.5px; max-width:820px; line-height:1.45; }
+
+  .grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:20px; align-items:start; }
+  @media (max-width:820px){ .grid{ grid-template-columns:1fr; } }
+
+  .card{ background:var(--card); border:1px solid var(--border); padding:18px 18px 14px; }
+  .card.dark{ background:var(--dark); border-color:var(--dark); color:var(--paper); }
+  .card h3{ margin:0 0 10px; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid); }
+  .card.dark h3{ color:var(--lime); }
+
+  .controls label{ display:block; font-size:13.5px; font-weight:700; margin:14px 0 4px; color:var(--ink); }
+  .controls label:first-child{ margin-top:0; }
+  .controls .val{ color:var(--mid); font-weight:700; }
+  .card.dark .controls label{ color:var(--paper); }
+  .card.dark .controls .val{ color:var(--lime); }
+  input[type=range]{ width:100%; accent-color:var(--mid); }
+  select, .btnrow button, .chip{
+    font-family:Calibri,Arial,sans-serif; font-size:13.5px; padding:7px 10px; border:1px solid var(--border);
+    background:var(--paper); color:var(--ink); cursor:pointer;
+  }
+  .btnrow{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .btnrow button.primary{ background:var(--mid); color:var(--paper); border-color:var(--mid); font-weight:700; }
+  .btnrow button.primary:hover{ background:var(--dark); }
+  .checkline{ display:flex; align-items:center; gap:8px; margin-top:10px; font-size:14px; }
+
+  .plotbox{ background:var(--paper); border:1px solid var(--border); margin-bottom:14px; }
+  .plotbox .cap{ font-size:12px; color:var(--muted); padding:4px 10px 8px; text-align:center; }
+  canvas{ display:block; width:100%; }
+
+  .readout{ background:var(--dark); color:var(--paper); padding:14px 16px; font-size:15px; line-height:1.5; }
+  .readout .big{ color:var(--lime); font-family:Cambria,Georgia,serif; font-size:21px; display:block; margin-bottom:4px; }
+  .readout.ok{ background:var(--mid); }
+  .readout.warn{ background:var(--red); }
+
+  .subtabs{ display:flex; gap:6px; margin-bottom:16px; }
+  .subtabs button{ padding:7px 14px; border:1px solid var(--border); background:var(--paper); font-weight:700; font-size:13.5px; cursor:pointer; }
+  .subtabs button.active{ background:var(--dark); color:var(--paper); border-color:var(--dark); }
+
+  footer{ background:var(--dark); color:#9FC2AE; text-align:center; padding:18px; font-size:13px; }
+  footer a{ color:var(--lime); }
+
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; font-size:13px; margin-top:6px; }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:16px; height:3px; display:inline-block; }
+
+  .teaser{ background:linear-gradient(135deg,var(--dark),var(--dark2)); color:var(--paper); padding:22px 26px; margin-top:26px; border-left:5px solid var(--lime); }
+  .teaser h3{ color:var(--lime); font-family:Cambria,Georgia,serif; font-size:19px; margin:0 0 6px; }
+  .teaser p{ color:#CFE3D6; margin:0; font-size:14.5px; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="backlink" href="index.html">&larr; Kembali ke Portal Sinyal &amp; Sistem</a>
+  <div class="kicker">Sinyal dan Sistem &middot; TKE1363 &middot; Universitas Jember</div>
+  <h1>Simulasi Interaktif &mdash; Deret Fourier</h1>
+  <p>Empat simulasi singkat untuk menjelajahi Deret Fourier secara visual: sintesis sinyal periodik, fenomena Gibbs, spektrum garis, sifat pergeseran waktu, hingga jembatan menuju Transformasi Fourier. Ubah parameter dengan slider dan amati grafik berubah secara langsung.</p>
+</header>
+
+<nav id="nav"></nav>
+
+<main>
+
+  <!-- ================= SECTION 1: SINTESIS & GIBBS ================= -->
+  <section class="panel" id="sec1">
+    <h2 class="sect-title">1. Sintesis Deret Fourier &amp; Fenomena Gibbs</h2>
+    <p class="sect-desc">Setiap sinyal periodik \(x(t)\) dapat didekati dengan menjumlahkan \(N\) suku pertama deret Fourier-nya: \(x_N(t) = a_0 + \sum_{k=1}^{N} 2\,\mathrm{Re}\{a_k\,e^{jk\omega_0 t}\}\). Perbesar \(N\) dan amati bagaimana aproksimasi mendekati bentuk aslinya &mdash; termasuk osilasi ("riak") khas di sekitar titik lompatan, yang disebut fenomena Gibbs.</p>
+    <div class="grid">
+      <div>
+        <div class="plotbox"><canvas id="c1_time" width="640" height="280"></canvas><div class="cap">
+          <span class="legend">
+            <span><i style="background:#B7C9BD"></i> Sinyal ideal x(t)</span>
+            <span><i style="background:#1B7A4A"></i> Aproksimasi x&#8345;(t)</span>
+          </span>
+        </div></div>
+        <div class="plotbox"><canvas id="c1_spec" width="640" height="180"></canvas><div class="cap">Spektrum garis |a&#8342;| &mdash; hijau = disertakan (k &le; N), abu-abu = belum disertakan</div></div>
+      </div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <label>Bentuk gelombang</label>
+          <select id="s1_shape">
+            <option value="square">Gelombang Kotak</option>
+            <option value="sawtooth">Gelombang Gigi Gergaji</option>
+            <option value="triangle">Gelombang Segitiga</option>
+          </select>
+          <label>Orde harmonik tertinggi N = <span class="val" id="s1_Nv">5</span></label>
+          <input type="range" id="s1_N" min="1" max="49" step="1" value="5">
+        </div>
+        <div class="btnrow">
+          <button data-n="1">N=1</button>
+          <button data-n="3">N=3</button>
+          <button data-n="9">N=9</button>
+          <button data-n="40">N=40</button>
+        </div>
+        <div class="readout" id="s1_read"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 2: SPEKTRUM & KONVERGENSI ================= -->
+  <section class="panel" id="sec2">
+    <h2 class="sect-title">2. Spektrum Garis &amp; Laju Konvergensi</h2>
+    <p class="sect-desc">Besar koefisien \(|a_k|\) menunjukkan seberapa besar kontribusi harmonik ke-\(k\). Bandingkan tiga bentuk gelombang: gelombang dengan lompatan (diskontinu) memiliki spektrum yang meluruh lambat \((\sim 1/k)\), sedangkan gelombang kontinu (segitiga) meluruh jauh lebih cepat \((\sim 1/k^2)\) &mdash; itulah sebabnya aproksimasinya jauh lebih halus pada N yang sama.</p>
+    <div class="grid">
+      <div class="plotbox"><canvas id="c2_spec" width="640" height="340"></canvas><div class="cap">
+        <span class="legend">
+          <span><i style="background:#1B7A4A"></i> Kotak</span>
+          <span><i style="background:#C77A1E"></i> Gigi Gergaji</span>
+          <span><i style="background:#B14A3F"></i> Segitiga</span>
+        </span>
+      </div></div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <div class="checkline"><input type="checkbox" id="s2_sq" checked><label style="margin:0" for="s2_sq">Tampilkan Kotak</label></div>
+          <div class="checkline"><input type="checkbox" id="s2_sw" checked><label style="margin:0" for="s2_sw">Tampilkan Gigi Gergaji</label></div>
+          <div class="checkline"><input type="checkbox" id="s2_tr" checked><label style="margin:0" for="s2_tr">Tampilkan Segitiga</label></div>
+        </div>
+        <div class="readout" id="s2_read"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3: SIFAT PERGESERAN WAKTU ================= -->
+  <section class="panel" id="sec3">
+    <h2 class="sect-title">3. Sifat Pergeseran Waktu: Fasa Linear</h2>
+    <p class="sect-desc">Menggeser sinyal di waktu sebesar \(t_0\) TIDAK mengubah besar koefisien \(|a_k|\) &mdash; hanya menambahkan fasa linear: \(x(t-t_0) \longleftrightarrow a_k\,e^{-jk\omega_0 t_0}\). Geser \(t_0\) dan amati kemiringan fasa \(\angle a_k\) berubah terhadap \(k\).</p>
+    <div class="grid">
+      <div>
+        <div class="plotbox"><canvas id="c3_time" width="640" height="220"></canvas><div class="cap">
+          <span class="legend">
+            <span><i style="background:#B7C9BD"></i> x(t) asli</span>
+            <span><i style="background:#1B7A4A"></i> x(t&minus;t&#8320;) tergeser</span>
+          </span>
+        </div></div>
+        <div class="plotbox"><canvas id="c3_phase" width="640" height="220"></canvas><div class="cap">&ang;a&#8342; (radian) terhadap k &mdash; garis lurus = fasa linear</div></div>
+      </div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <label>Bentuk gelombang</label>
+          <select id="s3_shape">
+            <option value="square">Gelombang Kotak</option>
+            <option value="sawtooth">Gelombang Gigi Gergaji</option>
+            <option value="triangle">Gelombang Segitiga</option>
+          </select>
+          <label>Pergeseran t&#8320; = <span class="val" id="s3_t0v">0.00</span> s</label>
+          <input type="range" id="s3_t0" min="-1" max="1" step="0.01" value="0">
+        </div>
+        <div class="readout" id="s3_read"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4: MENUJU TRANSFORMASI FOURIER ================= -->
+  <section class="panel" id="sec4">
+    <h2 class="sect-title">4. Menuju Transformasi Fourier</h2>
+    <p class="sect-desc">Bayangkan sinyal aperiodik sebagai SATU pulsa dari sebuah pulsa persegi periodik dengan periode \(T_0 \to \infty\). Perbesar \(T_0\) dan amati: garis-garis spektrum \((k\omega_0)\) semakin rapat, hingga titik-titiknya menelusuri kurva kontinu &mdash; inilah \(X(j\omega)\), Transformasi Fourier dari satu pulsa tunggal.</p>
+    <div class="grid">
+      <div>
+        <div class="plotbox"><canvas id="c4_time" width="640" height="200"></canvas><div class="cap">Pulsa persegi periodik (lebar tetap, periode T&#8320; berubah)</div></div>
+        <div class="plotbox"><canvas id="c4_spec" width="640" height="260"></canvas><div class="cap">
+          <span class="legend">
+            <span><i style="background:#1B7A4A"></i> Garis spektrum (a&#8342;&middot;T&#8320;) pada &omega;=k&omega;&#8320;</span>
+            <span><i style="background:#B14A3F"></i> Amplop kontinu X(j&omega;) = 2sin(&omega;T&#8321;)/&omega;</span>
+          </span>
+        </div></div>
+      </div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <label>Periode T&#8320; = <span class="val" id="s4_T0v">4.0</span> s &nbsp;(lebar pulsa tetap 2T&#8321;=1.0 s)</label>
+          <input type="range" id="s4_T0" min="2" max="40" step="0.5" value="4">
+        </div>
+        <div class="btnrow">
+          <button data-t0="3">T&#8320;=3</button>
+          <button data-t0="8">T&#8320;=8</button>
+          <button data-t0="20">T&#8320;=20</button>
+          <button data-t0="40">T&#8320;=40</button>
+        </div>
+        <div class="readout" id="s4_read"></div>
+      </div>
+    </div>
+    <div class="teaser">
+      <h3>Selanjutnya: Transformasi Fourier</h3>
+      <p>Bagian simulasi untuk Transformasi Fourier (pasangan CTFT, sifat pergeseran &amp; penskalaan, filter &amp; respons frekuensi, sampling &amp; aliasing) akan menyusul pada pembaruan berikutnya. Nantikan!</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Universitas Jember &middot; Fakultas Teknik &middot; Teknik Elektro &mdash; Sinyal dan Sistem (TKE1363)<br>
+  Materi pendamping Modul Bab 3 &middot; dibuat untuk <a href="https://khairul-anam.github.io/courses.html" target="_blank">khairul-anam.github.io</a>
+</footer>
+
+<script>
+/* ============================= UTIL: PLOTTING (identik dengan simulasi Bab 1) ============================= */
+const COL = { dark:'#0C3B2E', mid:'#1B7A4A', lime:'#8FB100', ink:'#10241C', muted:'#5B7768',
+              red:'#B14A3F', grid:'#DCE7DF', axis:'#9FB6A7', gray:'#B7C9BD', gold:'#C77A1E' };
+
+function setupCanvas(cv){
+  const dpr = window.devicePixelRatio || 1;
+  const cw = cv.width, ch = cv.height;
+  if(!cv._scaled){
+    cv.style.width = cw+'px'; cv.style.height = ch+'px';
+    cv.width = cw*dpr; cv.height = ch*dpr;
+    const ctx = cv.getContext('2d');
+    ctx.scale(dpr,dpr);
+    cv._scaled = true; cv._cw = cw; cv._ch = ch;
+  }
+  return cv.getContext('2d');
+}
+
+function makeT(cv, xmin,xmax,ymin,ymax, padL=42,padR=14,padT=14,padB=26){
+  const w = cv._cw, h = cv._ch;
+  const xScale = (w-padL-padR)/(xmax-xmin);
+  const yScale = (h-padT-padB)/(ymax-ymin);
+  return {
+    x:(x)=> padL + (x-xmin)*xScale,
+    y:(y)=> h-padB - (y-ymin)*yScale,
+    padL,padR,padT,padB,w,h,xmin,xmax,ymin,ymax
+  };
+}
+
+function fmtTick(v){
+  if(Math.abs(v) >= 100) return v.toFixed(0);
+  if(Math.abs(v) >= 10) return v.toFixed(1);
+  return v.toFixed(2);
+}
+
+function drawFrame(ctx,T){
+  ctx.clearRect(0,0,T.w,T.h);
+  ctx.strokeStyle = COL.grid; ctx.lineWidth = 1;
+  ctx.strokeRect(T.padL,T.padT,T.w-T.padL-T.padR,T.h-T.padT-T.padB);
+  ctx.strokeStyle = COL.axis; ctx.beginPath();
+  if(T.ymin < 0 && T.ymax > 0){ ctx.moveTo(T.padL,T.y(0)); ctx.lineTo(T.w-T.padR,T.y(0)); }
+  if(T.xmin < 0 && T.xmax > 0){ ctx.moveTo(T.x(0),T.padT); ctx.lineTo(T.x(0),T.h-T.padB); }
+  ctx.stroke();
+  ctx.fillStyle = COL.muted; ctx.font = '11px Calibri, sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText(fmtTick(T.xmin), T.padL+2, T.h-T.padB+14);
+  ctx.fillText(fmtTick(T.xmax), T.w-T.padR-2, T.h-T.padB+14);
+  ctx.textAlign='right';
+  ctx.fillText(fmtTick(T.ymax), T.padL-4, T.padT+8);
+  ctx.fillText(fmtTick(T.ymin), T.padL-4, T.h-T.padB);
+}
+
+function plotLine(ctx,T,xs,ys,color,width=2.4,dash=null){
+  ctx.strokeStyle=color; ctx.lineWidth=width; ctx.setLineDash(dash||[]);
+  ctx.beginPath();
+  let started=false;
+  for(let i=0;i<xs.length;i++){
+    const yv = ys[i];
+    if(yv===null || yv===undefined || isNaN(yv)){ started=false; continue; }
+    const cy = Math.max(T.ymin-1, Math.min(T.ymax+1, yv));
+    const px=T.x(xs[i]), py=T.y(cy);
+    if(!started){ ctx.moveTo(px,py); started=true; } else ctx.lineTo(px,py);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function plotStem(ctx,T,ns,vals,color,offset=0,radius=3.2){
+  ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=2;
+  const y0 = T.y(Math.max(T.ymin,Math.min(T.ymax,0)));
+  ns.forEach((n,i)=>{
+    const v = Math.max(T.ymin,Math.min(T.ymax,vals[i]));
+    const px=T.x(n+offset), py=T.y(v);
+    ctx.beginPath(); ctx.moveTo(px,y0); ctx.lineTo(px,py); ctx.stroke();
+    ctx.beginPath(); ctx.arc(px,py,radius,0,Math.PI*2); ctx.fill();
+  });
+}
+
+function range(a,b,n){ const out=[]; for(let i=0;i<n;i++) out.push(a+(b-a)*i/(n-1)); return out; }
+function linspaceStep(a,b,step){ const out=[]; for(let x=a;x<=b+1e-9;x+=step) out.push(+x.toFixed(10)); return out; }
+
+/* ============================= NAV ============================= */
+const SECTIONS = [
+  ['sec1','1. Sintesis & Gibbs'], ['sec2','2. Spektrum & Konvergensi'],
+  ['sec3','3. Pergeseran Waktu'], ['sec4','4. Menuju Transformasi'],
+];
+const navEl = document.getElementById('nav');
+SECTIONS.forEach(([id,label],i)=>{
+  const b = document.createElement('button');
+  b.textContent = label; b.dataset.target = id;
+  if(i===0) b.classList.add('active');
+  b.onclick = ()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('section.panel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  };
+  navEl.appendChild(b);
+});
+document.getElementById('sec1').classList.add('active');
+
+/* ============================= MESIN DERET FOURIER (NUMERIK) ============================= */
+function waveFn(shape, tt, T0){
+  // tt harus sudah dalam rentang [0,T0)
+  if(shape==='square') return tt < T0/2 ? 1 : -1;
+  if(shape==='sawtooth') return -1 + 2*(tt/T0);
+  if(shape==='triangle'){
+    return tt <= T0/2 ? (-1 + 4*tt/T0) : (3 - 4*tt/T0);
+  }
+  return 0;
+}
+function waveAt(shape, t, T0){
+  const tt = ((t % T0)+T0)%T0;
+  return waveFn(shape, tt, T0);
+}
+// Koefisien Deret Fourier via integrasi numerik (trapesium/Riemann):
+// a_k = (1/T0) * Integral_0^T0 x(t) e^{-jk*w0*t} dt , k = 0..Kmax
+function fourierCoeffs(shape, T0, Kmax, Nsamp=1024){
+  const w0 = 2*Math.PI/T0, dt = T0/Nsamp;
+  const ak = [];
+  for(let k=0;k<=Kmax;k++){
+    let re=0, im=0;
+    for(let n=0;n<Nsamp;n++){
+      const t = n*dt;
+      const x = waveFn(shape, t, T0);
+      const ang = -k*w0*t;
+      re += x*Math.cos(ang);
+      im += x*Math.sin(ang);
+    }
+    ak.push({re: re/Nsamp, im: im/Nsamp});
+  }
+  return ak;
+}
+// Rekonstruksi x_N(t) = a0 + sum_{k=1}^{N} 2*Re{ a_k * e^{j k w0 t} }
+function reconstructAt(ak, w0, t, N){
+  let v = ak[0].re;
+  for(let k=1;k<=N;k++){
+    const ang = k*w0*t;
+    v += 2*(ak[k].re*Math.cos(ang) - ak[k].im*Math.sin(ang));
+  }
+  return v;
+}
+const WAVE_LABEL = { square:'Gelombang Kotak', sawtooth:'Gelombang Gigi Gergaji', triangle:'Gelombang Segitiga' };
+
+/* ============================= SECTION 1: SINTESIS & GIBBS ============================= */
+const T0_1 = 2; // periode tetap untuk section 1 & 2
+const c1_time = document.getElementById('c1_time'), c1_spec = document.getElementById('c1_spec');
+const s1_shape = document.getElementById('s1_shape'), s1_N = document.getElementById('s1_N');
+const KMAX_SPEC = 60;
+
+function draw1(){
+  const shape = s1_shape.value, N = parseInt(s1_N.value);
+  document.getElementById('s1_Nv').textContent = N;
+  const w0 = 2*Math.PI/T0_1;
+  const ak = fourierCoeffs(shape, T0_1, KMAX_SPEC, 800);
+
+  // --- plot waktu ---
+  const ctxT = setupCanvas(c1_time);
+  const T = makeT(c1_time, -0.5, 4.5, -1.5, 1.5);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(-0.5, 4.5, 0.01);
+  const ysIdeal = xs.map(t=> waveAt(shape, t, T0_1));
+  const ysApprox = xs.map(t=> reconstructAt(ak, w0, t, N));
+  plotLine(ctxT, T, xs, ysIdeal, COL.gray, 1.8, [4,3]);
+  plotLine(ctxT, T, xs, ysApprox, COL.mid, 2.4);
+
+  // --- plot spektrum ---
+  const ctxS = setupCanvas(c1_spec);
+  const magAll = ak.slice(1,21).map(c=> Math.sqrt(c.re*c.re + c.im*c.im));
+  const maxMag = Math.max(0.05, ...magAll);
+  const Ts = makeT(c1_spec, 0, 21, 0, maxMag*1.15);
+  drawFrame(ctxS, Ts);
+  const ks = []; for(let k=1;k<=20;k++) ks.push(k);
+  const ksIncl = [], magIncl = [], ksExcl = [], magExcl = [];
+  ks.forEach((k,i)=>{
+    if(k<=N){ ksIncl.push(k); magIncl.push(magAll[i]); }
+    else { ksExcl.push(k); magExcl.push(magAll[i]); }
+  });
+  plotStem(ctxS, Ts, ksExcl, magExcl, '#DCE7DF');
+  plotStem(ctxS, Ts, ksIncl, magIncl, COL.mid);
+
+  // --- overshoot Gibbs (global max/min pada satu periode aproksimasi) ---
+  const xsPeriod = linspaceStep(0, T0_1, 0.002);
+  const ysPeriod = xsPeriod.map(t=> reconstructAt(ak, w0, t, N));
+  const gMax = Math.max(...ysPeriod), gMin = Math.min(...ysPeriod);
+  const overshoot = Math.max(0, (gMax-1)/2*100, (-1-gMin)/2*100);
+  const hasJump = (shape==='square' || shape==='sawtooth');
+  let readHTML = `<span class="big">N = ${N} suku &middot; ${WAVE_LABEL[shape]}</span>`;
+  if(hasJump){
+    readHTML += `Puncak tertinggi aproksimasi &asymp; ${gMax.toFixed(3)} (nilai ideal = 1.0).<br>`;
+    readHTML += `Overshoot Gibbs &asymp; <strong style="color:var(--lime)">${overshoot.toFixed(1)}%</strong> dari besar lompatan.`;
+    if(N>=25) readHTML += ` Untuk N besar, overshoot ini konvergen ke &asymp;8.9% dan TIDAK pernah hilang &mdash; hanya menyempit mendekati titik lompatan.`;
+  } else {
+    readHTML += `Gelombang segitiga kontinu (tanpa lompatan) &mdash; aproksimasi konvergen mulus tanpa overshoot Gibbs yang signifikan.`;
+  }
+  document.getElementById('s1_read').innerHTML = readHTML;
+}
+[s1_shape,s1_N].forEach(el=> el.addEventListener('input', draw1));
+document.querySelectorAll('#sec1 .btnrow button').forEach(btn=>{
+  btn.onclick = ()=>{ s1_N.value = btn.dataset.n; draw1(); };
+});
+
+/* ============================= SECTION 2: SPEKTRUM & KONVERGENSI ============================= */
+const c2_spec = document.getElementById('c2_spec');
+const s2_sq = document.getElementById('s2_sq'), s2_sw = document.getElementById('s2_sw'), s2_tr = document.getElementById('s2_tr');
+function draw2(){
+  const w0 = 2*Math.PI/T0_1;
+  const shapes = [];
+  if(s2_sq.checked) shapes.push(['square', COL.mid, -0.22]);
+  if(s2_sw.checked) shapes.push(['sawtooth', COL.gold, 0]);
+  if(s2_tr.checked) shapes.push(['triangle', COL.red, 0.22]);
+
+  const ctx = setupCanvas(c2_spec);
+  const ks = []; for(let k=1;k<=20;k++) ks.push(k);
+  let maxMag = 0.1;
+  const allMags = {};
+  ['square','sawtooth','triangle'].forEach(sh=>{
+    const ak = fourierCoeffs(sh, T0_1, 20, 600);
+    const mags = ks.map(k=> Math.sqrt(ak[k].re*ak[k].re + ak[k].im*ak[k].im));
+    allMags[sh] = mags;
+    maxMag = Math.max(maxMag, ...mags);
+  });
+  const T = makeT(c2_spec, 0, 21, 0, maxMag*1.15);
+  drawFrame(ctx, T);
+  shapes.forEach(([sh,color,off])=>{
+    plotStem(ctx, T, ks, allMags[sh], color, off, 2.6);
+  });
+
+  let txt = `<span class="big">Perbandingan Laju Peluruhan |a&#8342;|</span>`;
+  const rows = [];
+  if(s2_sq.checked) rows.push(`Kotak: |a&#8321;|=${allMags.square[0].toFixed(3)}, |a&#8322;&#8320;|=${allMags.square[19].toFixed(4)} (rasio &asymp; ${(allMags.square[0]/allMags.square[19]).toFixed(0)}&times;)`);
+  if(s2_sw.checked) rows.push(`Gigi Gergaji: |a&#8321;|=${allMags.sawtooth[0].toFixed(3)}, |a&#8322;&#8320;|=${allMags.sawtooth[19].toFixed(4)} (rasio &asymp; ${(allMags.sawtooth[0]/allMags.sawtooth[19]).toFixed(0)}&times;)`);
+  if(s2_tr.checked) rows.push(`Segitiga: |a&#8321;|=${allMags.triangle[0].toFixed(3)}, |a&#8322;&#8320;|=${allMags.triangle[19].toFixed(5)} (rasio &asymp; ${(allMags.triangle[0]/allMags.triangle[19]).toFixed(0)}&times;)`);
+  txt += rows.join('<br>');
+  txt += `<br><br><em>Kotak &amp; gigi gergaji (diskontinu) meluruh &sim;1/k; segitiga (kontinu) meluruh jauh lebih cepat &sim;1/k&sup2;.</em>`;
+  document.getElementById('s2_read').innerHTML = txt;
+}
+[s2_sq,s2_sw,s2_tr].forEach(el=> el.addEventListener('input', draw2));
+
+/* ============================= SECTION 3: PERGESERAN WAKTU ============================= */
+const c3_time = document.getElementById('c3_time'), c3_phase = document.getElementById('c3_phase');
+const s3_shape = document.getElementById('s3_shape'), s3_t0 = document.getElementById('s3_t0');
+const KMAX_PHASE = 8;
+function draw3(){
+  const shape = s3_shape.value, t0 = parseFloat(s3_t0.value);
+  document.getElementById('s3_t0v').textContent = t0.toFixed(2);
+  const w0 = 2*Math.PI/T0_1;
+  const ak = fourierCoeffs(shape, T0_1, KMAX_PHASE, 700);
+
+  // waktu
+  const ctxT = setupCanvas(c3_time);
+  const T = makeT(c3_time, -1.5, 2.5, -1.3, 1.3);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(-1.5, 2.5, 0.01);
+  plotLine(ctxT, T, xs, xs.map(t=> waveAt(shape, t, T0_1)), COL.gray, 1.8, [4,3]);
+  plotLine(ctxT, T, xs, xs.map(t=> waveAt(shape, t-t0, T0_1)), COL.mid, 2.4);
+
+  // fasa
+  const ks = []; for(let k=1;k<=KMAX_PHASE;k++) ks.push(k);
+  const phase0 = ks.map(k=> Math.atan2(ak[k].im, ak[k].re));
+  const phaseShift = ks.map((k,i)=> phase0[i] - k*w0*t0);
+  const allPhase = phase0.concat(phaseShift);
+  const pmax = Math.max(1, ...allPhase.map(Math.abs));
+  const ctxP = setupCanvas(c3_phase);
+  const Tp = makeT(c3_phase, 0, KMAX_PHASE+1, -pmax*1.15, pmax*1.15);
+  drawFrame(ctxP, Tp);
+  plotStem(ctxP, Tp, ks, phase0, '#DCE7DF', -0.12, 2.6);
+  plotStem(ctxP, Tp, ks, phaseShift, COL.mid, 0.12, 3);
+
+  document.getElementById('s3_read').innerHTML =
+    `<span class="big">|a&#8342;| tidak berubah &mdash; hanya fasa</span>` +
+    `&ang;a&#8342; tergeser = &ang;a&#8342; asli &minus; k&omega;&#8320;t&#8320;, dengan &omega;&#8320;t&#8320; = ${(w0*t0).toFixed(3)} rad/suku.` +
+    (Math.abs(t0)<0.01 ? ' Geser t&#8320; untuk melihat kemiringan garis fasa berubah.' : ` Kemiringan fasa terhadap k &asymp; ${(-w0*t0).toFixed(3)} rad/suku (garis lurus).`);
+}
+[s3_shape,s3_t0].forEach(el=> el.addEventListener('input', draw3));
+
+/* ============================= SECTION 4: MENUJU TRANSFORMASI FOURIER ============================= */
+const c4_time = document.getElementById('c4_time'), c4_spec = document.getElementById('c4_spec');
+const s4_T0 = document.getElementById('s4_T0');
+const T1_PULSE = 0.5; // setengah lebar pulsa tetap
+function pulseTrain(t, T0){
+  const tt = ((t % T0)+T0)%T0;
+  const centered = tt > T0/2 ? tt-T0 : tt; // ke rentang (-T0/2, T0/2]
+  return Math.abs(centered) < T1_PULSE ? 1 : 0;
+}
+function sincEnvelope(w){
+  if(Math.abs(w) < 1e-6) return 2*T1_PULSE;
+  return 2*Math.sin(w*T1_PULSE)/w;
+}
+function draw4(){
+  const T0 = parseFloat(s4_T0.value);
+  document.getElementById('s4_T0v').textContent = T0.toFixed(1);
+  const w0 = 2*Math.PI/T0;
+
+  // waktu: pulsa periodik
+  const ctxT = setupCanvas(c4_time);
+  const T = makeT(c4_time, -18, 18, -0.3, 1.3);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(-18, 18, 0.02);
+  plotLine(ctxT, T, xs, xs.map(t=> pulseTrain(t, T0)), COL.mid, 2.2);
+
+  // spektrum: garis di w=k*w0 dengan tinggi a_k*T0, plus amplop kontinu
+  const WVIEW = 20;
+  const Kmax = Math.max(1, Math.ceil(WVIEW/w0));
+  const ks = []; for(let k=-Kmax;k<=Kmax;k++) ks.push(k);
+  const ws = ks.map(k=> k*w0);
+  const heights = ws.map(w=> sincEnvelope(w));
+
+  const ctxS = setupCanvas(c4_spec);
+  const Ts = makeT(c4_spec, -WVIEW, WVIEW, -0.6, 1.15);
+  drawFrame(ctxS, Ts);
+  const wsEnv = linspaceStep(-WVIEW, WVIEW, 0.05);
+  plotLine(ctxS, Ts, wsEnv, wsEnv.map(sincEnvelope), COL.red, 1.8, [5,4]);
+  plotStem(ctxS, Ts, ws, heights, COL.mid, 0, 2.6);
+
+  document.getElementById('s4_read').innerHTML =
+    `<span class="big">&omega;&#8320; = 2&pi;/T&#8320; = ${w0.toFixed(3)} rad/s</span>` +
+    `Jarak antar-garis spektrum = &omega;&#8320;. Semakin besar T&#8320;, semakin rapat garis-garisnya (&asymp;${ks.length} garis terlihat dalam jendela ini) dan makin mendekati kurva kontinu X(j&omega;) = 2sin(&omega;T&#8321;)/&omega;.`;
+}
+[s4_T0].forEach(el=> el.addEventListener('input', draw4));
+document.querySelectorAll('#sec4 .btnrow button').forEach(btn=>{
+  btn.onclick = ()=>{ s4_T0.value = btn.dataset.t0; draw4(); };
+});
+
+/* ============================= INISIALISASI ============================= */
+draw1(); draw2(); draw3(); draw4();
+window.addEventListener('resize', ()=>{}); // canvas ukuran tetap (responsif via CSS width:100%)
+</script>
+</body>
+</html>
