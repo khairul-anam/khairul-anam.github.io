@@ -517,6 +517,26 @@
       "youtube": null,
       "images": null,
       "elearning_url": "simulations/sinyal-sistem/index.html"
+    },
+    {
+      "id": "c7",
+      "code": "",
+      "level": "S1",
+      "credits": 0,
+      "semester_en": "Workshop 2026",
+      "semester_id": "Workshop 2026",
+      "name_en": "Introduction to AI & Machine Learning for Mining Engineering",
+      "name_id": "Pengantar AI & Machine Learning untuk Teknik Pertambangan",
+      "desc_en": "A 1.5-hour hands-on workshop introducing AI/ML fundamentals and building a real mining quality-prediction model in Python using industrial data.",
+      "desc_id": "Workshop singkat 1,5 jam memperkenalkan konsep dasar AI/ML dan langsung mempraktikkan pembangunan model prediksi kualitas tambang menggunakan Python dan data industri nyata.",
+      "content_en": "#### Workshop Description\n\nA short 1.5-hour workshop for mining engineering students, introducing the fundamentals of Artificial Intelligence and Machine Learning, followed by hands-on practice building a mining quality-prediction model on real industrial data (mineral flotation process) using a Kaggle Notebook.\n\n#### Agenda\n\n1. **Opening** (5 min)\n2. **Video: Introduction to AI, ML, and Deep Learning** (30 min)\n3. **Video: The Machine Learning Modeling Cycle** (15 min)\n4. **Hands-on Kaggle Exercise** (40 min) — Load data, explore, train models (Linear Regression vs Random Forest), evaluate, visualize\n\n#### Dataset\n\n**Quality Prediction in a Mining Process** (Kaggle, real industrial data from Brazil) — 737,000+ rows of mineral flotation process data. Prediction target: silica (%) content in the final iron concentrate.\n\n#### Target Audience\n\nUndergraduate Mining Engineering students — no prior programming experience required.\n\n#### Tools\n\n- Python (Kaggle Notebook)\n- Pandas, Scikit-learn",
+      "content_id": "#### Deskripsi Workshop\n\nWorkshop singkat 1,5 jam untuk mahasiswa Teknik Pertambangan, memperkenalkan konsep dasar Artificial Intelligence dan Machine Learning, lalu langsung mempraktikkan pembangunan model prediksi kualitas tambang menggunakan data industri nyata (proses flotasi mineral) di Kaggle Notebook.\n\n#### Agenda\n\n1. **Pembukaan** (5 menit)\n2. **Video: Pengantar AI, ML, dan Deep Learning** (30 menit)\n3. **Video: Siklus Pemodelan Machine Learning** (15 menit)\n4. **Latihan Praktik Kaggle** (40 menit) — Load data, eksplorasi, latih model (Linear Regression vs Random Forest), evaluasi, visualisasi\n\n#### Dataset\n\n**Quality Prediction in a Mining Process** (Kaggle, data industri nyata dari Brasil) — 737 ribu+ baris data proses flotasi mineral. Target prediksi: kadar silika (%) dalam konsentrat besi akhir.\n\n#### Target Peserta\n\nMahasiswa S1 Teknik Pertambangan — tanpa perlu pengalaman pemrograman sebelumnya.\n\n#### Perangkat\n\n- Python (Kaggle Notebook)\n- Pandas, Scikit-learn",
+      "schedule_en": "1.5 hours, self-paced",
+      "schedule_id": "1,5 jam, mandiri",
+      "syllabus_url": "",
+      "youtube": null,
+      "images": null,
+      "elearning_url": "simulations/ai-tambang/index.html"
     }
   ],
   "publications": [

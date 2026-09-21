@@ -288,7 +288,7 @@
         <div class="course-card-top">
           <div class="course-badges">
             <span class="badge-level ${levelClass}">${c.level}</span>
-            <span class="badge-credits">${c.credits} SKS</span>
+            <span class="badge-credits">${c.credits ? c.credits + ' SKS' : (currentLang === 'en' ? 'Workshop' : 'Workshop')}</span>
             ${c.elearning_url ? '<span class="badge-elearning">E-Learning</span>' : ''}
           </div>
           <span class="course-code">${c.code || ''}</span>
@@ -323,7 +323,7 @@
     document.getElementById('modalTitle').textContent = name;
 
     document.getElementById('modalMeta').innerHTML = `
-      <span class="modal-meta-tag"><i class="fas fa-layer-group"></i>${c.level} · ${c.credits} SKS</span>
+      <span class="modal-meta-tag"><i class="fas fa-layer-group"></i>${c.level}${c.credits ? ' · ' + c.credits + ' SKS' : ' · Workshop'}</span>
       <span class="modal-meta-tag"><i class="fas fa-calendar-alt"></i>${sem}</span>
       ${sch ? `<span class="modal-meta-tag"><i class="fas fa-clock"></i>${sch}</span>` : ''}`;
 
