@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulasi Interaktif — Sinyal dan Sistem: Deret Fourier</title>
+<title>Simulasi Interaktif — Sinyal dan Sistem: Deret &amp; Transformasi Fourier</title>
 <script>
 window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'global' } };
 </script>
@@ -83,9 +83,8 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'glob
   .legend span{ display:inline-flex; align-items:center; gap:6px; }
   .legend i{ width:16px; height:3px; display:inline-block; }
 
-  .teaser{ background:linear-gradient(135deg,var(--dark),var(--dark2)); color:var(--paper); padding:22px 26px; margin-top:26px; border-left:5px solid var(--lime); }
-  .teaser h3{ color:var(--lime); font-family:Cambria,Georgia,serif; font-size:19px; margin:0 0 6px; }
-  .teaser p{ color:#CFE3D6; margin:0; font-size:14.5px; line-height:1.5; }
+  .paramset{ display:none; }
+  .paramset.active{ display:block; }
 </style>
 </head>
 <body>
@@ -93,8 +92,8 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'glob
 <header>
   <a class="backlink" href="index.html">&larr; Kembali ke Portal Sinyal &amp; Sistem</a>
   <div class="kicker">Sinyal dan Sistem &middot; TKE1363 &middot; Universitas Jember</div>
-  <h1>Simulasi Interaktif &mdash; Deret Fourier</h1>
-  <p>Empat simulasi singkat untuk menjelajahi Deret Fourier secara visual: sintesis sinyal periodik, fenomena Gibbs, spektrum garis, sifat pergeseran waktu, hingga jembatan menuju Transformasi Fourier. Ubah parameter dengan slider dan amati grafik berubah secara langsung.</p>
+  <h1>Simulasi Interaktif &mdash; Deret &amp; Transformasi Fourier</h1>
+  <p>Delapan simulasi singkat menjelajahi Deret Fourier hingga Transformasi Fourier waktu-kontinu (CTFT) secara visual: sintesis sinyal, spektrum, sifat-sifat, filter, hingga sampling &amp; aliasing. Ubah parameter dengan slider dan amati grafik berubah secara langsung.</p>
 </header>
 
 <nav id="nav"></nav>
@@ -162,7 +161,7 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'glob
     </div>
   </section>
 
-  <!-- ================= SECTION 3: SIFAT PERGESERAN WAKTU ================= -->
+  <!-- ================= SECTION 3: SIFAT PERGESERAN WAKTU (DERET) ================= -->
   <section class="panel" id="sec3">
     <h2 class="sect-title">3. Sifat Pergeseran Waktu: Fasa Linear</h2>
     <p class="sect-desc">Menggeser sinyal di waktu sebesar \(t_0\) TIDAK mengubah besar koefisien \(|a_k|\) &mdash; hanya menambahkan fasa linear: \(x(t-t_0) \longleftrightarrow a_k\,e^{-jk\omega_0 t_0}\). Geser \(t_0\) dan amati kemiringan fasa \(\angle a_k\) berubah terhadap \(k\).</p>
@@ -222,9 +221,172 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'glob
         <div class="readout" id="s4_read"></div>
       </div>
     </div>
-    <div class="teaser">
-      <h3>Selanjutnya: Transformasi Fourier</h3>
-      <p>Bagian simulasi untuk Transformasi Fourier (pasangan CTFT, sifat pergeseran &amp; penskalaan, filter &amp; respons frekuensi, sampling &amp; aliasing) akan menyusul pada pembaruan berikutnya. Nantikan!</p>
+  </section>
+
+  <!-- ================= SECTION 5: PASANGAN CTFT ================= -->
+  <section class="panel" id="sec5">
+    <h2 class="sect-title">5. Pasangan Transformasi Fourier (CTFT)</h2>
+    <p class="sect-desc">Jelajahi beberapa pasangan sinyal-spektrum klasik: \(X(j\omega) = \int_{-\infty}^{\infty} x(t)\,e^{-j\omega t}\,dt\). Perhatikan hubungan kebalikan (dualitas) antara lebar di waktu dan lebar di frekuensi.</p>
+    <div class="grid">
+      <div>
+        <div class="plotbox"><canvas id="c5_time" width="640" height="220"></canvas><div class="cap">x(t)</div></div>
+        <div class="plotbox"><canvas id="c5_mag" width="640" height="200"></canvas><div class="cap">|X(j&omega;)|</div></div>
+        <div class="plotbox"><canvas id="c5_phase" width="640" height="160"></canvas><div class="cap">&ang;X(j&omega;) (radian)</div></div>
+      </div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <label>Bentuk sinyal x(t)</label>
+          <select id="s5_shape">
+            <option value="rect">Pulsa Persegi</option>
+            <option value="exp">Eksponensial Satu-Sisi</option>
+            <option value="tri">Pulsa Segitiga</option>
+          </select>
+          <div class="paramset active" id="s5_p_rect">
+            <label>Setengah lebar T&#8321; = <span class="val" id="s5_rectT1v">1.0</span></label>
+            <input type="range" id="s5_rectT1" min="0.2" max="3" step="0.1" value="1">
+          </div>
+          <div class="paramset" id="s5_p_exp">
+            <label>Laju peluruhan a = <span class="val" id="s5_expav">1.0</span></label>
+            <input type="range" id="s5_expa" min="0.2" max="5" step="0.1" value="1">
+          </div>
+          <div class="paramset" id="s5_p_tri">
+            <label>Setengah lebar T&#8321; = <span class="val" id="s5_triT1v">1.0</span></label>
+            <input type="range" id="s5_triT1" min="0.2" max="3" step="0.1" value="1">
+          </div>
+        </div>
+        <div class="readout" id="s5_read"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6: SIFAT PERGESERAN & PENSKALAAN (CTFT) ================= -->
+  <section class="panel" id="sec6">
+    <h2 class="sect-title">6. Sifat CTFT: Pergeseran &amp; Penskalaan Waktu</h2>
+    <div class="subtabs">
+      <button class="active" data-sub="6a">Pergeseran Waktu</button>
+      <button data-sub="6b">Penskalaan Waktu</button>
+    </div>
+
+    <div id="sub6a">
+      <p class="sect-desc">Menggeser sinyal di waktu sebesar \(t_0\): \(x(t-t_0) \longleftrightarrow X(j\omega)\,e^{-j\omega t_0}\). Magnitudo \(|X(j\omega)|\) TIDAK berubah &mdash; hanya fasa yang bertambah linear terhadap \(\omega\).</p>
+      <div class="grid">
+        <div>
+          <div class="plotbox"><canvas id="c6a_time" width="640" height="220"></canvas><div class="cap">
+            <span class="legend">
+              <span><i style="background:#B7C9BD"></i> x(t) asli</span>
+              <span><i style="background:#1B7A4A"></i> x(t&minus;t&#8320;) tergeser</span>
+            </span>
+          </div></div>
+          <div class="plotbox"><canvas id="c6a_phase" width="640" height="220"></canvas><div class="cap">&ang;X(j&omega;) = &minus;&omega;t&#8320; (garis lurus)</div></div>
+        </div>
+        <div class="card">
+          <h3>Kontrol</h3>
+          <div class="controls">
+            <label>Pergeseran t&#8320; = <span class="val" id="s6a_t0v">0.00</span> s</label>
+            <input type="range" id="s6a_t0" min="-3" max="3" step="0.05" value="0">
+          </div>
+          <div class="readout" id="s6a_read"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sub6b" style="display:none">
+      <p class="sect-desc">Memampatkan/melebarkan sinyal di waktu: \(x(at) \longleftrightarrow \dfrac{1}{|a|}X\!\left(\dfrac{j\omega}{a}\right)\). Sinyal yang SEMPIT di waktu selalu memiliki spektrum yang LEBAR di frekuensi, dan sebaliknya &mdash; dualitas waktu-frekuensi.</p>
+      <div class="grid">
+        <div>
+          <div class="plotbox"><canvas id="c6b_time" width="640" height="220"></canvas><div class="cap">
+            <span class="legend">
+              <span><i style="background:#B7C9BD"></i> x(t) asli (a=1)</span>
+              <span><i style="background:#1B7A4A"></i> x(at) diskalakan</span>
+            </span>
+          </div></div>
+          <div class="plotbox"><canvas id="c6b_mag" width="640" height="220"></canvas><div class="cap">|X(j&omega;)| asli (abu-abu) vs hasil skala (hijau)</div></div>
+        </div>
+        <div class="card">
+          <h3>Kontrol</h3>
+          <div class="controls">
+            <label>Faktor skala a = <span class="val" id="s6b_av">1.00</span></label>
+            <input type="range" id="s6b_a" min="0.3" max="3" step="0.05" value="1">
+          </div>
+          <div class="readout" id="s6b_read"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7: FILTER RC & RESPONS FREKUENSI ================= -->
+  <section class="panel" id="sec7">
+    <h2 class="sect-title">7. Filter RC &amp; Respons Frekuensi</h2>
+    <p class="sect-desc">Respons frekuensi filter lolos-rendah RC: \(H(j\omega) = \dfrac{1}{1+j\omega RC}\). Frekuensi cutoff \(\omega_c = 1/RC\) menandai titik di mana daya sinyal turun menjadi setengahnya. Aktifkan opsi di bawah untuk melihat bagaimana filter ini meredam spektrum sebuah pulsa.</p>
+    <div class="grid">
+      <div>
+        <div class="plotbox"><canvas id="c7_mag" width="640" height="240"></canvas><div class="cap">
+          <span class="legend">
+            <span><i style="background:#1B7A4A"></i> |H(j&omega;)|</span>
+            <span><i style="background:#2E6F9E"></i> |Y(j&omega;)| = |X(j&omega;)|&middot;|H(j&omega;)| (bila diaktifkan)</span>
+          </span>
+        </div></div>
+        <div class="plotbox"><canvas id="c7_phase" width="640" height="200"></canvas><div class="cap">&ang;H(j&omega;) = &minus;arctan(&omega;RC)</div></div>
+      </div>
+      <div class="card">
+        <h3>Kontrol</h3>
+        <div class="controls">
+          <label>Konstanta waktu &tau;=RC = <span class="val" id="s7_tauv">0.30</span> s (&omega;<sub>c</sub> = <span class="val" id="s7_wcv">3.33</span> rad/s)</label>
+          <input type="range" id="s7_tau" min="0.05" max="2" step="0.01" value="0.3">
+          <div class="checkline"><input type="checkbox" id="s7_showY"><label style="margin:0" for="s7_showY">Tampilkan efek pada spektrum pulsa persegi (T&#8321;=1)</label></div>
+        </div>
+        <div class="readout" id="s7_read"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 8: SAMPLING & ALIASING ================= -->
+  <section class="panel" id="sec8">
+    <h2 class="sect-title">8. Sampling &amp; Aliasing: Kriteria Nyquist</h2>
+    <div class="subtabs">
+      <button class="active" data-sub="8a">Domain Frekuensi</button>
+      <button data-sub="8b">Domain Waktu</button>
+    </div>
+
+    <div id="sub8a">
+      <p class="sect-desc">Sampling mereplikasi spektrum asli di setiap kelipatan \(\omega_s = 2\pi f_s\). Bila \(f_s < 2f_M\) (kriteria Nyquist dilanggar), salinan-salinan spektrum saling tumpang tindih (area merah) &mdash; inilah aliasing.</p>
+      <div class="grid">
+        <div class="plotbox"><canvas id="c8a_spec" width="640" height="300"></canvas><div class="cap">Spektrum asli (hijau) &amp; salinan akibat sampling (abu-abu) &mdash; area merah = tumpang tindih (aliasing)</div></div>
+        <div class="card">
+          <h3>Kontrol</h3>
+          <div class="controls">
+            <label>Batas pita sinyal f<sub>M</sub> = <span class="val" id="s8a_fMv">3.0</span> Hz</label>
+            <input type="range" id="s8a_fM" min="1" max="8" step="0.1" value="3">
+            <label>Laju sampling f<sub>s</sub> = <span class="val" id="s8a_fsv">8.0</span> Hz</label>
+            <input type="range" id="s8a_fs" min="2" max="20" step="0.1" value="8">
+          </div>
+          <div class="readout" id="s8a_read"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sub8b" style="display:none">
+      <p class="sect-desc">Sinyal sinusoidal \(f_0\) dicuplik pada \(f_s\). Jika \(f_s &lt; 2f_0\), sampel-sampel yang sama juga persis dilalui oleh sinusoid frekuensi RENDAH lain (garis putus-putus) &mdash; itulah frekuensi alias yang "tertipu" terbaca oleh sistem sampling.</p>
+      <div class="grid">
+        <div class="plotbox"><canvas id="c8b_time" width="640" height="300"></canvas><div class="cap">
+          <span class="legend">
+            <span><i style="background:#B7C9BD"></i> x(t) = cos(2&pi;f&#8320;t)</span>
+            <span><i style="background:#B14A3F"></i> sampel (f<sub>s</sub>)</span>
+            <span><i style="background:#1B7A4A"></i> alias tampak: cos(2&pi;f<sub>alias</sub>t)</span>
+          </span>
+        </div></div>
+        <div class="card">
+          <h3>Kontrol</h3>
+          <div class="controls">
+            <label>Frekuensi sinyal f&#8320; = <span class="val" id="s8b_f0v">3.0</span> Hz</label>
+            <input type="range" id="s8b_f0" min="0.5" max="10" step="0.1" value="3">
+            <label>Laju sampling f<sub>s</sub> = <span class="val" id="s8b_fsv">8.0</span> Hz</label>
+            <input type="range" id="s8b_fs" min="2" max="20" step="0.1" value="8">
+          </div>
+          <div class="readout" id="s8b_read"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -238,7 +400,7 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)']] }, svg: { fontCache: 'glob
 <script>
 /* ============================= UTIL: PLOTTING (identik dengan simulasi Bab 1) ============================= */
 const COL = { dark:'#0C3B2E', mid:'#1B7A4A', lime:'#8FB100', ink:'#10241C', muted:'#5B7768',
-              red:'#B14A3F', grid:'#DCE7DF', axis:'#9FB6A7', gray:'#B7C9BD', gold:'#C77A1E' };
+              red:'#B14A3F', grid:'#DCE7DF', axis:'#9FB6A7', gray:'#B7C9BD', gold:'#C77A1E', blue:'#2E6F9E' };
 
 function setupCanvas(cv){
   const dpr = window.devicePixelRatio || 1;
@@ -313,6 +475,13 @@ function plotStem(ctx,T,ns,vals,color,offset=0,radius=3.2){
   });
 }
 
+function fillBand(ctx,T,x0,x1,color){
+  const xa = Math.max(T.x(Math.min(x0,x1)), T.padL), xb = Math.min(T.x(Math.max(x0,x1)), T.w-T.padR);
+  if(xb<=xa) return;
+  ctx.fillStyle = color;
+  ctx.fillRect(xa, T.padT, xb-xa, T.h-T.padT-T.padB);
+}
+
 function range(a,b,n){ const out=[]; for(let i=0;i<n;i++) out.push(a+(b-a)*i/(n-1)); return out; }
 function linspaceStep(a,b,step){ const out=[]; for(let x=a;x<=b+1e-9;x+=step) out.push(+x.toFixed(10)); return out; }
 
@@ -320,6 +489,8 @@ function linspaceStep(a,b,step){ const out=[]; for(let x=a;x<=b+1e-9;x+=step) ou
 const SECTIONS = [
   ['sec1','1. Sintesis & Gibbs'], ['sec2','2. Spektrum & Konvergensi'],
   ['sec3','3. Pergeseran Waktu'], ['sec4','4. Menuju Transformasi'],
+  ['sec5','5. Pasangan CTFT'], ['sec6','6. Sifat CTFT'],
+  ['sec7','7. Filter & Respons Frekuensi'], ['sec8','8. Sampling & Aliasing'],
 ];
 const navEl = document.getElementById('nav');
 SECTIONS.forEach(([id,label],i)=>{
@@ -335,6 +506,18 @@ SECTIONS.forEach(([id,label],i)=>{
   navEl.appendChild(b);
 });
 document.getElementById('sec1').classList.add('active');
+
+document.querySelectorAll('.subtabs').forEach(bar=>{
+  bar.querySelectorAll('button').forEach(btn=>{
+    btn.onclick = ()=>{
+      bar.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      const parent = bar.parentElement;
+      parent.querySelectorAll(':scope > div[id^="sub"]').forEach(d=> d.style.display='none');
+      document.getElementById('sub'+btn.dataset.sub).style.display='block';
+    };
+  });
+});
 
 /* ============================= MESIN DERET FOURIER (NUMERIK) ============================= */
 function waveFn(shape, tt, T0){
@@ -391,7 +574,6 @@ function draw1(){
   const w0 = 2*Math.PI/T0_1;
   const ak = fourierCoeffs(shape, T0_1, KMAX_SPEC, 800);
 
-  // --- plot waktu ---
   const ctxT = setupCanvas(c1_time);
   const T = makeT(c1_time, -0.5, 4.5, -1.5, 1.5);
   drawFrame(ctxT, T);
@@ -401,7 +583,6 @@ function draw1(){
   plotLine(ctxT, T, xs, ysIdeal, COL.gray, 1.8, [4,3]);
   plotLine(ctxT, T, xs, ysApprox, COL.mid, 2.4);
 
-  // --- plot spektrum ---
   const ctxS = setupCanvas(c1_spec);
   const magAll = ak.slice(1,21).map(c=> Math.sqrt(c.re*c.re + c.im*c.im));
   const maxMag = Math.max(0.05, ...magAll);
@@ -416,7 +597,6 @@ function draw1(){
   plotStem(ctxS, Ts, ksExcl, magExcl, '#DCE7DF');
   plotStem(ctxS, Ts, ksIncl, magIncl, COL.mid);
 
-  // --- overshoot Gibbs (global max/min pada satu periode aproksimasi) ---
   const xsPeriod = linspaceStep(0, T0_1, 0.002);
   const ysPeriod = xsPeriod.map(t=> reconstructAt(ak, w0, t, N));
   const gMax = Math.max(...ysPeriod), gMin = Math.min(...ysPeriod);
@@ -441,7 +621,6 @@ document.querySelectorAll('#sec1 .btnrow button').forEach(btn=>{
 const c2_spec = document.getElementById('c2_spec');
 const s2_sq = document.getElementById('s2_sq'), s2_sw = document.getElementById('s2_sw'), s2_tr = document.getElementById('s2_tr');
 function draw2(){
-  const w0 = 2*Math.PI/T0_1;
   const shapes = [];
   if(s2_sq.checked) shapes.push(['square', COL.mid, -0.22]);
   if(s2_sw.checked) shapes.push(['sawtooth', COL.gold, 0]);
@@ -474,7 +653,7 @@ function draw2(){
 }
 [s2_sq,s2_sw,s2_tr].forEach(el=> el.addEventListener('input', draw2));
 
-/* ============================= SECTION 3: PERGESERAN WAKTU ============================= */
+/* ============================= SECTION 3: PERGESERAN WAKTU (DERET) ============================= */
 const c3_time = document.getElementById('c3_time'), c3_phase = document.getElementById('c3_phase');
 const s3_shape = document.getElementById('s3_shape'), s3_t0 = document.getElementById('s3_t0');
 const KMAX_PHASE = 8;
@@ -484,7 +663,6 @@ function draw3(){
   const w0 = 2*Math.PI/T0_1;
   const ak = fourierCoeffs(shape, T0_1, KMAX_PHASE, 700);
 
-  // waktu
   const ctxT = setupCanvas(c3_time);
   const T = makeT(c3_time, -1.5, 2.5, -1.3, 1.3);
   drawFrame(ctxT, T);
@@ -492,7 +670,6 @@ function draw3(){
   plotLine(ctxT, T, xs, xs.map(t=> waveAt(shape, t, T0_1)), COL.gray, 1.8, [4,3]);
   plotLine(ctxT, T, xs, xs.map(t=> waveAt(shape, t-t0, T0_1)), COL.mid, 2.4);
 
-  // fasa
   const ks = []; for(let k=1;k<=KMAX_PHASE;k++) ks.push(k);
   const phase0 = ks.map(k=> Math.atan2(ak[k].im, ak[k].re));
   const phaseShift = ks.map((k,i)=> phase0[i] - k*w0*t0);
@@ -517,7 +694,7 @@ const s4_T0 = document.getElementById('s4_T0');
 const T1_PULSE = 0.5; // setengah lebar pulsa tetap
 function pulseTrain(t, T0){
   const tt = ((t % T0)+T0)%T0;
-  const centered = tt > T0/2 ? tt-T0 : tt; // ke rentang (-T0/2, T0/2]
+  const centered = tt > T0/2 ? tt-T0 : tt;
   return Math.abs(centered) < T1_PULSE ? 1 : 0;
 }
 function sincEnvelope(w){
@@ -529,14 +706,12 @@ function draw4(){
   document.getElementById('s4_T0v').textContent = T0.toFixed(1);
   const w0 = 2*Math.PI/T0;
 
-  // waktu: pulsa periodik
   const ctxT = setupCanvas(c4_time);
   const T = makeT(c4_time, -18, 18, -0.3, 1.3);
   drawFrame(ctxT, T);
   const xs = linspaceStep(-18, 18, 0.02);
   plotLine(ctxT, T, xs, xs.map(t=> pulseTrain(t, T0)), COL.mid, 2.2);
 
-  // spektrum: garis di w=k*w0 dengan tinggi a_k*T0, plus amplop kontinu
   const WVIEW = 20;
   const Kmax = Math.max(1, Math.ceil(WVIEW/w0));
   const ks = []; for(let k=-Kmax;k<=Kmax;k++) ks.push(k);
@@ -559,9 +734,298 @@ document.querySelectorAll('#sec4 .btnrow button').forEach(btn=>{
   btn.onclick = ()=>{ s4_T0.value = btn.dataset.t0; draw4(); };
 });
 
+/* ============================= MESIN CTFT (ANALITIK) ============================= */
+// Pulsa persegi lebar 2*T1
+function rectX(t, T1){ return Math.abs(t) < T1 ? 1 : 0; }
+function rectSpectrum(w, T1){
+  if(Math.abs(w) < 1e-8) return { re: 2*T1, im: 0 }; // real, limit
+  const val = 2*Math.sin(w*T1)/w;
+  return { re: val, im: 0 };
+}
+// Eksponensial satu-sisi e^{-at}u(t)
+function expX(t, a){ return t>=0 ? Math.exp(-a*t) : 0; }
+function expSpectrum(w, a){
+  // X(jw) = 1/(a+jw) = (a - jw)/(a^2+w^2)
+  const denom = a*a + w*w;
+  return { re: a/denom, im: -w/denom };
+}
+// Pulsa segitiga, lebar 2*T1, puncak 1 di t=0
+function triX(t, T1){
+  const at = Math.abs(t);
+  return at < T1 ? (1 - at/T1) : 0;
+}
+function triSpectrum(w, T1){
+  if(Math.abs(w) < 1e-8) return { re: T1, im: 0 };
+  const u = w*T1/2;
+  const val = T1 * Math.pow(Math.sin(u)/u, 2);
+  return { re: val, im: 0 };
+}
+function cmag(c){ return Math.sqrt(c.re*c.re + c.im*c.im); }
+function cphase(c){
+  if(Math.abs(c.re) < 1e-9 && Math.abs(c.im) < 1e-9) return 0;
+  return Math.atan2(c.im, c.re);
+}
+
+/* ============================= SECTION 5: PASANGAN CTFT ============================= */
+const c5_time = document.getElementById('c5_time'), c5_mag = document.getElementById('c5_mag'), c5_phase = document.getElementById('c5_phase');
+const s5_shape = document.getElementById('s5_shape');
+const s5_rectT1 = document.getElementById('s5_rectT1'), s5_expa = document.getElementById('s5_expa'), s5_triT1 = document.getElementById('s5_triT1');
+const s5_paramsets = { rect: document.getElementById('s5_p_rect'), exp: document.getElementById('s5_p_exp'), tri: document.getElementById('s5_p_tri') };
+
+function updateS5Params(){
+  Object.entries(s5_paramsets).forEach(([k,el])=> el.classList.toggle('active', k===s5_shape.value));
+}
+
+function draw5(){
+  updateS5Params();
+  const shape = s5_shape.value;
+  let xFn, XFn, tView, wView, label;
+  if(shape==='rect'){
+    const T1 = parseFloat(s5_rectT1.value);
+    document.getElementById('s5_rectT1v').textContent = T1.toFixed(1);
+    xFn = t=> rectX(t,T1); XFn = w=> rectSpectrum(w,T1);
+    tView=[-4,4]; wView=[-25,25]; label=`Pulsa Persegi, T&#8321;=${T1.toFixed(1)}`;
+  } else if(shape==='exp'){
+    const a = parseFloat(s5_expa.value);
+    document.getElementById('s5_expav').textContent = a.toFixed(1);
+    xFn = t=> expX(t,a); XFn = w=> expSpectrum(w,a);
+    tView=[-1,8]; wView=[-15,15]; label=`Eksponensial, a=${a.toFixed(1)}`;
+  } else {
+    const T1 = parseFloat(s5_triT1.value);
+    document.getElementById('s5_triT1v').textContent = T1.toFixed(1);
+    xFn = t=> triX(t,T1); XFn = w=> triSpectrum(w,T1);
+    tView=[-4,4]; wView=[-25,25]; label=`Pulsa Segitiga, T&#8321;=${T1.toFixed(1)}`;
+  }
+
+  const ctxT = setupCanvas(c5_time);
+  const T = makeT(c5_time, tView[0], tView[1], -0.25, 1.3);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(tView[0], tView[1], 0.02);
+  plotLine(ctxT, T, xs, xs.map(xFn), COL.mid, 2.4);
+
+  const ws = linspaceStep(wView[0], wView[1], (wView[1]-wView[0])/600);
+  const specs = ws.map(XFn);
+  const mags = specs.map(cmag);
+  const phases = specs.map(cphase);
+  const maxMag = Math.max(0.1, ...mags);
+
+  const ctxM = setupCanvas(c5_mag);
+  const Tm = makeT(c5_mag, wView[0], wView[1], -maxMag*0.1, maxMag*1.15);
+  drawFrame(ctxM, Tm);
+  plotLine(ctxM, Tm, ws, mags, COL.mid, 2.2);
+
+  const ctxP = setupCanvas(c5_phase);
+  const Tp = makeT(c5_phase, wView[0], wView[1], -3.5, 3.5);
+  drawFrame(ctxP, Tp);
+  plotLine(ctxP, Tp, ws, phases, COL.red, 2.0);
+
+  let note = '';
+  if(shape==='rect') note = 'Pulsa persegi &harr; fungsi sinc. Fasa melompat 0/&plusmn;&pi; setiap sinc menyeberangi nol.';
+  if(shape==='exp') note = 'Eksponensial satu-sisi &harr; kurva Lorentzian |X|=1/&radic;(a&sup2;+&omega;&sup2;), fasa arctan halus (tanpa lompatan).';
+  if(shape==='tri') note = 'Pulsa segitiga &harr; sinc&sup2; (selalu &ge; 0) &mdash; itulah sebabnya fasanya SELALU nol.';
+  document.getElementById('s5_read').innerHTML = `<span class="big">${label}</span>${note}`;
+}
+[s5_shape,s5_rectT1,s5_expa,s5_triT1].forEach(el=> el.addEventListener('input', draw5));
+
+/* ============================= SECTION 6a: PERGESERAN WAKTU (CTFT) ============================= */
+const c6a_time = document.getElementById('c6a_time'), c6a_phase = document.getElementById('c6a_phase');
+const s6a_t0 = document.getElementById('s6a_t0');
+const T1_S6 = 1.0;
+function draw6a(){
+  const t0 = parseFloat(s6a_t0.value);
+  document.getElementById('s6a_t0v').textContent = t0.toFixed(2);
+
+  const ctxT = setupCanvas(c6a_time);
+  const T = makeT(c6a_time, -5, 5, -0.25, 1.3);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(-5, 5, 0.02);
+  plotLine(ctxT, T, xs, xs.map(t=> rectX(t, T1_S6)), COL.gray, 1.8, [4,3]);
+  plotLine(ctxT, T, xs, xs.map(t=> rectX(t-t0, T1_S6)), COL.mid, 2.4);
+
+  const wView=[-15,15];
+  const ws = linspaceStep(wView[0], wView[1], 0.05);
+  const phases = ws.map(w=> -w*t0);
+  const pmax = Math.max(1, ...phases.map(Math.abs));
+  const ctxP = setupCanvas(c6a_phase);
+  const Tp = makeT(c6a_phase, wView[0], wView[1], -pmax*1.15, pmax*1.15);
+  drawFrame(ctxP, Tp);
+  plotLine(ctxP, Tp, ws, phases, COL.mid, 2.4);
+
+  document.getElementById('s6a_read').innerHTML =
+    `<span class="big">|X(j&omega;)| tidak berubah &mdash; hanya fasa</span>` +
+    `&ang;X(j&omega;) = &minus;&omega;t&#8320;, kemiringan garis = &minus;t&#8320; = ${(-t0).toFixed(2)}.`;
+}
+[s6a_t0].forEach(el=> el.addEventListener('input', draw6a));
+
+/* ============================= SECTION 6b: PENSKALAAN WAKTU (CTFT) ============================= */
+const c6b_time = document.getElementById('c6b_time'), c6b_mag = document.getElementById('c6b_mag');
+const s6b_a = document.getElementById('s6b_a');
+function draw6b(){
+  const a = parseFloat(s6b_a.value);
+  document.getElementById('s6b_av').textContent = a.toFixed(2);
+
+  const ctxT = setupCanvas(c6b_time);
+  const T = makeT(c6b_time, -5, 5, -0.25, 1.3);
+  drawFrame(ctxT, T);
+  const xs = linspaceStep(-5, 5, 0.02);
+  plotLine(ctxT, T, xs, xs.map(t=> rectX(t, T1_S6)), COL.gray, 1.8, [4,3]);
+  plotLine(ctxT, T, xs, xs.map(t=> rectX(a*t, T1_S6)), COL.mid, 2.4);
+
+  const wView=[-25,25];
+  const ws = linspaceStep(wView[0], wView[1], 0.1);
+  const magOrig = ws.map(w=> cmag(rectSpectrum(w, T1_S6)));
+  const magScaled = ws.map(w=> cmag(rectSpectrum(w/a, T1_S6))/Math.abs(a));
+  const maxMag = Math.max(0.1, ...magOrig, ...magScaled);
+  const ctxM = setupCanvas(c6b_mag);
+  const Tm = makeT(c6b_mag, wView[0], wView[1], -maxMag*0.1, maxMag*1.15);
+  drawFrame(ctxM, Tm);
+  plotLine(ctxM, Tm, ws, magOrig, COL.gray, 1.8, [4,3]);
+  plotLine(ctxM, Tm, ws, magScaled, COL.mid, 2.4);
+
+  const width = 2*T1_S6/a;
+  document.getElementById('s6b_read').innerHTML =
+    `<span class="big">a = ${a.toFixed(2)} &middot; lebar pulsa = ${width.toFixed(2)}</span>` +
+    (a>1 ? 'Sinyal DIPADATKAN di waktu (lebih sempit) &rarr; spektrum MELEBAR di frekuensi.'
+         : (a<1 ? 'Sinyal DILEBARKAN di waktu &rarr; spektrum MENYEMPIT di frekuensi.'
+                : 'a=1: tidak ada penskalaan.'));
+}
+[s6b_a].forEach(el=> el.addEventListener('input', draw6b));
+
+/* ============================= SECTION 7: FILTER RC & RESPONS FREKUENSI ============================= */
+const c7_mag = document.getElementById('c7_mag'), c7_phase = document.getElementById('c7_phase');
+const s7_tau = document.getElementById('s7_tau'), s7_showY = document.getElementById('s7_showY');
+const T1_S7 = 1.0;
+function draw7(){
+  const tau = parseFloat(s7_tau.value);
+  const wc = 1/tau;
+  document.getElementById('s7_tauv').textContent = tau.toFixed(2);
+  document.getElementById('s7_wcv').textContent = wc.toFixed(2);
+
+  const wView = [-30,30];
+  const ws = linspaceStep(wView[0], wView[1], 0.1);
+  const Hmag = ws.map(w=> 1/Math.sqrt(1+Math.pow(w*tau,2)));
+  const Hphase = ws.map(w=> -Math.atan(w*tau));
+
+  const showY = s7_showY.checked;
+  let Ymag = null;
+  if(showY){
+    Ymag = ws.map(w=> cmag(rectSpectrum(w, T1_S7)) * (1/Math.sqrt(1+Math.pow(w*tau,2))));
+  }
+  const maxMag = showY ? Math.max(1.15, ...Ymag) : 1.15;
+
+  const ctxM = setupCanvas(c7_mag);
+  const Tm = makeT(c7_mag, wView[0], wView[1], -0.1, maxMag*1.05);
+  drawFrame(ctxM, Tm);
+  if(wc <= wView[1]){
+    ctxM.strokeStyle = COL.red; ctxM.setLineDash([3,3]);
+    ctxM.beginPath(); ctxM.moveTo(Tm.x(wc),Tm.padT); ctxM.lineTo(Tm.x(wc),Tm.h-Tm.padB); ctxM.stroke();
+    ctxM.beginPath(); ctxM.moveTo(Tm.x(-wc),Tm.padT); ctxM.lineTo(Tm.x(-wc),Tm.h-Tm.padB); ctxM.stroke();
+    ctxM.setLineDash([]);
+  }
+  if(showY) plotLine(ctxM, Tm, ws, Ymag, COL.blue, 2.2);
+  plotLine(ctxM, Tm, ws, Hmag, COL.mid, 2.4);
+
+  const ctxP = setupCanvas(c7_phase);
+  const Tp = makeT(c7_phase, wView[0], wView[1], -1.7, 1.7);
+  drawFrame(ctxP, Tp);
+  plotLine(ctxP, Tp, ws, Hphase, COL.mid, 2.4);
+
+  document.getElementById('s7_read').innerHTML =
+    `<span class="big">&omega;<sub>c</sub> = 1/&tau; = ${wc.toFixed(2)} rad/s</span>` +
+    `Pada &omega;=&omega;<sub>c</sub>, |H(j&omega;)| turun ke 1/&radic;2 &asymp; 0.707 (daya turun setengah).` +
+    (showY ? ' Kurva biru menunjukkan spektrum pulsa SETELAH difilter: komponen frekuensi tinggi teredam kuat.' : '');
+}
+[s7_tau,s7_showY].forEach(el=> el.addEventListener('input', draw7));
+
+/* ============================= SECTION 8a: SAMPLING - DOMAIN FREKUENSI ============================= */
+const c8a_spec = document.getElementById('c8a_spec');
+const s8a_fM = document.getElementById('s8a_fM'), s8a_fs = document.getElementById('s8a_fs');
+function basebandTriangle(w, fM){
+  const aw = Math.abs(w);
+  return aw < fM ? (1 - aw/fM) : 0;
+}
+function draw8a(){
+  const fM = parseFloat(s8a_fM.value), fs = parseFloat(s8a_fs.value);
+  document.getElementById('s8a_fMv').textContent = fM.toFixed(1);
+  document.getElementById('s8a_fsv').textContent = fs.toFixed(1);
+
+  const WVIEW = 25;
+  const ctx = setupCanvas(c8a_spec);
+  const T = makeT(c8a_spec, -WVIEW, WVIEW, -0.15, 1.25);
+  drawFrame(ctx, T);
+
+  const aliasFlag = fs < 2*fM;
+  if(aliasFlag){
+    const Kmax = Math.ceil((WVIEW+fM)/fs)+1;
+    for(let k=-Kmax;k<=Kmax;k++){
+      const c1 = k*fs + fs - fM, c2 = k*fs + fM;
+      if(c2 > c1) fillBand(ctx, T, c1, c2, 'rgba(177,74,63,0.28)');
+    }
+  }
+
+  const ws = linspaceStep(-WVIEW, WVIEW, 0.1);
+  const Kmax = Math.ceil(WVIEW/fs)+1;
+  for(let k=-Kmax;k<=Kmax;k++){
+    if(k===0) continue;
+    plotLine(ctx, T, ws, ws.map(w=> basebandTriangle(w-k*fs, fM)), '#B7C9BD', 1.6);
+  }
+  plotLine(ctx, T, ws, ws.map(w=> basebandTriangle(w, fM)), COL.mid, 2.6);
+
+  const readEl = document.getElementById('s8a_read');
+  if(aliasFlag){
+    readEl.className = 'readout warn';
+    readEl.innerHTML = `<span class="big">f<sub>s</sub> &lt; 2f<sub>M</sub> &mdash; ALIASING</span>f<sub>s</sub>=${fs.toFixed(1)} Hz &lt; 2&times;${fM.toFixed(1)}=${(2*fM).toFixed(1)} Hz. Salinan spektrum saling tumpang tindih (area merah): sinyal TIDAK dapat direkonstruksi sempurna.`;
+  } else {
+    readEl.className = 'readout ok';
+    readEl.innerHTML = `<span class="big">f<sub>s</sub> &ge; 2f<sub>M</sub> &mdash; Kriteria Nyquist Terpenuhi</span>f<sub>s</sub>=${fs.toFixed(1)} Hz &ge; 2&times;${fM.toFixed(1)}=${(2*fM).toFixed(1)} Hz. Salinan spektrum terpisah rapi: sinyal dapat direkonstruksi sempurna dengan filter lolos-rendah.`;
+  }
+}
+[s8a_fM,s8a_fs].forEach(el=> el.addEventListener('input', draw8a));
+
+/* ============================= SECTION 8b: SAMPLING - DOMAIN WAKTU ============================= */
+const c8b_time = document.getElementById('c8b_time');
+const s8b_f0 = document.getElementById('s8b_f0'), s8b_fs = document.getElementById('s8b_fs');
+function foldFreq(f0, fs){
+  let r = f0 % fs;
+  if(r<0) r += fs;
+  if(r > fs/2) r = fs - r;
+  return r;
+}
+function draw8b(){
+  const f0 = parseFloat(s8b_f0.value), fs = parseFloat(s8b_fs.value);
+  document.getElementById('s8b_f0v').textContent = f0.toFixed(1);
+  document.getElementById('s8b_fsv').textContent = fs.toFixed(1);
+  const fAlias = foldFreq(f0, fs);
+  const aliased = Math.abs(fAlias - f0) > 1e-6;
+
+  const tmax = Math.max(0.6, 6/f0);
+  const ctx = setupCanvas(c8b_time);
+  const T = makeT(c8b_time, 0, tmax, -1.3, 1.3);
+  drawFrame(ctx, T);
+  const xs = linspaceStep(0, tmax, tmax/500);
+  plotLine(ctx, T, xs, xs.map(t=> Math.cos(2*Math.PI*f0*t)), COL.gray, 1.8);
+  if(aliased){
+    plotLine(ctx, T, xs, xs.map(t=> Math.cos(2*Math.PI*fAlias*t)), COL.mid, 2.4, [6,4]);
+  }
+  const Ts = 1/fs;
+  const ns = []; for(let t=0;t<=tmax+1e-9;t+=Ts) ns.push(t);
+  ctx.fillStyle = COL.red;
+  ns.forEach(t=>{ const px=T.x(t), py=T.y(Math.cos(2*Math.PI*f0*t)); ctx.beginPath(); ctx.arc(px,py,4,0,Math.PI*2); ctx.fill(); });
+
+  const readEl = document.getElementById('s8b_read');
+  if(aliased){
+    readEl.className = 'readout warn';
+    readEl.innerHTML = `<span class="big">f<sub>alias</sub> = ${fAlias.toFixed(2)} Hz</span>f<sub>s</sub>=${fs.toFixed(1)} Hz &lt; 2f&#8320;=${(2*f0).toFixed(1)} Hz. Sampel-sampel (titik merah) sama persis dengan sinusoid ${fAlias.toFixed(2)} Hz (garis putus-putus hijau) &mdash; itulah yang akan "terbaca" sistem, BUKAN f&#8320; sebenarnya.`;
+  } else {
+    readEl.className = 'readout ok';
+    readEl.innerHTML = `<span class="big">Tidak ada aliasing</span>f<sub>s</sub>=${fs.toFixed(1)} Hz &ge; 2f&#8320;=${(2*f0).toFixed(1)} Hz. Sampel-sampel cukup rapat untuk merekonstruksi f&#8320; dengan tepat.`;
+  }
+}
+[s8b_f0,s8b_fs].forEach(el=> el.addEventListener('input', draw8b));
+
 /* ============================= INISIALISASI ============================= */
-draw1(); draw2(); draw3(); draw4();
-window.addEventListener('resize', ()=>{}); // canvas ukuran tetap (responsif via CSS width:100%)
+draw1(); draw2(); draw3(); draw4(); draw5(); draw6a(); draw6b(); draw7(); draw8a(); draw8b();
+window.addEventListener('resize', ()=>{});
 </script>
 </body>
 </html>
