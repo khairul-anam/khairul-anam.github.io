@@ -537,6 +537,26 @@
       "youtube": null,
       "images": null,
       "elearning_url": "simulations/ai-tambang/index.html"
+    },
+    {
+      "id": "c8",
+      "code": "",
+      "level": "S1",
+      "credits": 0,
+      "semester_en": "Workshop 2026",
+      "semester_id": "Workshop 2026",
+      "name_en": "Introduction to AI & Machine Learning for Civil Engineering",
+      "name_id": "Latihan AI & Machine Learning untuk Teknik Sipil",
+      "desc_en": "A 1.5-hour hands-on workshop introducing AI/ML fundamentals and building a real concrete compressive-strength prediction model in Python using laboratory test data.",
+      "desc_id": "Latihan singkat 1,5 jam memperkenalkan konsep dasar AI/ML dan langsung mempraktikkan pembangunan model prediksi kuat tekan beton menggunakan Python dan data hasil uji laboratorium.",
+      "content_en": "#### Workshop Description\n\nA short 1.5-hour hands-on exercise for civil engineering students, introducing the fundamentals of Artificial Intelligence and Machine Learning, followed by hands-on practice building a concrete compressive-strength prediction model on real laboratory test data using a Kaggle Notebook.\n\n#### Agenda\n\n1. **Opening** (5 min)\n2. **Video: Introduction to AI, ML, and Deep Learning** (30 min)\n3. **Video: The Machine Learning Modeling Cycle** (15 min)\n4. **Hands-on Kaggle Exercise** (40 min) — Load and clean data, explore, train and compare models (Random Forest, SVM, Neural Network, Linear Regression), evaluate, try custom predictions\n\n#### Dataset\n\n**Concrete Compressive Strength Dataset** (Kaggle, based on the UCI ML Repository) — 1,030 rows of laboratory concrete-mix test data (cement, water, fly ash, etc.). Prediction target: compressive strength (MPa).\n\n#### Target Audience\n\nUndergraduate Civil Engineering students — no prior programming experience required.\n\n#### Tools\n\n- Python (Kaggle Notebook)\n- Pandas, Scikit-learn, TensorFlow/Keras",
+      "content_id": "#### Deskripsi Latihan\n\nLatihan praktik singkat 1,5 jam untuk mahasiswa Teknik Sipil, memperkenalkan konsep dasar Artificial Intelligence dan Machine Learning, lalu langsung mempraktikkan pembangunan model prediksi kuat tekan beton menggunakan data hasil uji laboratorium nyata di Kaggle Notebook.\n\n#### Agenda\n\n1. **Pembukaan** (5 menit)\n2. **Video: Pengantar AI, ML, dan Deep Learning** (30 menit)\n3. **Video: Siklus Pemodelan Machine Learning** (15 menit)\n4. **Latihan Praktik Kaggle** (40 menit) — Load & bersihkan data, eksplorasi, latih & bandingkan model (Random Forest, SVM, Neural Network, Linear Regression), evaluasi, coba prediksi custom\n\n#### Dataset\n\n**Concrete Compressive Strength Dataset** (Kaggle, berdasarkan UCI ML Repository) — 1.030 baris data uji campuran beton laboratorium (semen, air, abu terbang, dll). Target prediksi: kuat tekan (MPa).\n\n#### Target Peserta\n\nMahasiswa S1 Teknik Sipil — tanpa perlu pengalaman pemrograman sebelumnya.\n\n#### Perangkat\n\n- Python (Kaggle Notebook)\n- Pandas, Scikit-learn, TensorFlow/Keras",
+      "schedule_en": "1.5 hours, self-paced",
+      "schedule_id": "1,5 jam, mandiri",
+      "syllabus_url": "",
+      "youtube": null,
+      "images": null,
+      "elearning_url": "simulations/ai-sipil/index.html"
     }
   ],
   "publications": [
